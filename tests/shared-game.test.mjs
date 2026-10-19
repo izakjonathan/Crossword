@@ -145,3 +145,10 @@ test('a lost new-round response retries the same replacement without starting a 
   await a.client.newRound(async()=>{server.loseResponse=true;return next;});await b.client.poll();
   assert.equal(a.state.room.roundId,b.state.room.roundId);assert.equal(b.state.room.puzzle.id,next.id);assert.equal(a.state.generating,false);
 });
+
+
+test('empty Lua tables from Upstash normalise to answer/writer maps and an errors array',async()=>{
+  const room={...createRoom(game),answers:[],writers:[],view:{...createRoom(game).view,errors:{}}};
+  const store=sharedStore(async()=>JSON.stringify(room));const restored=await store.get('a'.repeat(64));
+  assert.deepEqual(restored.answers,{});assert.deepEqual(restored.writers,{});assert.deepEqual(restored.view.errors,[]);
+});

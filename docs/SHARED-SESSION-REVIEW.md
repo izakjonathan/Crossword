@@ -20,10 +20,12 @@ Board gesture changes publish at most four intermediate positions per second, pl
 
 ## Validation
 
-- 97/97 source tests with disposable Redis enabled, including real Lua execution.
+- 98/98 source tests with disposable Redis enabled, including real Lua execution.
 - Production Next build passed; 3/3 production CSS checks passed.
 - 300/300 independently audited puzzles passed, across Easy/Medium/Hard.
 - Two independent client simulations cover new-game creation from either device, multiple rounds, refresh into the current round, lost replacement responses, old offline edits, shared selection/dialogs/checks/board view, failed generation and simultaneous generation attempts.
 - Actual Redis tests cover leases, replacement, repeat rejection, stale-round rejection, idempotent replacement retries, preserved expiry and continued edits in the same room.
 
 No dependency, environment-variable or existing saved-game schema change is required. Live deployment smoke testing uses a new disposable room, not an existing user's session. Physical iPhone interactions and pixel-level view matching across differing screen sizes are not certified; browser downloads were unavailable in this environment. The existing generated puzzle bank, difficulty profiles and fairness rules remain unchanged.
+
+Live Upstash validation exposed a provider-specific cjson representation of empty tables as arrays. Responses now normalise empty answer/writer maps and check arrays before reaching clients, with an explicit regression test.
