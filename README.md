@@ -45,11 +45,9 @@ See the [difficulty policy and research](docs/DIFFICULTY.md) and [v2.8 validatio
 
 For the previous construction changes, see the [v2.7 source-backed construction review](docs/RESEARCH-V2.7.md) and [validation/benchmark report](docs/VALIDATION-V2.7.md). The audit recorded 300 valid distinct fresh-seed grids. Mechanical validity is separate from a human editor's assessment of every clue.
 
-## Local UI Studio
+## Global UI Studio
 
-The two colours default to Baros canvas `#fff4c4` and ink `#000000`. UI Studio previews both and saves to this browser's localStorage when **Save** is pressed. Changes persist after reload and synchronise between tabs on this device, without a server, account, database, environment variable or network request. Other devices keep their own palette. Cancel restores the saved colours. Invalid colours and low contrast are rejected; unavailable browser storage produces an explicit save error.
-
-The unused shared-theme API and Blob dependency have been removed.
+UI Studio previews colours on the editing device. **Save** publishes the two-colour palette through Redis to every device on the same database. Anyone can save; other devices receive it automatically. Cancel restores the latest saved palette. Invalid colours and low contrast are rejected. A local last-known cache provides the initial browser canvas. See [global theme](docs/GLOBAL-THEME.md).
 
 ## Compact mobile layout
 
@@ -105,6 +103,8 @@ Baseline: the recovered v2.6.0 production source. Browser colour metadata is now
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
 
-## Shared sessions across new puzzles
+## Shared lobbies
 
-The same invite link now follows successive puzzles. Either player can use + to choose a new difficulty while staying connected. Active clue/square, gameplay dialogs, clue direction, checks, letters, hints, zoom and board movement are shared. A generation lease prevents competing new games; old-round edits cannot affect the new grid. See [shared games](docs/SHARED-GAMES.md) and [review evidence](docs/SHARED-SESSION-REVIEW.md).
+Open **··· → Play together**, give your current game a lobby name and press **Host this game**. On another device, open the same app, choose **Play together**, then **Join** beside that name. No link is required. Hosting deliberately makes the game discoverable to everyone using this app.
+
+Everyone can write, erase, use hints and create the next puzzle with +. The lobby stays connected across new puzzles and reloads until **Leave shared game**. Leaving restores that device's solo save and keeps other players connected. The lobby closes after the last explicit leave, or after its fixed seven-day expiry. Joined counts include devices currently away. See [shared games](docs/SHARED-GAMES.md) and [lobby validation](docs/LOBBIES.md).

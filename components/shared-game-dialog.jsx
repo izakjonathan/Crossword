@@ -1,24 +1,40 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dialog from './dialog';
+import { lobbyRequest } from '../lib/lobby-session.mjs';
 
-export default function SharedGameDialog({ shared, creating, onCreate, onLeave, onClose, notice }) {
-  const [message, setMessage] = useState('');
-  const link = shared?.token ? `${location.origin}${location.pathname}#game=${shared.token}` : '';
-  async function copy() {
-    try { await navigator.clipboard.writeText(link); setMessage('Link copied. Send it to the person you want to play with.'); }
-    catch { setMessage('Select and copy the link below.'); }
-  }
-  async function share() {
-    try { await navigator.share({ title:'Play this crossword with me', url:link }); }
-    catch (error) { if (error.name !== 'AbortError') copy(); }
-  }
+export default function SharedGameDialog({ shared, creating, leaving, canHost, onCreate, onJoin, onLeave, onClose, notice }) {
+  const [name, setName] = useState('Shared crossword');
+  const [lobbies, setLobbies] = useState(null), [error, setError] = useState('');
+  useEffect(() => {
+    const controller = new AbortController(); let timer;
+    async function refresh() {
+      try { const data = await lobbyRequest(null, controller.signal); if (!controller.signal.aborted) { setLobbies(data.lobbies); setError(''); } }
+      catch (cause) { if (!controller.signal.aborted) setError(cause.message); }
+      finally { if (!controller.signal.aborted) timer = setTimeout(refresh, 3000); }
+    }
+    refresh(); return () => { controller.abort(); clearTimeout(timer); };
+  }, []);
+  const active = lobbies?.find(lobby => lobby.id === shared?.lobby?.id) || shared?.lobby;
   return <Dialog title="Play together" onClose={onClose}>
-    <p className="dialog-copy">{shared ? 'Anyone with this link can write and delete letters on this board. The link lasts 7 days.' : 'Invite someone to solve your current crossword. Both of you can write and delete letters, with changes appearing automatically.'}</p>
-    {shared && <label className="shared-link-label">Game link<input aria-label="Shared game link" className="shared-link" readOnly value={link} onFocus={event => event.target.select()} /></label>}
-    <div className="dialog-actions">
-      {shared ? <><button className="solid-button" onClick={copy}>Copy link</button>{typeof navigator.share === 'function' && <button className="outline-button" onClick={share}>Share</button>}<button className="outline-button" disabled={shared.generating || (shared.pending > 0 && shared.status !== 'ended')} onClick={onLeave}>{shared.status === 'ended' && shared.pending ? 'Keep a solo copy' : 'Leave shared game'}</button></> : <button className="solid-button" disabled={creating} onClick={onCreate}>{creating ? 'Creating link…' : 'Create game link'}</button>}
-    </div>
-    <p className="shared-message" role="status">{notice || message || (shared?.pending ? 'Saving your changes before you leave…' : shared?.error || '')}</p>
+    {shared ? <>
+      <p className="dialog-copy"><strong>{active?.name || 'Shared session'}</strong>{active ? ` · ${active.players} joined` : ''}</p>
+      <p className="dialog-copy">You stay together when either player creates a new puzzle. Reopening this app reconnects you until you leave. Sessions last up to 7 days.</p>
+      <div className="dialog-actions"><button className="outline-button" disabled={leaving || shared.generating || (shared.pending > 0 && shared.status !== 'ended')} onClick={onLeave}>{leaving ? 'Leaving…' : shared.status === 'ended' && shared.pending ? 'Keep a solo copy and leave' : 'Leave shared game'}</button></div>
+      <p className="dialog-copy">Leaving returns you to your solo game. Other players stay connected. The lobby closes when everyone leaves.</p>
+    </> : <>
+      <p className="dialog-copy">Host your current game so anyone on another device can find it below and join. Everyone in the lobby can write, erase and create the next puzzle.</p>
+      <form className="lobby-host" onSubmit={event => { event.preventDefault(); onCreate(name.trim()); }}>
+        <label htmlFor="lobby-name">Lobby name</label>
+        <input id="lobby-name" className="shared-link" maxLength={48} value={name} onChange={event => setName(event.target.value)} disabled={creating} required />
+        <button className="solid-button" disabled={creating || !canHost || !name.trim()}>{creating ? 'Connecting…' : 'Host this game'}</button>
+      </form>
+      <h3 className="lobby-heading">Available games</h3>
+      {lobbies === null && !error && <p role="status">Finding shared games…</p>}
+      {lobbies?.length === 0 && <p>No shared games yet. Host one to get started.</p>}
+      <div className="difficulty-options lobby-list">{lobbies?.map(lobby => <button key={lobby.id} className="difficulty-option" disabled={creating} onClick={() => onJoin(lobby.id)} aria-label={`Join ${lobby.name}`}><span className="lobby-name">{lobby.name}<small>{lobby.players} joined</small></span><span>Join</span></button>)}</div>
+      <p className="dialog-copy">Joined devices stay in the session when the app is closed. Use Leave shared game to leave. The count shows joined devices, including those currently away.</p>
+    </>}
+    <p className="shared-message" role="status">{notice || error || (shared?.pending ? 'Saving your changes before you leave…' : shared?.error || '')}</p>
   </Dialog>;
 }

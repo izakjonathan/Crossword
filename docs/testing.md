@@ -31,3 +31,9 @@ The historical v2.8.2 performance comparison requires matching editorial banks: 
 ## Shared-session lifecycle review
 
 The expanded shared tests cover shared view changes, new games from both devices, simultaneous requests, lost replacement responses, old offline queues, recovery and actual Redis round fencing. Input tests now assert sequential overwriting rather than filled-square skipping. See [SHARED-SESSION-REVIEW.md](SHARED-SESSION-REVIEW.md) for final evidence and limits.
+
+## Discoverable shared lobbies
+
+The lobby suite covers persisted device identity and session restoration, public discovery without token disclosure, idempotent joins/leaves, forwarded-origin validation, invalid/oversized requests, real Redis membership/expiry, editing/deletion, new-round rejoining and last-player closure. See [LOBBIES.md](LOBBIES.md) for current validation evidence and limitations.
+
+Validation: 103/103 tests passed with real Redis enabled (zero skipped), production build passed, 3/3 built CSS checks passed and 300/300 audited puzzles passed. Physical two-device UI interaction remains unverified in this environment.

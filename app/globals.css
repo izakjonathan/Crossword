@@ -98,3 +98,5 @@ body { isolation:isolate; }
 .shared-link-label { display:block; margin:16px 0; font-size:12px; }
 .shared-link { display:block; width:100%; margin-top:6px; padding:12px; border:1px solid var(--content); border-radius:6px; background:var(--bg); color:var(--content); font-size:13px; }
 .shared-message { min-height:18px; margin-top:14px; font-size:13px; line-height:1.4; overflow-wrap:anywhere; }
+
+.lobby-host{display:grid;gap:10px;margin:20px 0}.lobby-host label{font-size:14px;font-weight:600}.lobby-host input{min-width:0;width:100%;box-sizing:border-box}.lobby-host .solid-button{justify-self:start}.lobby-heading{font-size:16px;margin:24px 0 12px}.lobby-list{max-height:34dvh;overflow-y:auto}.lobby-name{min-width:0;overflow-wrap:anywhere;text-align:left}.lobby-name small{display:block;margin-top:4px;font-size:12px;font-weight:400}

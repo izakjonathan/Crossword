@@ -1,5 +1,13 @@
 # Changelog
 
+## Discoverable shared lobbies — 19 October 2026
+
+- Host a named game and join it from the available-games list without sending a link.
+- Remember each device's active session and reconnect to the current round after reopening.
+- Preserve session membership across new puzzles; explicit leave restores solo play for that device.
+- Count joined devices idempotently and close the public lobby after its last player leaves.
+- Keep existing private links private and retain legacy link compatibility.
+
 ## Shared-session review — 20 October 2026
 
 - Keep the same shared link when either device creates another puzzle.

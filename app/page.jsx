@@ -15,6 +15,7 @@ import { GenerationClient } from '../lib/generation-client.mjs';
 import { SharedClient, sharedRequest } from '../lib/shared-client.mjs';
 import { TOKEN_PATTERN, playWithRoom, roundId, sharedHistory, SHARED_MODALS } from '../lib/shared-model.mjs';
 import SharedGameDialog from '../components/shared-game-dialog';
+import { playerId, loadSharedSession, saveSharedSession, clearSharedSession, lobbyRequest } from '../lib/lobby-session.mjs';
 import { GlobalThemeClient } from '../lib/global-theme-client.mjs';
 
 function Icon({ name }) {
@@ -28,6 +29,11 @@ export default function Home() {
   const [notice, setNotice] = useState(''), [errors, setErrors] = useState([]);
   const [generationError, setGenerationError] = useState('');
   const [shared, setShared] = useState(null), [creatingShare, setCreatingShare] = useState(false), [shareNotice, setShareNotice] = useState('');
+  const deviceRef = useRef(null), [leavingShare, setLeavingShare] = useState(false), leavingRef = useRef(false);
+  const deviceId = useCallback(() => {
+    if (!deviceRef.current) { try { deviceRef.current = playerId(localStorage); } catch { deviceRef.current = crypto.randomUUID(); } }
+    return deviceRef.current;
+  }, []);
   const sharedRef = useRef(null), shareRequestRef = useRef(null), creatingShareRef = useRef(false);
   const [savedTheme, setSavedTheme] = useState(DEFAULT_THEME);
   const [preview, setPreview] = useState(DEFAULT_THEME), [view, setView] = useState(null), [themeLoaded, setThemeLoaded] = useState(false);
@@ -63,12 +69,12 @@ export default function Home() {
     } finally { if (lifecycle === lifecycleRef.current) setBusy(!!sharedRef.current?.generating()); }
   }, []);
 
-  const connectShared = useCallback((token, room) => {
+  const connectShared = useCallback((token, room, lobby = null) => {
     sharedRef.current?.stop();
     let pendingStorage; try { pendingStorage = sessionStorage; } catch { /* Edits still sync in memory. */ }
     let reservedRound, seenNotice;
     const client = new SharedClient({ token, room, storage:pendingStorage, onChange:update => {
-      setShared({ token, ...update });
+      setShared({ token, lobby, ...update });
       const active = update.room, current = gameRef.current;
       const same = current?.sharedRound === roundId(active);
       const play = same ? current.play : initialState(active.puzzle);
@@ -93,6 +99,8 @@ export default function Home() {
         })();
       }
     }});
+    client.lobby = lobby;
+    try { saveSharedSession(localStorage, {token,lobby}); } catch { setNotice('Connected. Keep this page open; this browser cannot save the session for reopening.'); }
     sharedRef.current = client; client.start();
   }, []);
 
@@ -105,35 +113,65 @@ export default function Home() {
       const room = await sharedRequest(token, 'GET', undefined, controller.signal);
       if (!controller.signal.aborted) connectShared(token, room);
     } catch (error) { if (!controller.signal.aborted) setGenerationError(error.message || 'Could not open this shared game.'); }
-    finally { if (!controller.signal.aborted) setBusy(false); }
+    finally { if (!controller.signal.aborted) setBusy(!!sharedRef.current?.generating()); }
   }, [connectShared]);
 
-  async function createShared() {
+  const joinLobby = useCallback(async (id, resuming = false) => {
+    if (creatingShareRef.current || sharedRef.current) return;
+    shareRequestRef.current?.abort();
+    const controller = new AbortController(); shareRequestRef.current = controller;
+    creatingShareRef.current = true; setCreatingShare(true); setShareNotice(''); setGenerationError(''); setBusy(true);
+    try {
+      if (gameRef.current) { try { saveSession(localStorage, gameRef.current); } catch { /* Joining works without persistence. */ } }
+      const result = await lobbyRequest({action:'join',lobbyId:id,playerId:deviceId()}, controller.signal);
+      if (controller.signal.aborted) return;
+      history.replaceState(null, '', location.pathname + location.search);
+      connectShared(result.token, result.room, result.lobby); setModal(null);
+    } catch (error) {
+      if (!controller.signal.aborted) {
+        setShareNotice(error.message); setModal('share');
+        if (resuming && error.status === 404) { try { clearSharedSession(localStorage); } catch { /* No saved session. */ } }
+        if (!gameRef.current) {
+          let restored; try { restored = loadSession(localStorage); } catch { /* No solo progress. */ }
+          if (restored) { gameRef.current = restored; setGame(restored); }
+          else setGenerationError(error.message);
+        }
+      }
+    } finally { if (!controller.signal.aborted) { creatingShareRef.current = false; setCreatingShare(false); setBusy(!!sharedRef.current?.generating()); } }
+  }, [connectShared, deviceId]);
+
+  async function createShared(name) {
     if (!gameRef.current || creatingShareRef.current || sharedRef.current) return;
-    try { saveSession(localStorage, gameRef.current); } catch { /* Sharing still works without local persistence. */ }
+    try { saveSession(localStorage, gameRef.current); } catch { /* Hosting works without persistence. */ }
     creatingShareRef.current = true; setCreatingShare(true); setShareNotice('');
     const controller = new AbortController(); shareRequestRef.current = controller;
     try {
-      const result = await sharedRequest(null, 'POST', { game:gameRef.current }, controller.signal);
+      const result = await lobbyRequest({action:'host',name,game:gameRef.current,playerId:deviceId()}, controller.signal);
       if (controller.signal.aborted) return;
-      history.replaceState(null, '', `#game=${result.token}`);
-      connectShared(result.token, result.room);
-    } catch (error) { if (!controller.signal.aborted) setShareNotice(error.message || 'Could not create a game link.'); }
+      history.replaceState(null, '', location.pathname + location.search);
+      connectShared(result.token, result.room, result.lobby);
+    } catch (error) { if (!controller.signal.aborted) setShareNotice(error.message || 'Could not host this game.'); }
     finally { creatingShareRef.current = false; setCreatingShare(false); }
   }
 
-  function leaveShared() {
-    if (sharedRef.current?.generating()) { setNotice('Wait for the new shared puzzle to finish.'); return; }
-    if (sharedRef.current?.pending.length && !sharedRef.current.fatal) return;
-    const keepCopy = sharedRef.current?.fatal && sharedRef.current?.pending.length;
-    const copy = keepCopy ? gameRef.current : null;
-    shareRequestRef.current?.abort(); sharedRef.current?.stop(); sharedRef.current = null;
-    history.replaceState(null, '', location.pathname + location.search);
-    setShared(null); setModal(null); setGenerationError('');
-    const restored = copy || loadSession(localStorage);
-    if (copy) { try { saveSession(localStorage, copy); } catch { setNotice('This solo copy could not be saved.'); } }
-    gameRef.current = restored; setGame(restored);
-    if (!restored) startPuzzle('medium');
+  async function leaveShared() {
+    if (leavingRef.current) return;
+    const client = sharedRef.current;
+    if (client?.generating()) { setShareNotice('Wait for the new shared puzzle to finish.'); return; }
+    if (client?.pending.length && !client.fatal) return;
+    leavingRef.current = true; setLeavingShare(true); setShareNotice('');
+    try {
+      if (client?.lobby) await lobbyRequest({action:'leave',lobbyId:client.lobby.id,playerId:deviceId()});
+      const copy = client?.fatal && client?.pending.length ? gameRef.current : null;
+      shareRequestRef.current?.abort(); client?.stop(); sharedRef.current = null;
+      try { clearSharedSession(localStorage); } catch { /* Browser storage unavailable. */ }
+      history.replaceState(null, '', location.pathname + location.search);
+      setShared(null); setModal(null); setGenerationError(''); setErrors([]); setNotice('');
+      let restored = copy; try { restored ||= loadSession(localStorage); if (copy) saveSession(localStorage, copy); } catch { /* Restore in memory when storage is unavailable. */ }
+      gameRef.current = restored; setGame(restored);
+      if (!restored) startPuzzle('medium');
+    } catch (error) { setShareNotice(error.message || 'Could not leave this lobby. Try again.'); setModal('share'); }
+    finally { leavingRef.current = false; setLeavingShare(false); }
   }
 
   useEffect(() => {
@@ -142,10 +180,14 @@ export default function Home() {
     generatorRef.current = generator;
     let restored = null; try { restored = loadSession(localStorage); } catch { /* No browser storage. */ }
     const token = new URLSearchParams(location.hash.slice(1)).get('game');
+    let saved; try { saved = loadSharedSession(localStorage); } catch { /* Browser storage unavailable. */ }
+    creatingShareRef.current = false;
     if (token !== null) joinShared(token);
+    else if (saved?.lobby) joinLobby(saved.lobby.id, true);
+    else if (saved?.token) joinShared(saved.token);
     else if (restored) { gameRef.current = restored; setGame(restored); setBusy(false); } else startPuzzle('medium');
     return () => { lifecycleRef.current++; shareRequestRef.current?.abort(); sharedRef.current?.stop(); sharedRef.current = null; generator.dispose(); generatorRef.current?.dispose(); generatorRef.current = null; };
-  }, [startPuzzle, joinShared]);
+  }, [startPuzzle, joinShared, joinLobby]);
 
   useEffect(() => {
     const sync = () => {
@@ -223,7 +265,7 @@ export default function Home() {
         generatorRef.current = new GenerationClient(() => new Worker(new URL('../lib/puzzle.worker.mjs', import.meta.url), { type:'module' }));
         sharedRef.current?.stop(); sharedRef.current = null; setShared(null); setGame(null); gameRef.current = null;
         joinShared(token);
-      } else if (token === null && sharedRef.current) leaveShared();
+      } else if (token === null && sharedRef.current && !sharedRef.current.lobby) leaveShared();
     };
     window.addEventListener('hashchange', navigate);
     return () => window.removeEventListener('hashchange', navigate);
@@ -300,7 +342,7 @@ export default function Home() {
     {modal === 'new' && <Dialog title="New crossword" onClose={closeModal} className="difficulty-dialog"><div className="difficulty-options">{Object.entries(MODES).map(([key, mode]) => <button className="difficulty-option" key={key} onClick={() => startPuzzle(key)}><span>{mode.label}<small className="difficulty-detail">{mode.cols} × {mode.rows} · {key === 'easy' ? 'Familiar words · Direct clues' : key === 'medium' ? 'Broader words · Mixed clues' : 'Challenging words & clues'}</small></span><Icon name="next" /></button>)}</div></Dialog>}
     {modal === 'tools' && <Dialog title="Puzzle controls" onClose={closeModal}><div className="difficulty-options"><button className="difficulty-option" disabled={!game || busy} onClick={() => { setShareNotice(''); openModal('share'); }}><span>Play together</span><Icon name="next" /></button>{generationError && !game && <button className="difficulty-option" onClick={leaveShared}><span>Return to solo game</span><Icon name="next" /></button>}<button className="difficulty-option" disabled={!game || busy} onClick={() => openModal('clues')}><span>All clues</span><Icon name="next" /></button><button className="difficulty-option" disabled={!(shared ? shared.canUndo : game?.play.undo?.length) || busy} onClick={() => { undo(); closeModal(); }}><span>Undo last entry</span><Icon name="undo" /></button><button className="difficulty-option" disabled={!game || busy} onClick={() => { closeModal(); check(); }}><span>Check letters</span><Icon name="check" /></button><button className="difficulty-option" disabled={!game || busy || !entry?.cells.some(i => game.play.answers[i])} onClick={() => { edit(clearWord); closeModal(); const message = 'Word cleared. Use Undo to restore it.'; if (sharedRef.current) publishView({notice:message,noticeId:crypto.randomUUID()}); else setNotice(message); }}><span>Clear current word</span><Icon name="undo" /></button></div></Dialog>}
     {modal === 'reveal' && game && <Dialog title="Need a hint?" onClose={closeModal}><p className="dialog-copy">Reveal one letter or {entry.number} {entry.dir}. This solve will be marked as assisted.</p><div className="dialog-actions"><button className="outline-button" onClick={() => { edit(revealLetter); closeModal(); }}>Reveal letter</button><button className="solid-button" onClick={() => { edit(revealWord); closeModal(); }}>Reveal word</button></div></Dialog>}
-    {modal === 'share' && <SharedGameDialog shared={shared} creating={creatingShare} notice={shareNotice} onCreate={createShared} onLeave={leaveShared} onClose={closeModal} />}
+    {modal === 'share' && <SharedGameDialog shared={shared} creating={creatingShare} leaving={leavingShare} canHost={!!game && !busy} onJoin={joinLobby} notice={shareNotice} onCreate={createShared} onLeave={leaveShared} onClose={closeModal} />}
     {modal === 'studio' && <UiStudio saved={savedTheme} preview={preview} onPreview={setPreview} onClose={closeModal} onSave={theme => themeClientRef.current.save(theme)} onSaved={theme => { setSavedTheme(theme); savedThemeRef.current = theme; setPreview(theme); setNotice('Colours saved for everyone.'); }} />}
   </main>;
 }
