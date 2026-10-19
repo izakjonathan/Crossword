@@ -1,0 +1,4 @@
+'use client';
+export default function ClueSidebar({game,onSelect,busy}){
+  return <aside className="clue-sidebar" aria-label="Clues beside the board">{['across','down'].map(dir=><section key={dir}><h2>{dir}</h2><div className="sidebar-list">{game.puzzle.entries.filter(e=>e.dir===dir).map(entry=><button key={entry.id} disabled={busy} className={`clue-row ${entry.id===game.play.entryId?'current':''}`} aria-current={entry.id===game.play.entryId?'true':undefined} onClick={()=>onSelect(entry.id)}><span className="clue-row-number">{entry.number}</span><span className="clue-row-copy">{entry.clue} <span className="enumeration">({entry.answer.length})</span><small>{entry.cells.every(i=>game.play.answers[i])?'Filled':`${entry.cells.filter(i=>game.play.answers[i]).length}/${entry.cells.length} letters`}</small></span></button>)}</div></section>)}</aside>;
+}

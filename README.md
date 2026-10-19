@@ -15,7 +15,7 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - A game-owned three-row QWERTY keyboard with backspace, as shown in the latest Mirror reference. This replaces the earlier native-keyboard requirement. No hidden text input opens the iOS keyboard during solving. UI Studio colour text fields still use the native keyboard.
 - Current clue directly above the keys, with its number, Across/Down direction, fill progress and previous/next arrows. Tap it for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
 - Hardware letters, arrows, Backspace and Cmd/Ctrl+Z. Enter on the board advances clues; Space switches direction. Tab remains available to leave the board and navigate controls.
-- Typing advances exactly one square, including filled crossings. Typing on a filled square replaces it. Clue navigation starts at the first square.
+- Normal typing skips filled crossing letters. Explicitly tapping a filled square overwrites that letter and activates the immediate next square; subsequent normal typing resumes skipping filled squares.
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
 
 ## Generation and clue quality
@@ -45,9 +45,11 @@ See the [difficulty policy and research](docs/DIFFICULTY.md) and [v2.8 validatio
 
 For the previous construction changes, see the [v2.7 source-backed construction review](docs/RESEARCH-V2.7.md) and [validation/benchmark report](docs/VALIDATION-V2.7.md). The audit recorded 300 valid distinct fresh-seed grids. Mechanical validity is separate from a human editor's assessment of every clue.
 
-## Global UI Studio
+## Local UI Studio
 
-UI Studio previews colours on the editing device. **Save** publishes the two-colour palette through Redis to every device on the same database. Anyone can save; other devices receive it automatically. Cancel restores the latest saved palette. Invalid colours and low contrast are rejected. A local last-known cache provides the initial browser canvas. See [global theme](docs/GLOBAL-THEME.md).
+The two colours default to Baros canvas `#fff4c4` and ink `#000000`. UI Studio previews both and saves to this browser's localStorage when **Save** is pressed. Changes persist after reload and synchronise between tabs on this device, without a server, account, database, environment variable or network request. Other devices keep their own palette. Cancel restores the saved colours. Invalid colours and low contrast are rejected; unavailable browser storage produces an explicit save error.
+
+The unused shared-theme API and Blob dependency have been removed.
 
 ## Compact mobile layout
 
@@ -55,7 +57,7 @@ The header is 48px tall, with evenly sized 44px-high controls and no title. Hint
 
 ## Validation and limits
 
-`npm test` covers randomized square grids, sequential generations and more than 500 dated answer reservations, sequential input and overwrites, direction changes, deletion, undo, multi-character entry, assisted reveals, theme contrast, local theme persistence, storage failures and CSS layout regression checks. Gesture tests cover anchoring, bounds, fit reset, selected-cell visibility, tap/drag separation, pointer cancellation, and pinch-to-pan transitions. `npm run build` verifies production compilation, worker bundling.
+`npm test` covers randomized square grids, sequential generations and more than 500 dated answer reservations, input skipping and overwrites, direction changes, deletion, undo, multi-character entry, assisted reveals, theme contrast, local theme persistence, storage failures and CSS layout regression checks. Gesture tests cover anchoring, bounds, fit reset, selected-cell visibility, tap/drag separation, pointer cancellation, and pinch-to-pan transitions. `npm run build` verifies production compilation, worker bundling.
 
 Physical iPhone touch behaviour and comparative performance against other crossword apps have not been tested in this environment. There is no claim of outperforming publishers or of human-edited newspaper construction quality. See [current research and implementation rationale](docs/RESEARCH-V2.7.md) for primary sources and tradeoffs.
 
@@ -102,9 +104,3 @@ A six-puzzle fixed-seed sample (two per difficulty) contained 60 answers with di
 Baseline: the recovered v2.6.0 production source. Browser colour metadata is now declared before the saved-theme bootstrap and is owned by UI Studio rather than a separate static Next.js viewport colour. A fixed full-viewport background follows the same `--bg` as the app, including exposed top/bottom areas when browser controls or the native keyboard resize the game. Preview, Save, Cancel, reload and cross-tab theme updates retain their existing behaviour.
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
-
-## Shared lobbies
-
-Open **··· → Play together**, give your current game a lobby name and press **Host this game**. On another device, open the same app, choose **Play together**, then **Join** beside that name. No link is required. Hosting deliberately makes the game discoverable to everyone using this app.
-
-Everyone can write, erase, use hints and create the next puzzle with +. The lobby stays connected across new puzzles and reloads until **Leave shared game**. Leaving restores that device's solo save and keeps other players connected. The lobby closes after the last explicit leave, or after its fixed seven-day expiry. Joined counts include devices currently away. See [shared games](docs/SHARED-GAMES.md) and [lobby validation](docs/LOBBIES.md).

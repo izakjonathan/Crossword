@@ -18,6 +18,7 @@ export function POST(request){return respond(async()=>{
   const store=lobbyStore();
   if(body.action==='host')return store.host(body.game,body.name,body.playerId,request.headers.get('x-vercel-forwarded-for')||request.headers.get('x-forwarded-for')?.split(',')[0]||'unknown');
   if(body.action==='join')return store.join(body.lobbyId,body.playerId);
+  if(body.action==='heartbeat')return store.heartbeat(body.lobbyId,body.playerId,body.name);
   if(body.action==='leave')return store.leave(body.lobbyId,body.playerId);
   throw new SharedError('Unknown lobby action.');
 });}

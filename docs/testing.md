@@ -21,19 +21,9 @@ A targeted manual solve checklist:
 
 1. Generate each difficulty; solve from clues and crossings, recording ambiguous or unnatural definitions.
 2. Tap a crossing twice, type through prefilled crossings, delete backwards, undo a hint and confirm assisted status remains.
-3. Open All clues, switch direction, select a partially filled clue and verify its first square is selected.
+3. Open All clues, switch direction, select a partially filled clue and verify its first empty square is selected.
 4. Change each UI Studio colour, cancel, save, reload, rotate and expand/collapse Safari controls.
 5. Open a dialog using a hardware keyboard, cycle Tab/Shift+Tab, close with Escape and verify focus restoration.
 6. Resume a genuine v2.8.2 save without losing answers; generate a new puzzle to see the new longer-answer clue variants.
 
 The historical v2.8.2 performance comparison requires matching editorial banks: use the v2.8.2 source and extracted v2.8.1 source. v2.9.0 intentionally changes seeded clue outputs, so its exact-output benchmark against an older bank must fail. For the historical comparison, extract the delivered v2.8.1 ZIP to a separate directory and run `node scripts/benchmark-generation.mjs /path/to/v2.8.1-source 100`. The script fails on any complete-puzzle difference or repeat in its twelve-game sequence. See `PERFORMANCE-V2.8.2.md` for benchmark limits; do not add machine-dependent timing assertions to unit tests.
-
-## Shared-session lifecycle review
-
-The expanded shared tests cover shared view changes, new games from both devices, simultaneous requests, lost replacement responses, old offline queues, recovery and actual Redis round fencing. Input tests now assert sequential overwriting rather than filled-square skipping. See [SHARED-SESSION-REVIEW.md](SHARED-SESSION-REVIEW.md) for final evidence and limits.
-
-## Discoverable shared lobbies
-
-The lobby suite covers persisted device identity and session restoration, public discovery without token disclosure, idempotent joins/leaves, forwarded-origin validation, invalid/oversized requests, real Redis membership/expiry, editing/deletion, new-round rejoining and last-player closure. See [LOBBIES.md](LOBBIES.md) for current validation evidence and limitations.
-
-Validation: 103/103 tests passed with real Redis enabled (zero skipped), production build passed, 3/3 built CSS checks passed and 300/300 audited puzzles passed. Physical two-device UI interaction remains unverified in this environment.

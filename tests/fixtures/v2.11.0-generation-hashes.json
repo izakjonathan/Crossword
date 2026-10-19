@@ -1,0 +1,69 @@
+{
+  "baseline": "2.11.0",
+  "reason": "62 reviewed alternative clues intentionally change Medium/Hard wording and eligible fills; older fixtures are retained as history.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "0d4b9718c4db78f0ee04d2bdd04f8a96e5398c9ab52e3fd5143a8ae686a461ac"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "08a15e3bbedbc16583ef51edd195fa6e0973d77a2f9c870178f2467a42b12bbd"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "4b6c5977b042c84d184445b102fabb8c1fca4fae6a737a8e22d28f8224c537b7"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "cd54b9f375940f427a6614e952844b7fdb4b830a3fe5f5d480e4406a9f503d69"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "ec1d33410eed7ff8c7df59321b3a57b8db8f26921ca0de25f087c024ee397be5"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "f4cd7747517bf6dfdadadd9cca459ebf0222add418cc4cf878231c18acb66bd9"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "4dbc06fcae99bf1be40e9b82283fff95aaa88d90a86daf2c24310c377e82bd1f"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "53fb1ef730c0a27ca7ecddbe318d99ab194a8d7fa77f637eb1af9647087b4b27"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "b278aeb936e84895dde755757fcf647ce04c0cfafa49c4fbdeacbd0c50c0f1de"
+    }
+  ]
+}

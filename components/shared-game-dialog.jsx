@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Dialog from './dialog';
 import { lobbyRequest } from '../lib/lobby-session.mjs';
 
-export default function SharedGameDialog({ shared, creating, leaving, canHost, onCreate, onJoin, onLeave, onClose, notice }) {
+export default function SharedGameDialog({ shared, creating, leaving, canHost, onCreate, onJoin, onLeave, onClose, notice, playerName, onPlayerName, players }) {
   const [name, setName] = useState('Shared crossword');
   const [lobbies, setLobbies] = useState(null), [error, setError] = useState('');
   useEffect(() => {
@@ -17,9 +17,11 @@ export default function SharedGameDialog({ shared, creating, leaving, canHost, o
   }, []);
   const active = lobbies?.find(lobby => lobby.id === shared?.lobby?.id) || shared?.lobby;
   return <Dialog title="Play together" onClose={onClose}>
+    <label className="player-name-label" htmlFor="player-name">Your name<input id="player-name" className="shared-link" maxLength={24} value={playerName||''} placeholder="Player" onChange={event=>onPlayerName(event.target.value)}/></label>
     {shared ? <>
       <p className="dialog-copy"><strong>{active?.name || 'Shared session'}</strong>{active ? ` · ${active.players} joined` : ''}</p>
       <p className="dialog-copy">You stay together when either player creates a new puzzle. Reopening this app reconnects you until you leave. Sessions last up to 7 days.</p>
+      <ul className="player-list" aria-label="Joined players">{players?.participants.map((player,index)=><li key={index}><span>{player.name}{player.self?' (you)':''}</span><span>{player.online?'Connected':'Away'}</span></li>)}</ul><p role="status">{players?.error}</p>
       <div className="dialog-actions"><button className="outline-button" disabled={leaving || shared.generating || (shared.pending > 0 && shared.status !== 'ended')} onClick={onLeave}>{leaving ? 'Leaving…' : shared.status === 'ended' && shared.pending ? 'Keep a solo copy and leave' : 'Leave shared game'}</button></div>
       <p className="dialog-copy">Leaving returns you to your solo game. Other players stay connected. The lobby closes when everyone leaves.</p>
     </> : <>
