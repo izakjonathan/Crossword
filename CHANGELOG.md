@@ -1,12 +1,5 @@
 # Changelog
 
-## 2.10.0 — Shared games
-
-- Share one crossword across devices through Play together links.
-- Atomic square edits, guarded own-edit undo, and idempotent retries.
-- Seven-day rooms, independent selection and colours, and recoverable pending edits.
-- Requires an Upstash Redis database; see docs/SHARED-GAMES.md.
-
 ## 2.9.0 — 19 October 2026
 
 - Add 83 source-referenced clue variants for 74 existing longer answers: 59 tier-2 and 24 tier-3 clues.

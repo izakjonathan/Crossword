@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.10.0
+# Crossword puzzle · v2.9.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -104,7 +104,3 @@ A six-puzzle fixed-seed sample (two per difficulty) contained 60 answers with di
 Baseline: the recovered v2.6.0 production source. Browser colour metadata is now declared before the saved-theme bootstrap and is owned by UI Studio rather than a separate static Next.js viewport colour. A fixed full-viewport background follows the same `--bg` as the app, including exposed top/bottom areas when browser controls or the native keyboard resize the game. Preview, Save, Cancel, reload and cross-tab theme updates retain their existing behaviour.
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
-
-## Play together
-
-Share the current crossword from **··· → Play together**. Both players can write and delete letters on the same board. Connect Upstash Redis before using shared games in production; see [setup and behaviour](docs/SHARED-GAMES.md).

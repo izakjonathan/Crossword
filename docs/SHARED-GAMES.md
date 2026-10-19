@@ -1,6 +1,6 @@
 # Play together
 
-Open **··· → Play together → Create game link**. Send the link to another player. They open it on their device; both players can type, erase, clear words and use hints on the same crossword. Each player can select a different clue and use their own colours and zoom. Changes normally appear on the other device in about a second, plus network latency.
+Open **··· → Play together → Create game link**. Send the link to another player. They open it on their device; both players can type, erase, clear words and use hints on the same crossword. Each player can select a different clue and use their own zoom. Changes normally appear on the other device in about a second, plus network latency.
 
 Tap the **Playing together** strip to copy or share the link again or leave. Anyone holding the link can edit; send it privately. Links expire seven days after creation. To start another puzzle, leave the shared game first. Leaving normally returns to the previous solo save. Shared progress remains in the room until expiry; reopening the link resumes it. Joining does not replace the browser's solo save. Shared answers are reserved in the existing dated ledger so future solo generation still avoids recently seen answers; reloading does not increment the game counter.
 
@@ -21,4 +21,4 @@ The app uses Redis commands `GET`, `SET`, `EVAL`, `EXISTS`, `PTTL`, `INCR`, `EXP
 
 ## Data and limits
 
-Only the supplied puzzle, answers, assistance flag, revision, per-cell writer IDs and expiry are stored. Selection and theme stay local. Redis room keys hash the link token. Operation deduplication keys expire with the room. API responses use private/no-store caching and do not include credentials. There are no accounts, participant names or online-presence indicators. Automatic polling makes service requests while the shared page is open; provider plan quotas apply.
+Only the supplied puzzle, answers, assistance flag, revision, per-cell writer IDs and expiry are stored. Selection stays local; UI Studio colours are shared globally through the same database. Redis room keys hash the link token. Operation deduplication keys expire with the room. API responses use private/no-store caching and do not include credentials. There are no accounts, participant names or online-presence indicators. Automatic polling makes service requests while the shared page is open; provider plan quotas apply.
