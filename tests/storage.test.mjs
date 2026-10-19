@@ -18,3 +18,12 @@ test('repeat history is filtered and bounded before use',()=>{
  const store=memory();store.setItem(HISTORY_KEY,JSON.stringify([null,'bad!',42,...Array(510).fill('APPLE')]));
  const history=loadHistory(store);assert.equal(history.length,500);assert.ok(history.every(w=>w==='APPLE'));
 });
+
+test('corrupt stored answer maps never reach rendering or input handling', () => {
+  const puzzle=generatePuzzle({mode:'easy',seed:'corrupt-answers'});
+  for(const answers of [null,[],{'-1':'A'},{'9999':'A'},{'0':'<script>'},{'00':'A'}]){
+    const value={puzzle,play:{...initialState(puzzle),answers}};
+    const s={getItem:()=>JSON.stringify(value)};
+    assert.equal(loadSession(s),null);
+  }
+});

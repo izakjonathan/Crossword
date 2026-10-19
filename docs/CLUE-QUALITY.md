@@ -39,3 +39,7 @@ The existing exact duplicate-clue test caught a proposed CREEK clue colliding wi
 Leak detection now includes standard final-E dropping (DANCE/DANCING), Y inflection (BERRY/BERRIES) and final-consonant doubling (BUD/BUDDING). Regression tests retain EAR/hearing and RING/spring as valid accidental overlaps. These spelling rules are guardrails, not a complete morphological or semantic model.
 
 A before/after sample used identical seeds and the unchanged bank order/geometry algorithm: Easy 7 to 19, Medium 16 to 20, Hard 10 to 21 answers with separate clue pairs. Across six puzzles this is 33 to 60 of 105 entries. It demonstrates increased coverage in generated puzzles without asserting a measured increase in human-rated quality or difficulty. Repeat protection and storage behaviour are unchanged. Existing stored puzzles retain their clue text until the user generates another puzzle.
+
+## v2.7 review
+
+The current bank contains 1,738 unique answers: 210 additional familiar three-letter words support the new strongly checked layout families. Original direct/alternative clues include everyday nouns, verbs and adjectives, with explicit abbreviation and regional tags where needed. CLOUD now includes ice crystals; ELEPHANT identifies the trunk rather than assuming visible tusks; PRIME specifies whole-number factors; CACTUS avoids a desert-only definition. The research, objective acceptance rules and limits of mechanical editorial checks are recorded in `RESEARCH-V2.7.md`. Prior bank-size figures in this document are historical.

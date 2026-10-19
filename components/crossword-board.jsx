@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { fitBoard, fitView, constrain, zoomAt, revealCell, BoardGesture, cellAtPoint } from '../lib/board-view.mjs';
 import { MODES } from '../lib/config.mjs';
 
-export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef }) {
+export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef, generationError, onRetry }) {
   const area = useRef(null), gesture = useRef(new BoardGesture());
   const frameRef = useRef(null), transform = useRef({ scale: 1, x: 0, y: 0 });
   const [frame, setFrame] = useState(null), [view, setView] = useState(transform.current);
@@ -47,7 +47,7 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
   }, [busy]);
   function point(event) { const r = area.current.getBoundingClientRect(); return { x: event.clientX - r.left, y: event.clientY - r.top }; }
   function down(event) {
-    if (busy || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    if (busy || !puzzle || (event.pointerType === 'mouse' && event.button !== 0)) return;
     gesture.current.down(event.pointerId, point(event), transform.current);
     event.currentTarget.setPointerCapture(event.pointerId);
   }
@@ -68,13 +68,14 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
   }
   // A gesture only changes the wrapper transform; letter buttons stay cached.
   const cells = useMemo(() => puzzle && frame ? (<div className="board" role="group" aria-label={`${MODES[puzzle.mode].label} crossword, ${puzzle.cols} columns by ${puzzle.rows} rows. Pinch to zoom; drag to move.`} style={{ gridTemplateColumns: `repeat(${puzzle.cols},var(--cell))` }}>
-        {puzzle.grid.map((cell, i) => cell ? <button key={i} tabIndex={selected === i ? 0 : -1} disabled={busy} className={`cell ${entry.cells.includes(i) ? 'active-word' : ''} ${selected === i ? `selected direction-${entry.dir}` : ''} ${errors.includes(i) ? 'incorrect' : ''}`} onClick={e => { if (e.detail === 0) onSelect(i); }} aria-label={`Row ${Math.floor(i / puzzle.cols) + 1}, column ${i % puzzle.cols + 1}, ${cell.number ? `clue ${cell.number}, ` : ''}${game.play.answers[i] || 'empty'}`} aria-pressed={selected === i}>{cell.number && <span className="cell-number">{cell.number}</span>}<span className="cell-letter">{game.play.answers[i] || ''}</span></button> : <span className="blocked" key={i} />)}
+        {puzzle.grid.map((cell, i) => cell ? <button key={i} tabIndex={selected === i ? 0 : -1} disabled={busy} className={`cell ${entry?.cells.includes(i) ? 'active-word' : ''} ${selected === i ? `selected direction-${entry?.dir}` : ''} ${errors.includes(i) ? 'incorrect' : ''}`} onClick={e => { if (e.detail === 0) onSelect(i); }} aria-label={`Row ${Math.floor(i / puzzle.cols) + 1}, column ${i % puzzle.cols + 1}, ${cell.number ? `clue ${cell.number}, ` : ''}${game.play.answers[i] || 'empty'}${selected === i && entry ? `, ${entry.number} ${entry.dir}, ${entry.clue}, ${entry.answer.length} letters` : ''}`} aria-pressed={selected === i}>{cell.number && <span className="cell-number">{cell.number}</span>}<span className="cell-letter">{game.play.answers[i] || ''}</span></button> : <span className="blocked" key={i} />)}
       </div>) : null,
     [puzzle, frame?.cell, selected, entry, game?.play, busy, errors, onSelect]);
   return <div ref={area} className="board-stage" aria-busy={busy} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={e => up(e, true)} onLostPointerCapture={e => { gesture.current.up(e.pointerId, transform.current, true); }} onContextMenu={e => e.preventDefault()}>
     {puzzle && frame && <div className="board-shell" style={{ width: frame.boardWidth, height: frame.boardHeight, '--cell': `${frame.cell}px`, '--cell-height': `${frame.cellHeight}px`, transform: `translate(${view.x}px,${view.y}px) scale(${view.scale})` }}>
       {cells}
     </div>}
-    {busy && <div className="generating" role="status"><span className="spinner" /><span>Generating…</span></div>}
+    {!puzzle && !busy && <div className="empty-board"><p>{generationError || 'Ready for a fresh crossword?'}</p><button className="solid-button" onClick={onRetry}>Try again</button></div>}
+    {busy && <div className="generating" role="status"><span className="spinner" /><span>Building your crossword…</span><small>Finding words that fit together</small></div>}
   </div>;
 }

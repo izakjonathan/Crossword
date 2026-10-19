@@ -1,0 +1,101 @@
+[
+  {
+    "mode": "easy",
+    "seed": 0,
+    "ms": 23.891744000000003,
+    "entries": 20,
+    "black": 0.35802469135802467,
+    "checking": 0.6216666666666664,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "easy",
+    "seed": 1,
+    "ms": 6.705579999999998,
+    "entries": 20,
+    "black": 0.35802469135802467,
+    "checking": 0.6399999999999998,
+    "minChecking": 0.6,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "easy",
+    "seed": 2,
+    "ms": 5.337698999999986,
+    "entries": 20,
+    "black": 0.37037037037037035,
+    "checking": 0.6299999999999999,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "medium",
+    "seed": 0,
+    "ms": 7.082802999999984,
+    "entries": 24,
+    "black": 0.34710743801652894,
+    "checking": 0.6007936507936507,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "medium",
+    "seed": 1,
+    "ms": 6.346119999999985,
+    "entries": 24,
+    "black": 0.34710743801652894,
+    "checking": 0.6047619047619046,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "medium",
+    "seed": 2,
+    "ms": 3.556824000000006,
+    "entries": 24,
+    "black": 0.34710743801652894,
+    "checking": 0.5839285714285712,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "hard",
+    "seed": 0,
+    "ms": 8.181702999999999,
+    "entries": 32,
+    "black": 0.35502958579881655,
+    "checking": 0.5967261904761906,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "hard",
+    "seed": 1,
+    "ms": 8.010624000000007,
+    "entries": 32,
+    "black": 0.35502958579881655,
+    "checking": 0.5825892857142857,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  },
+  {
+    "mode": "hard",
+    "seed": 2,
+    "ms": 5.424150999999995,
+    "entries": 31,
+    "black": 0.34911242603550297,
+    "checking": 0.5870967741935483,
+    "minChecking": 0.5,
+    "singleCross": 0,
+    "maxUnchecked": 1
+  }
+]

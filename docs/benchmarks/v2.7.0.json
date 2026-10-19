@@ -1,0 +1,120 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 1738,
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 3.9712438599999973,
+      "p95Ms": 7.107234000000005,
+      "maxMs": 22.626263999999992,
+      "meanEntries": 20,
+      "meanBlack": 0.3628395061728396,
+      "meanChecking": 0.6284000000000007,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 6.38,
+      "meanAlternativeClues": 16,
+      "uniqueAnswersUsed": 651,
+      "mostFrequentAnswers": [
+        [
+          "EWE",
+          21
+        ],
+        [
+          "EAT",
+          20
+        ],
+        [
+          "EYE",
+          19
+        ],
+        [
+          "PIE",
+          17
+        ],
+        [
+          "PIT",
+          16
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 4.015714150000008,
+      "p95Ms": 6.444459000000052,
+      "maxMs": 9.169879000000037,
+      "meanEntries": 24,
+      "meanBlack": 0.34677685950413234,
+      "meanChecking": 0.592081349206349,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 13.25,
+      "meanAlternativeClues": 16.38,
+      "uniqueAnswersUsed": 961,
+      "mostFrequentAnswers": [
+        [
+          "ELEMENT",
+          24
+        ],
+        [
+          "TREAT",
+          17
+        ],
+        [
+          "EAT",
+          17
+        ],
+        [
+          "THEATRE",
+          16
+        ],
+        [
+          "AWAKE",
+          15
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 5.755191389999997,
+      "p95Ms": 10.586540999999897,
+      "maxMs": 24.59934199999998,
+      "meanEntries": 32.51,
+      "meanBlack": 0.35798816568047376,
+      "meanChecking": 0.5946193413392658,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 18.57,
+      "meanAlternativeClues": 22.21,
+      "uniqueAnswersUsed": 1079,
+      "mostFrequentAnswers": [
+        [
+          "THEATRE",
+          32
+        ],
+        [
+          "ELEMENT",
+          27
+        ],
+        [
+          "TOE",
+          21
+        ],
+        [
+          "EWE",
+          20
+        ],
+        [
+          "EAT",
+          19
+        ]
+      ]
+    }
+  }
+}

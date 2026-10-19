@@ -27,11 +27,11 @@ function assertLayout(css) {
   assert.equal(declarations(css, '.key-row').display, 'flex');
   assert.ok(declarations(css, '.letter-key').height);
   assert.equal(declarations(css, '.header')['min-height'], '48px');
-  assert.equal(declarations(css, '.clue-bar').height, '62px');
-  assert.equal(declarations(css, '.clue-bar')['min-height'], '62px');
-  assert.equal(declarations(css, '.clue-bar')['max-height'], '62px');
-  assert.equal(declarations(css, '.clue-body p')['max-height'], 'calc(2 * var(--clue-line))');
-  assert.equal(declarations(css, '.clue-body p').overflow, 'auto');
+  assert.equal(declarations(css, '.clue-bar').height, '76px');
+  assert.equal(declarations(css, '.clue-bar')['min-height'], '76px');
+  assert.equal(declarations(css, '.clue-bar')['max-height'], '76px');
+  assert.equal(declarations(css, '.clue-text')['max-height'], 'calc(2 * var(--clue-line))');
+  assert.equal(declarations(css, '.clue-text').overflow, 'auto');
   assert.equal(declarations(css, '.keyboard-dock')['padding-bottom'], '0');
   assert.equal(declarations(css, '.cell.selected').outline, 'none');
   const selectors = [];

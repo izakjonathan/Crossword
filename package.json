@@ -1,13 +1,14 @@
 {
   "name": "daily-cross",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "audit:puzzles": "node scripts/audit-puzzles.mjs"
   },
   "dependencies": {
     "@fontsource/work-sans": "5.3.0",

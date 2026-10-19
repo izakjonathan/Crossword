@@ -23,19 +23,22 @@
 .cell,.blocked { height:var(--cell-height); width:var(--cell); min-width:0; position:relative; border-radius:0; border:0; border-right:1px solid var(--content); border-bottom:1px solid var(--content); padding:0; }
 .cell { background:var(--bg); color:var(--content); display:flex; align-items:center; justify-content:center; overflow:hidden; }
 .blocked { background:var(--content); }
-.cell.active-word { background:color-mix(in srgb,var(--content) 19%,var(--bg)); }
-.cell.selected { background:color-mix(in srgb,var(--content) 38%,var(--bg)); color:var(--content); outline:none; outline-offset:-3px; z-index:1; }
+.cell.active-word { background:color-mix(in srgb,var(--content) 10%,var(--bg)); }
+.cell.selected { background:var(--content); color:var(--bg); box-shadow:inset 0 0 0 2px var(--bg); outline:none; outline-offset:-3px; z-index:1; }
 .cell:disabled { opacity:1; }
-.cell:focus-visible { outline:none; outline-offset:-4px; }
+.cell:focus-visible { box-shadow:inset 0 0 0 2px var(--bg); outline:none; outline-offset:-4px; }
 .cell-number { position:absolute; left:2px; top:1px; font-weight:500; font-size:clamp(7px,calc(var(--cell) * .23),12px); line-height:1; letter-spacing:-.3px; }
 .cell-letter { font-size:calc(var(--cell) * .59); line-height:1; font-weight:600; letter-spacing:-1px; padding-top:calc(var(--cell) * .12); }
 .cell.incorrect .cell-letter { text-decoration:underline wavy; text-decoration-thickness:1px; text-underline-offset:3px; }
 
 .keyboard-dock { flex-shrink:0; width:100%; max-width:680px; margin-inline:auto; background:var(--bg); padding-bottom:0; }
-.clue-bar { display:flex; align-items:center; gap:0; min-height:62px; padding:0; background:var(--bg); border-block:1px solid var(--line); --clue-font:16px; --clue-line:22px; height:62px; max-height:62px; }
-.clue-body { flex:1; min-width:0; padding:8px 3px; max-height:none; overflow:hidden; height:60px; display:flex; align-items:center; }
-.clue-body p { font-size:var(--clue-font); line-height:var(--clue-line); letter-spacing:-.2px; font-weight:500; overflow-wrap:anywhere; padding-bottom:0; max-height:calc(2 * var(--clue-line)); overflow:auto; overscroll-behavior:contain; }
-.clue-body p span { white-space:nowrap; opacity:.7; }
+.clue-bar { display:flex; align-items:center; gap:0; min-height:76px; padding:0; background:var(--bg); border-block:1px solid var(--line); --clue-font:16px; --clue-line:22px; height:76px; max-height:76px; }
+.clue-body { flex:1; min-width:0; height:74px; padding:7px 8px; overflow:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:center; text-align:left; border-radius:0; }
+.clue-body:disabled { opacity:1; }
+.clue-meta { display:flex; justify-content:space-between; gap:10px; margin-bottom:3px; font-size:10px; line-height:14px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+.clue-meta > span:last-child { font-weight:400; letter-spacing:0; text-transform:none; }
+.clue-text { display:block; font-size:var(--clue-font); line-height:var(--clue-line); letter-spacing:-.2px; font-weight:500; overflow-wrap:anywhere; max-height:calc(2 * var(--clue-line)); overflow:auto; overscroll-behavior:contain; }
+.enumeration { white-space:nowrap; opacity:.7; }
 .puzzle-keyboard { padding:7px 5px 3px; display:grid; gap:6px; background:var(--soft); }
 .key-row { display:flex; justify-content:center; gap:5px; }
 .letter-key { display:flex; align-items:center; justify-content:center; flex:1; min-width:0; max-width:58px; height:clamp(35px,6.2dvh,49px); border-radius:6px; background:var(--bg); color:var(--content); box-shadow:0 1.5px 0 var(--line); font-size:20px; font-weight:600; padding:0; }
@@ -61,9 +64,31 @@
 .clue-bar > .icon-button { width:32px; min-width:32px; height:auto; align-self:stretch; border-radius:0; }
 @media(min-width:700px) { .header { min-height:48px; } }
 @media(max-height:500px) and (orientation:landscape) { .app { grid-template-rows:48px minmax(0,1fr); } .header { min-height:48px; } .clue-bar { } }
-/* Explicit canvas colours extend through Safari's exposed viewport areas. */
+/* Keep Safari's sampled backdrop independent of the visual viewport resizing
+   for its toolbar or the native keyboard used by UI Studio. */
 html, body { background-color:var(--bg); }
+body { isolation:isolate; }
+.browser-canvas { position:fixed; inset:0; z-index:-1; pointer-events:none; background-color:var(--bg); }
 @media(max-height:500px) and (orientation:landscape) {
- .clue-bar { --clue-font:14px; --clue-line:20px; height:52px; min-height:52px; max-height:52px; }
- .clue-body { height:50px; padding-block:5px; }
+ .clue-bar { --clue-font:14px; --clue-line:20px; height:66px; min-height:66px; max-height:66px; }
+ .clue-body { height:64px; padding-block:5px; }
 }
+
+.difficulty-detail { display:block; margin-top:4px; font-size:11px; line-height:15px; font-weight:400; opacity:.7; }
+.difficulty-options .difficulty-option { min-height:60px; border-radius:12px; }
+.clue-list-dialog { display:flex; flex-direction:column; height:min(600px,85dvh); padding-bottom:8px; }
+.clue-list-dialog .dialog-head { flex-shrink:0; }
+.clue-tabs { display:flex; gap:4px; padding:3px; border:1px solid var(--line); border-radius:10px; flex-shrink:0; }
+.clue-tabs button { flex:1; min-height:38px; border-radius:7px; text-transform:capitalize; font-size:13px; font-weight:600; }
+.clue-tabs button[aria-pressed=true] { background:var(--content); color:var(--bg); }
+.clue-list-note { font-size:11px; line-height:16px; margin-block:10px 4px; opacity:.7; }
+.clue-list { overflow:auto; min-height:0; overscroll-behavior:contain; }
+.clue-row { width:100%; display:flex; align-items:center; gap:10px; padding:12px 8px; text-align:left; border-bottom:1px solid var(--line); border-radius:8px; }
+.clue-row.current { background:var(--soft); }
+.clue-row-number { width:22px; flex-shrink:0; align-self:flex-start; line-height:20px; font-size:12px; font-weight:600; }
+.clue-row-copy { flex:1; min-width:0; font-size:14px; line-height:20px; }
+.clue-row-copy small { display:block; margin-top:3px; font-size:10px; line-height:14px; opacity:.7; }
+.clue-row-arrow { font-size:23px; font-weight:400; }
+.empty-board { height:100%; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px; text-align:center; font-size:14px; line-height:1.5; }
+.generating small { font-size:11px; opacity:.7; }
+@media (max-height:500px) and (orientation:landscape) { .clue-list-dialog { height:90dvh; } .clue-meta { margin-bottom:0; } }

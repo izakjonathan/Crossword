@@ -52,3 +52,14 @@ test('clue navigation skips to an empty position and ignores punctuation input',
   assert.equal(nextEntry(puzzle, s).selected, 7);
   assert.deepEqual(enterText(puzzle, s, '123!?'), s);
 });
+
+test('letter hints keep assisted status after undo, while clearing a word is reversible', async () => {
+  const { revealLetter, clearWord } = await import('../lib/input.mjs');
+  const puzzle = { entries:[{id:0,cells:[0,1,2]}],grid:[{letter:'C'},{letter:'A'},{letter:'T'}] };
+  const state = {answers:{0:'X',1:'A',2:'T'},entryId:0,selected:0,overwrite:true,undo:[],assisted:false};
+  const hinted = revealLetter(puzzle,state);
+  assert.equal(hinted.answers[0],'C'); assert.equal(undoInput(hinted).assisted,true);
+  const cleared = clearWord(puzzle,state);
+  assert.deepEqual(cleared.answers,{});assert.equal(cleared.selected,0);
+  assert.deepEqual(undoInput(cleared).answers,state.answers);assert.equal(cleared.assisted,false);
+});
