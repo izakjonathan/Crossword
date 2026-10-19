@@ -1,3 +1,7 @@
+import {SharedClient} from '../lib/shared-client.mjs';
+import {GlobalThemeClient} from '../lib/global-theme-client.mjs';
+import {createRoom} from '../lib/shared-model.mjs';
+import {DEFAULT_THEME} from '../lib/theme.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID,createHash} from 'node:crypto';
@@ -82,4 +86,15 @@ test('Upstash-style collapsed legacy grids recover exact coordinates without los
   const room={puzzle:{...puzzle,grid:puzzle.grid.filter(Boolean)},roundId:puzzle.id,answers:{[puzzle.entries[0].cells[0]]:'Z'},writers:{},view:{},revision:4,expiresAt:Date.now()+604800000,stats:{startedAt:Date.now()-1000,hints:2,checks:1}};
   const store=sharedStore(async()=>JSON.stringify(room));const restored=await store.get('a'.repeat(64));
   assert.deepEqual(restored.puzzle.grid,puzzle.grid);assert.deepEqual(validatePuzzle(restored.puzzle),[]);assert.equal(restored.answers[puzzle.entries[0].cells[0]],'Z');assert.equal(restored.stats.hints,2);assert.equal(restored.stats.completedAt,null);
+});
+
+test('shared and global-colour polling use browser timers with a valid receiver and stop cleanly',async()=>{
+  const originalSet=globalThis.setTimeout,originalClear=globalThis.clearTimeout;let scheduled=0,cancelled=0;
+  globalThis.setTimeout=function(){assert.ok(this===undefined||this===globalThis);scheduled++;return 42;};
+  globalThis.clearTimeout=function(){assert.ok(this===undefined||this===globalThis);cancelled++;};
+  try{
+    const shared=new SharedClient({token:'a'.repeat(64),room:createRoom(game()),onChange:()=>{},request:async()=>createRoom(game())});await shared.poll();shared.stop();
+    const theme=new GlobalThemeClient({onTheme:()=>{},request:async()=>({theme:DEFAULT_THEME,revision:0})});await theme.poll();theme.stop();
+    assert.equal(scheduled,2);assert.equal(cancelled,2);
+  }finally{globalThis.setTimeout=originalSet;globalThis.clearTimeout=originalClear;}
 });
