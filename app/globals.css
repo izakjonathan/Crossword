@@ -92,3 +92,9 @@ body { isolation:isolate; }
 .empty-board { height:100%; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px; text-align:center; font-size:14px; line-height:1.5; }
 .generating small { font-size:11px; opacity:.7; }
 @media (max-height:500px) and (orientation:landscape) { .clue-list-dialog { height:90dvh; } .clue-meta { margin-bottom:0; } }
+
+.shared-status { flex-shrink:0; width:100%; max-width:680px; margin-inline:auto; display:flex; justify-content:space-between; gap:12px; padding:7px 12px; background:var(--soft); color:var(--content); font-size:11px; line-height:16px; text-align:left; }
+.shared-status span:first-child { font-weight:600; }
+.shared-link-label { display:block; margin:16px 0; font-size:12px; }
+.shared-link { display:block; width:100%; margin-top:6px; padding:12px; border:1px solid var(--content); border-radius:6px; background:var(--bg); color:var(--content); font-size:13px; }
+.shared-message { min-height:18px; margin-top:14px; font-size:13px; line-height:1.4; overflow-wrap:anywhere; }
