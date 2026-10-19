@@ -2,16 +2,17 @@
 import { useEffect, useRef, useState } from 'react';
 import Dialog from './dialog';
 
-export default function ClueList({ game, onSelect, onClose }) {
+export default function ClueList({ game, onSelect, onClose, sharedDirection, onDirection }) {
   const current = game.puzzle.entries.find(entry => entry.id === game.play.entryId);
-  const [direction, setDirection] = useState(current?.dir || 'across');
+  const [localDirection, setDirection] = useState(current?.dir || 'across');
+  const direction = sharedDirection || localDirection;
   const active = useRef(null);
   useEffect(() => { active.current?.scrollIntoView({ block: 'nearest' }); }, [direction]);
   return <Dialog title="All clues" onClose={onClose} className="clue-list-dialog">
     <div className="clue-tabs" role="group" aria-label="Clue direction">
-      {['across', 'down'].map(dir => <button key={dir} aria-pressed={dir === direction} onClick={() => setDirection(dir)}>{dir}</button>)}
+      {['across', 'down'].map(dir => <button key={dir} aria-pressed={dir === direction} onClick={() => { setDirection(dir); onDirection?.(dir); }}>{dir}</button>)}
     </div>
-    <p className="clue-list-note">Tap a clue to jump to its first empty square.</p>
+    <p className="clue-list-note">Tap a clue to jump to its first square.</p>
     <div className="clue-list" aria-label={`${direction} clues`}>
       {game.puzzle.entries.filter(entry => entry.dir === direction).map(entry => {
         const filled = entry.cells.filter(cell => game.play.answers[cell]).length;

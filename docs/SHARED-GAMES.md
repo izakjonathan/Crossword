@@ -1,8 +1,8 @@
 # Play together
 
-Open **··· → Play together → Create game link**. Send the link to another player. They open it on their device; both players can type, erase, clear words and use hints on the same crossword. Each player can select a different clue and use their own zoom. Changes normally appear on the other device in about a second, plus network latency.
+Open **··· → Play together → Create game link**. Send the link to another player. They open it on their device; both players can type, erase, clear words and use hints on the same crossword. Both devices follow the active clue and square, clue-list direction, gameplay dialogs, checks, zoom and board movement. Changes normally appear on the other device in about a second, plus network latency.
 
-Tap the **Playing together** strip to copy or share the link again or leave. Anyone holding the link can edit; send it privately. Links expire seven days after creation. To start another puzzle, leave the shared game first. Leaving normally returns to the previous solo save. Shared progress remains in the room until expiry; reopening the link resumes it. Joining does not replace the browser's solo save. Shared answers are reserved in the existing dated ledger so future solo generation still avoids recently seen answers; reloading does not increment the game counter.
+Tap the **Playing together** strip to copy or share the link again or leave. Anyone holding the link can edit; send it privately. Links expire seven days after creation. Either player can press + and choose a difficulty to start another puzzle for everyone without leaving or changing the invite link. Leaving normally returns to the previous solo save. Shared progress remains in the room until expiry; reopening the link resumes it. Joining does not replace the browser's solo save. Shared answers are reserved in the existing dated ledger so future solo generation still avoids recently seen answers; reloading does not increment the game counter.
 
 Different-square edits merge. If two people edit the same square, the last edit received by the server wins. Undo only reverses your own changes on squares that have not subsequently been changed by another player. Hints keep the shared solve marked as assisted even after undo.
 
@@ -21,4 +21,12 @@ The app uses Redis commands `GET`, `SET`, `EVAL`, `EXISTS`, `PTTL`, `INCR`, `EXP
 
 ## Data and limits
 
-Only the supplied puzzle, answers, assistance flag, revision, per-cell writer IDs and expiry are stored. Selection stays local; UI Studio colours are shared globally through the same database. Redis room keys hash the link token. Operation deduplication keys expire with the room. API responses use private/no-store caching and do not include credentials. There are no accounts, participant names or online-presence indicators. Automatic polling makes service requests while the shared page is open; provider plan quotas apply.
+Only the supplied puzzle, answers, assistance flag, revision, per-cell writer IDs and expiry are stored. The active selection, gameplay dialogs, check highlights, clue direction and board view are shared. UI Studio colours remain global, while its in-progress preview and the private invite dialog stay on the editing device. Redis room keys hash the link token. Operation deduplication keys expire with the room. API responses use private/no-store caching and do not include credentials. There are no accounts, participant names or online-presence indicators. Automatic polling makes service requests while the shared page is open; provider plan quotas apply.
+
+## Successive puzzles and safe reconnection
+
+Rooms now support successive rounds. The server grants a 45-second generation lease to one participant, validates the replacement puzzle, rejects repeated answers from the session and resets answers/checks/undo for the new round. The room link and original seven-day expiry stay unchanged. Both devices see generation status. Failed generation cancels the lease and retains the previous puzzle; a crashed participant cannot hold the room forever.
+
+Every edit includes its round identifier. Late/offline edits from an earlier puzzle are rejected and never replayed into the new grid. Their pending data is retained in a previous-round sessionStorage backup when browser storage permits. Reloading the shared link opens the current round, not the first puzzle. Both players should reload once after this update to use the new protocol.
+
+Typing now advances exactly one square, including filled crossings; typing on a filled square replaces its letter. Clue selection starts at its first square. Backspace, hints, clear and guarded own-edit undo remain available.

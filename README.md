@@ -15,7 +15,7 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - A game-owned three-row QWERTY keyboard with backspace, as shown in the latest Mirror reference. This replaces the earlier native-keyboard requirement. No hidden text input opens the iOS keyboard during solving. UI Studio colour text fields still use the native keyboard.
 - Current clue directly above the keys, with its number, Across/Down direction, fill progress and previous/next arrows. Tap it for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
 - Hardware letters, arrows, Backspace and Cmd/Ctrl+Z. Enter on the board advances clues; Space switches direction. Tab remains available to leave the board and navigate controls.
-- Normal typing skips filled crossing letters. Explicitly tapping a filled square overwrites that letter and activates the immediate next square; subsequent normal typing resumes skipping filled squares.
+- Typing advances exactly one square, including filled crossings. Typing on a filled square replaces it. Clue navigation starts at the first square.
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
 
 ## Generation and clue quality
@@ -57,7 +57,7 @@ The header is 48px tall, with evenly sized 44px-high controls and no title. Hint
 
 ## Validation and limits
 
-`npm test` covers randomized square grids, sequential generations and more than 500 dated answer reservations, input skipping and overwrites, direction changes, deletion, undo, multi-character entry, assisted reveals, theme contrast, local theme persistence, storage failures and CSS layout regression checks. Gesture tests cover anchoring, bounds, fit reset, selected-cell visibility, tap/drag separation, pointer cancellation, and pinch-to-pan transitions. `npm run build` verifies production compilation, worker bundling.
+`npm test` covers randomized square grids, sequential generations and more than 500 dated answer reservations, sequential input and overwrites, direction changes, deletion, undo, multi-character entry, assisted reveals, theme contrast, local theme persistence, storage failures and CSS layout regression checks. Gesture tests cover anchoring, bounds, fit reset, selected-cell visibility, tap/drag separation, pointer cancellation, and pinch-to-pan transitions. `npm run build` verifies production compilation, worker bundling.
 
 Physical iPhone touch behaviour and comparative performance against other crossword apps have not been tested in this environment. There is no claim of outperforming publishers or of human-edited newspaper construction quality. See [current research and implementation rationale](docs/RESEARCH-V2.7.md) for primary sources and tradeoffs.
 
@@ -104,3 +104,7 @@ A six-puzzle fixed-seed sample (two per difficulty) contained 60 answers with di
 Baseline: the recovered v2.6.0 production source. Browser colour metadata is now declared before the saved-theme bootstrap and is owned by UI Studio rather than a separate static Next.js viewport colour. A fixed full-viewport background follows the same `--bg` as the app, including exposed top/bottom areas when browser controls or the native keyboard resize the game. Preview, Save, Cancel, reload and cross-tab theme updates retain their existing behaviour.
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
+
+## Shared sessions across new puzzles
+
+The same invite link now follows successive puzzles. Either player can use + to choose a new difficulty while staying connected. Active clue/square, gameplay dialogs, clue direction, checks, letters, hints, zoom and board movement are shared. A generation lease prevents competing new games; old-round edits cannot affect the new grid. See [shared games](docs/SHARED-GAMES.md) and [review evidence](docs/SHARED-SESSION-REVIEW.md).

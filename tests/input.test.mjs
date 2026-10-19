@@ -5,22 +5,19 @@ const puzzle = { cols: 3, rows: 3, entries: [
   { id: 0, answer: 'CAT', clue: 'Domestic feline', dir: 'across', number: 2, cells: [3, 4, 5] },
   { id: 1, answer: 'BAR', clue: 'Place serving drinks', dir: 'down', number: 1, cells: [1, 4, 7] },
 ], grid: [null, { letter: 'B' }, null, { letter: 'C' }, { letter: 'A' }, { letter: 'T' }, null, { letter: 'R' }, null] };
-test('typing skips crossing letters already present and advances to the next incomplete clue', () => {
-  const start = { ...initialState(puzzle), answers: { 4: 'A' } };
-  const one = enterText(puzzle, start, 'c');
-  assert.equal(one.selected, 5); assert.equal(one.answers[4], 'A');
-  const two = enterText(puzzle, one, 't');
-  assert.equal(two.entryId, 1); assert.equal(two.selected, 1);
-  assert.deepEqual(two.answers, { 3: 'C', 4: 'A', 5: 'T' });
+test('typing advances one square at a time and does not skip a filled crossing', () => {
+  const start = {...initialState(puzzle),answers:{4:'A'}};
+  const one = enterText(puzzle,start,'c');
+  assert.equal(one.selected,4);assert.equal(one.answers[4],'A');
+  const two = enterText(puzzle,one,'o');
+  assert.equal(two.selected,5);assert.equal(two.answers[4],'O');
+  assert.equal(enterText(puzzle,two,'t').answers[5],'T');
 });
-test('directly tapping a filled square overwrites it and activates the immediate next square', () => {
-  const start = { ...initialState(puzzle), answers: { 3: 'X', 4: 'A' }, selected: 5 };
-  const tapped = selectCell(puzzle, start, 3);
-  assert.equal(tapped.overwrite, true);
-  const written = enterText(puzzle, tapped, 'c');
-  assert.equal(written.answers[3], 'C'); assert.equal(written.selected, 4);
-  const resumed = enterText(puzzle, written, 't');
-  assert.equal(resumed.answers[4], 'A'); assert.equal(resumed.answers[5], 'T');
+test('tapping a filled square overwrites it and the next key overwrites the next square', () => {
+  const start = {...initialState(puzzle),answers:{3:'X',4:'A'},selected:5};
+  const written = enterText(puzzle,selectCell(puzzle,start,3),'c');
+  assert.equal(written.answers[3],'C');assert.equal(written.selected,4);
+  const next = enterText(puzzle,written,'o');assert.equal(next.answers[4],'O');assert.equal(next.selected,5);
 });
 test('the selected crossing toggles across/down and arrow navigation changes direction', () => {
   const s = { ...initialState(puzzle), selected: 4 };
@@ -35,21 +32,21 @@ test('backspace clears the selected letter, then moves backwards if it is empty'
   const two = backspace(puzzle, one); assert.equal(two.selected, 4); assert.equal(two.answers[4], '');
   assert.equal(undoInput(two).answers[4], 'A');
 });
-test('multi-character entry uses the same skip rules and does not overwrite a completed grid', () => {
-  const start = { ...initialState(puzzle), answers: { 4: 'A' } };
-  const written = enterText(puzzle, start, 'ctbr');
-  assert.deepEqual(written.answers, { 1: 'B', 3: 'C', 4: 'A', 5: 'T', 7: 'R' });
-  assert.deepEqual(enterText(puzzle, written, 'Z').answers, written.answers);
-  assert.deepEqual(undoInput(written).answers, start.answers);
+test('multi-character entry replaces filled squares in order and remains undoable', () => {
+  const start = {...initialState(puzzle),answers:{4:'A'}};
+  const written = enterText(puzzle,start,'cot');
+  assert.deepEqual(written.answers,{3:'C',4:'O',5:'T'});
+  assert.deepEqual(undoInput(written).answers,start.answers);
+  assert.equal(enterText(puzzle,written,'Z').answers[5],'Z');
 });
 test('revealing a word keeps its assisted status even when the revealed letters are undone', () => {
   const revealed = revealWord(puzzle, initialState(puzzle));
   assert.equal(revealed.assisted, true);
   const undone = undoInput(revealed); assert.equal(undone.assisted, true); assert.deepEqual(undone.answers, {});
 });
-test('clue navigation skips to an empty position and ignores punctuation input', () => {
+test('clue navigation starts at the first square and ignores punctuation input', () => {
   const s = { ...initialState(puzzle), answers: { 1: 'B', 4: 'A' } };
-  assert.equal(nextEntry(puzzle, s).selected, 7);
+  assert.equal(nextEntry(puzzle, s).selected, 1);
   assert.deepEqual(enterText(puzzle, s, '123!?'), s);
 });
 

@@ -16,7 +16,7 @@ test('real Redis atomically merges concurrent edits, deduplicates retries, guard
   const {token}=await store.create(game,address),other=await store.create(game,`${address}-other`);
   const key=roomKey(token),ops=[];
   const cells=puzzle.grid.flatMap((cell,i)=>cell?[String(i)]:[]);
-  const make=(cell,value,expected)=>{const operation={id:randomUUID(),changes:[{cell,value,...(expected?{expected}:{})}],assisted:false};ops.push(operation);return operation;};
+  const make=(cell,value,expected)=>{const operation={id:randomUUID(),roundId:puzzle.id,changes:[{cell,value,...(expected?{expected}:{})}],assisted:false};ops.push(operation);return operation;};
   try{
     const a=make(cells[0],'A'),b=make(cells[1],'B');await Promise.all([store.patch(token,a),store.patch(token,b)]);
     let room=await store.get(token);assert.equal(room.answers[cells[0]],'A');assert.equal(room.answers[cells[1]],'B');assert.equal(room.revision,2);
@@ -28,4 +28,31 @@ test('real Redis atomically merges concurrent edits, deduplicates retries, guard
     const ttl=await command(['TTL',key]);assert.ok(ttl>604700&&ttl<=604800);
     await command(['PEXPIRE',key,1]);await new Promise(resolve=>setTimeout(resolve,5));await assert.rejects(store.get(token),e=>e.status===404);
   }finally{await command(['DEL',key,roomKey(other.token),...ops.map(op=>`${key}:op:${op.id}`)]);}
+});
+
+test('real Redis keeps devices in one room across new rounds and fences all old requests',{skip:!cli},async()=>{
+  const command=async args=>JSON.parse(execFileSync(cli,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const store=sharedStore(command),puzzle=generatePuzzle({mode:'easy',seed:'round-start'}),{token}=await store.create({puzzle,play:initialState(puzzle)},randomUUID());
+  const key=roomKey(token),ids=[];let round=puzzle.id;
+  const action=(kind,extra={})=>{const op={id:randomUUID(),kind,roundId:round,changes:[],assisted:false,...extra};ids.push(op.id);return op;};
+  try{
+    const begin=action('begin');const [one,two]=await Promise.allSettled([store.patch(token,begin),store.patch(token,action('begin'))]);
+    assert.equal(one.status,'fulfilled');assert.equal(two.status,'rejected');assert.equal(two.reason.status,409);
+    const next=generatePuzzle({mode:'medium',seed:'round-second',recent:puzzle.entries.map(e=>e.answer)});
+    await assert.rejects(store.patch(token,action('replace',{leaseId:randomUUID(),puzzle:next})),e=>e.status===409);
+    await assert.rejects(store.patch(token,action('replace',{leaseId:begin.id,puzzle})),e=>e.status===400);
+    const replacement=action('replace',{leaseId:begin.id,puzzle:next}),updated=await store.patch(token,replacement);
+    assert.equal(updated.puzzle.id,next.id);assert.equal(updated.roundId,replacement.id);assert.equal(updated.generating,undefined);assert.deepEqual(updated.answers,{});
+    const retry=await store.patch(token,replacement);assert.equal(retry.revision,updated.revision);
+    await assert.rejects(store.patch(token,action('edit',{changes:[{cell:String(puzzle.entries[0].cells[0]),value:'Z'}]})),e=>e.status===409);
+    round=updated.roundId;
+    const entry=next.entries[1];await store.patch(token,action('edit',{view:{entryId:entry.id,selected:entry.cells[0],modal:'clues',clueDirection:'down',errors:[entry.cells[0]],board:{scale:2,x:-.2,y:-.1}}}));
+    const otherDevice=await store.get(token);assert.equal(otherDevice.view.selected,entry.cells[0]);assert.equal(otherDevice.view.modal,'clues');assert.equal(otherDevice.view.board.scale,2);
+    const secondLease=action('begin');await store.patch(token,secondLease);await store.patch(token,action('cancel',{leaseId:secondLease.id}));assert.equal((await store.get(token)).generating,undefined);
+    const lease=action('begin');await store.patch(token,lease);
+    const third=generatePuzzle({mode:'easy',seed:'round-third',recent:(await store.get(token)).usedAnswers});
+    const final=await store.patch(token,action('replace',{leaseId:lease.id,puzzle:third}));assert.equal(final.puzzle.id,third.id);
+    assert.equal(new Set(final.usedAnswers).size,final.usedAnswers.length);assert.ok(await command(['TTL',key])<=604800);
+    assert.deepEqual((await store.get(token)).answers,{});
+  }finally{await command(['DEL',key,...ids.map(id=>`${key}:op:${id}`)]);}
 });

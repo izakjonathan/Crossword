@@ -17,7 +17,19 @@ function transport(){
   return {get room(){return structuredClone(room);},set offline(v){offline=v;},set loseResponse(v){loseResponse=v;},
     request:async(token,method,operation)=>{
       if(offline)throw new Error('Offline');
-      if(method==='PATCH'&&!seen.has(operation.id)){validateOperation(puzzle,operation);room={...applyOperation(room,operation),revision:room.revision+1};seen.add(operation.id);}
+      if(method==='PATCH'&&!seen.has(operation.id)){
+        if(operation.roundId!==room.roundId){const e=new Error('Round changed');e.status=409;throw e;}
+        if(operation.kind==='begin'){
+          if(room.generating?.untilAt>Date.now()){const e=new Error('Already generating');e.status=409;throw e;}
+          room={...room,generating:{id:operation.id,untilAt:Date.now()+45000},view:{...room.view,modal:null},revision:room.revision+1};
+        }else if(operation.kind==='replace'){
+          if(room.generating?.id!==operation.leaseId){const e=new Error('Lease changed');e.status=409;throw e;}
+          room={...createRoom({puzzle:operation.puzzle,play:initialState(operation.puzzle)}),roundId:operation.id,usedAnswers:[...room.usedAnswers,...operation.puzzle.entries.map(e=>e.answer)],expiresAt:room.expiresAt,revision:room.revision+1};
+        }else if(operation.kind==='cancel'){
+          if(room.generating?.id===operation.leaseId)room={...room,generating:undefined,revision:room.revision+1};
+        }else{validateOperation(room.puzzle,operation);room={...applyOperation(room,operation),revision:room.revision+1};}
+        seen.add(operation.id);
+      }
       if(loseResponse){loseResponse=false;throw new Error('Response lost');}return structuredClone(room);
     }};
 }
@@ -52,9 +64,9 @@ test('offline edits survive refresh and lost-response retries cannot replay over
   const restored=client(server,a.session);restored.client.start();await settle();assert.equal(server.room.answers[cells[0]],'A');assert.equal(restored.state.pending,0);
   server.loseResponse=true;edit(restored.client,cells[0],'B');await settle();const b=client(server);edit(b.client,cells[0],'C');await settle();await restored.client.poll();await settle();assert.equal(server.room.answers[cells[0]],'C');assert.equal(restored.state.room.answers[cells[0]],'C');
 });
-test('late poll responses cannot replace newer revisions; each player keeps their selection',()=>{
+test('late poll responses cannot replace newer revisions; selection follows the shared active square',()=>{
   const server=transport(),a=client(server),room=server.room;a.client.accept({...room,revision:5,answers:{[cells[0]]:'Z'}});a.client.accept(room);assert.equal(a.client.view().answers[cells[0]],'Z');
-  const play={...game.play,selected:Number(cells[2]),entryId:123},merged=playWithRoom(play,a.client.view());assert.equal(merged.selected,play.selected);assert.equal(merged.entryId,123);
+  const play={...game.play,selected:Number(cells[2]),entryId:123},merged=playWithRoom(play,a.client.view());assert.equal(merged.selected,room.view.selected);assert.equal(merged.entryId,room.view.entryId);
 });
 test('hints remain assisted after undo and expired rooms stop retrying',async()=>{
   const server=transport(),a=client(server),before=a.client.view();a.client.edit(before,{...before,answers:{[cells[0]]:'A'},assisted:true});await settle();a.client.undo();await settle();assert.equal(server.room.assisted,true);
@@ -95,4 +107,41 @@ test('Redis accepts complete Marketplace KV pairs, prefers complete Upstash pair
   assert.deepEqual(redisCredentials({UPSTASH_REDIS_REST_URL:'https://partial',KV_REST_API_URL:'https://marketplace',KV_REST_API_TOKEN:'write-token'}),{url:'https://marketplace',token:'write-token'});
   assert.deepEqual(redisCredentials({UPSTASH_REDIS_REST_URL:'https://partial',KV_REST_API_TOKEN:'other-token'}),{});
   assert.deepEqual(redisCredentials({KV_REST_API_URL:'https://marketplace',KV_REST_API_READ_ONLY_TOKEN:'read-token'}),{});
+});
+
+
+test('shared selection, checks, clue dialog/direction and board position propagate to the other device',async()=>{
+  const server=transport(),a=client(server),b=client(server),entry=puzzle.entries[1];
+  a.client.setView({entryId:entry.id,selected:entry.cells[0],modal:'clues',clueDirection:'down',errors:[entry.cells[0]],board:{scale:2,x:-.2,y:-.1}});
+  await settle();await b.client.poll();assert.deepEqual(b.state.room.view,a.state.room.view);
+  const before={...game.play,answers:a.client.view().answers};
+  a.client.edit(before,{...before,entryId:entry.id,selected:entry.cells[1]});await settle();await b.client.poll();assert.equal(b.state.room.view.selected,entry.cells[1]);assert.deepEqual(b.state.room.view.errors,[]);
+});
+test('either device can start a new round and both keep the same room through multiple games',async()=>{
+  const server=transport(),a=client(server),b=client(server);const expires=server.room.expiresAt;
+  const first=generatePuzzle({mode:'medium',seed:'shared-next-one'}),second=generatePuzzle({mode:'hard',seed:'shared-next-two'});
+  await a.client.newRound(async()=>first);await b.client.poll();
+  assert.equal(a.state.room.puzzle.id,first.id);assert.equal(b.state.room.puzzle.id,first.id);assert.equal(b.state.room.expiresAt,expires);assert.deepEqual(b.state.room.answers,{});
+  await b.client.newRound(async()=>second);await a.client.poll();assert.equal(a.state.room.puzzle.id,second.id);assert.equal(a.state.canUndo,false);assert.equal(a.client.token,b.client.token);
+  const fresh=client(server);fresh.client.start();await settle();assert.equal(fresh.state.room.puzzle.id,second.id);
+});
+test('old offline edits are fenced out after a new puzzle, and failed generation keeps the old game',async()=>{
+  const server=transport(),a=client(server),b=client(server);
+  server.offline=true;edit(b.client,cells[0],'Z');await settle();server.offline=false;
+  const next=generatePuzzle({mode:'easy',seed:'offline-next'});await a.client.newRound(async()=>next);await b.client.poll();await settle();
+  assert.equal(server.room.puzzle.id,next.id);assert.deepEqual(server.room.answers,{});assert.equal(b.state.pending,0);
+  await assert.rejects(a.client.newRound(async()=>{throw new Error('No grid');}),/No grid/);assert.equal(server.room.puzzle.id,next.id);assert.equal(a.state.generating,false);
+});
+test('simultaneous new-game requests reserve one generation lease and cannot replace each other',async()=>{
+  const server=transport(),a=client(server),b=client(server);let release,started;
+  const begun=new Promise(r=>started=r),gate=new Promise(r=>release=r);
+  const next=generatePuzzle({mode:'easy',seed:'lease-next'});
+  const first=a.client.newRound(async()=>{started();await gate;return next;});await begun;
+  await assert.rejects(b.client.newRound(async()=>next));release();await first;await b.client.poll();assert.equal(b.state.room.puzzle.id,next.id);assert.equal(b.state.generating,false);
+});
+
+test('a lost new-round response retries the same replacement without starting a second puzzle',async()=>{
+  const server=transport(),a=client(server),b=client(server),next=generatePuzzle({mode:'easy',seed:'lost-round-response'});
+  await a.client.newRound(async()=>{server.loseResponse=true;return next;});await b.client.poll();
+  assert.equal(a.state.room.roundId,b.state.room.roundId);assert.equal(b.state.room.puzzle.id,next.id);assert.equal(a.state.generating,false);
 });

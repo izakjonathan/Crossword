@@ -1,5 +1,13 @@
 # Changelog
 
+## Shared-session review — 20 October 2026
+
+- Keep the same shared link when either device creates another puzzle.
+- Synchronise active square/clue, gameplay dialogs, checks, clue direction and board view.
+- Add atomic generation leases, round-fenced edits, stale-queue backups and repeat exclusions across the session.
+- Remove filled-square skipping: typing proceeds square by square and replaces existing letters.
+
+
 ## 2.9.0 — 19 October 2026
 
 - Add 83 source-referenced clue variants for 74 existing longer answers: 59 tier-2 and 24 tier-3 clues.

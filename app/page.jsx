@@ -13,7 +13,7 @@ import PuzzleKeyboard from '../components/puzzle-keyboard';
 import ClueList from '../components/clue-list';
 import { GenerationClient } from '../lib/generation-client.mjs';
 import { SharedClient, sharedRequest } from '../lib/shared-client.mjs';
-import { TOKEN_PATTERN, playWithRoom } from '../lib/shared-model.mjs';
+import { TOKEN_PATTERN, playWithRoom, roundId, sharedHistory, SHARED_MODALS } from '../lib/shared-model.mjs';
 import SharedGameDialog from '../components/shared-game-dialog';
 import { GlobalThemeClient } from '../lib/global-theme-client.mjs';
 
@@ -39,48 +39,61 @@ export default function Home() {
   const solved = !!game && game.puzzle.grid.every((cell, i) => !cell || game.play.answers[i] === cell.letter);
 
   const startPuzzle = useCallback(async mode => {
-    if (!generatorRef.current || generatorRef.current.pending || sharedRef.current || creatingShareRef.current) return;
+    if (!generatorRef.current || generatorRef.current.pending || creatingShareRef.current) return;
+    const client = sharedRef.current;
     const lifecycle = lifecycleRef.current;
-    if (new URLSearchParams(location.hash.slice(1)).has('game')) history.replaceState(null, '', location.pathname + location.search);
+    if (!client && new URLSearchParams(location.hash.slice(1)).has('game')) history.replaceState(null, '', location.pathname + location.search);
     lastModeRef.current = mode;
     setModal(null); setBusy(true); setNotice(''); setGenerationError('');
     try {
-      const puzzle = await generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), makePuzzle:(history, now) => {
+      const generate = async room => generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), makePuzzle:(history, now) => {
         if (lifecycle !== lifecycleRef.current || !generatorRef.current) throw new Error('Generation cancelled.');
-        return generatorRef.current.generate({mode,seed:makeSeed(),history,now});
+        return generatorRef.current.generate({mode,seed:makeSeed(),history:room ? sharedHistory(history,room,now) : history,now});
       }});
-      if (lifecycle !== lifecycleRef.current) return;
-      const next = {puzzle,play:initialState(puzzle)};
-      setGame(next); setErrors([]);
-      try { saveSession(localStorage,next); } catch { setNotice('Word history is saved, but puzzle progress could not be saved.'); }
+      if (client) await client.newRound(generate);
+      else {
+        const puzzle = await generate();
+        if (lifecycle !== lifecycleRef.current) return;
+        const next = {puzzle,play:initialState(puzzle)}; gameRef.current = next;
+        setGame(next); setErrors([]);
+        try { saveSession(localStorage,next); } catch { setNotice('Word history is saved, but puzzle progress could not be saved.'); }
+      }
     } catch (error) {
       if (lifecycle === lifecycleRef.current) { const message = error.name === 'TimeoutError' ? 'Another tab is generating a puzzle. Try again shortly.' : error.message || 'Could not generate a puzzle.'; setNotice(message); setGenerationError(message); }
-    } finally { if (lifecycle === lifecycleRef.current) setBusy(false); }
+    } finally { if (lifecycle === lifecycleRef.current) setBusy(!!sharedRef.current?.generating()); }
   }, []);
 
   const connectShared = useCallback((token, room) => {
     sharedRef.current?.stop();
     let pendingStorage; try { pendingStorage = sessionStorage; } catch { /* Edits still sync in memory. */ }
+    let reservedRound, seenNotice;
     const client = new SharedClient({ token, room, storage:pendingStorage, onChange:update => {
       setShared({ token, ...update });
-      const current = gameRef.current;
-      const play = current?.puzzle?.id === room.puzzle.id ? current.play : initialState(room.puzzle);
-      const next = { puzzle:room.puzzle, play:playWithRoom(play, update.room) };
-      gameRef.current = next; setGame(next);
-      setErrors([]);
-    }});
-    sharedRef.current = client;
-    const reserve = async () => {
-      try {
-        if (!navigator.locks?.request) throw new Error('Browser locks unavailable');
-        await navigator.locks.request('daily-cross:word-generation', { signal:AbortSignal.any([client.controller.signal, AbortSignal.timeout(30000)]) }, () => {
-          if (sharedRef.current === client) reserveSharedAnswers(localStorage, room.puzzle);
-        });
-      } catch {
-        if (sharedRef.current === client) setNotice('Shared game opened, but its answers could not be added to this browser’s repeat history.');
+      const active = update.room, current = gameRef.current;
+      const same = current?.sharedRound === roundId(active);
+      const play = same ? current.play : initialState(active.puzzle);
+      const next = { puzzle:active.puzzle, play:playWithRoom(play, active), sharedRound:roundId(active) };
+      gameRef.current = next; setGame(next); setBusy(update.generating);
+      setErrors(active.view?.errors || []);
+      if (SHARED_MODALS.includes(modalRef.current) || (!same && !['studio','share'].includes(modalRef.current))) {
+        modalRef.current = active.view?.modal || null; setModal(modalRef.current);
       }
-    };
-    reserve(); client.start();
+      if (active.view?.notice && (active.view.noticeId || active.view.notice) !== seenNotice) setNotice(active.view.notice);
+      seenNotice = active.view?.noticeId || active.view?.notice;
+      if (update.message) setNotice(update.message);
+      if (reservedRound !== roundId(active)) {
+        reservedRound = roundId(active);
+        (async () => {
+          try {
+            if (!navigator.locks?.request) throw new Error('Browser locks unavailable');
+            await navigator.locks.request('daily-cross:word-generation', { signal:AbortSignal.any([client.controller.signal, AbortSignal.timeout(30000)]) }, () => {
+              if (sharedRef.current === client) reserveSharedAnswers(localStorage, active.puzzle);
+            });
+          } catch { if (sharedRef.current === client) setNotice('Shared game opened, but its answers could not be added to this browser’s repeat history.'); }
+        })();
+      }
+    }});
+    sharedRef.current = client; client.start();
   }, []);
 
   const joinShared = useCallback(async token => {
@@ -110,6 +123,7 @@ export default function Home() {
   }
 
   function leaveShared() {
+    if (sharedRef.current?.generating()) { setNotice('Wait for the new shared puzzle to finish.'); return; }
     if (sharedRef.current?.pending.length && !sharedRef.current.fatal) return;
     const keepCopy = sharedRef.current?.fatal && sharedRef.current?.pending.length;
     const copy = keepCopy ? gameRef.current : null;
@@ -187,13 +201,13 @@ export default function Home() {
     if (client) {
       try { client.edit(current.play, play); }
       catch (error) { setNotice(error.message); return; }
-      const next = { puzzle:current.puzzle, play:playWithRoom({...play, undo:[]}, client.view()) };
+      const next = { ...current, play:playWithRoom({...play, undo:[]}, client.view()) };
       gameRef.current = next; setGame(next);
     } else { const next = {...current, play}; gameRef.current = next; setGame(next); }
-    setErrors([]);
+    if (!client) setErrors([]);
   }, []);
   const undo = useCallback(() => {
-    if (sharedRef.current) sharedRef.current.undo();
+    if (sharedRef.current) { try { sharedRef.current.undo(); } catch (error) { setNotice(error.message); } }
     else edit((p, s) => undoInput(s));
   }, [edit]);
   useEffect(() => {
@@ -239,12 +253,24 @@ export default function Home() {
     if (!game) return;
     if (!Object.values(game.play.answers).some(Boolean)) { setNotice('Enter a few letters first.'); return; }
     const wrong = game.puzzle.grid.flatMap((c, i) => c && game.play.answers[i] && game.play.answers[i] !== c.letter ? [i] : []);
-    setErrors(wrong); setNotice(wrong.length ? `${wrong.length} ${wrong.length === 1 ? 'letter needs' : 'letters need'} another look.` : 'All entered letters are correct.');
+    const message = wrong.length ? `${wrong.length} ${wrong.length === 1 ? 'letter needs' : 'letters need'} another look.` : 'All entered letters are correct.';
+    if (sharedRef.current) publishView({errors:wrong,notice:message,noticeId:crypto.randomUUID()});
+    else { setErrors(wrong); setNotice(message); }
   }
   const filled = game ? game.puzzle.grid.filter((cell, i) => cell && game.play.answers[i]).length : 0;
   const total = game ? game.puzzle.grid.filter(Boolean).length : 0;
-  function openModal(name) { setModal(name); }
-  function closeModal() { if (modal === 'studio') setPreview(savedThemeRef.current); setModal(null); }
+  function publishView(value) {
+    try { sharedRef.current?.setView(value); } catch (error) { setNotice(error.message); }
+  }
+  function openModal(name) {
+    if (sharedRef.current && SHARED_MODALS.includes(name)) publishView({modal:name});
+    else { modalRef.current = name; setModal(name); }
+  }
+  function closeModal() {
+    if (modal === 'studio') setPreview(savedThemeRef.current);
+    if (sharedRef.current && SHARED_MODALS.includes(modalRef.current)) publishView({modal:null});
+    else { modalRef.current = null; setModal(null); }
+  }
   const viewportStyle = view && view.scale < 1.05 ? { height: view.height, top: view.top, left: view.left, width: view.width } : {};
 
   return <main className="app" style={viewportStyle}>
@@ -253,10 +279,10 @@ export default function Home() {
       <button className="icon-button" disabled={!game || busy} onClick={() => openModal('reveal')} aria-label="Reveal current word" title="Reveal word"><Icon name="eye" /></button>
       <div className="zoom-controls" role="group" aria-label="Board zoom"><button disabled={!game || busy} onClick={() => zoomRef.current?.(-1)} aria-label="Zoom out">−</button><button disabled={!game || busy} onClick={() => zoomRef.current?.(0)} aria-label="Fit entire board">Fit</button><button disabled={!game || busy} onClick={() => zoomRef.current?.(1)} aria-label="Zoom in">+</button></div>
       <button className="icon-button" onClick={() => openModal('studio')} aria-label="UI Studio" title="UI Studio"><Icon name="palette" /></button>
-      <button className="icon-button new-puzzle" aria-label="Generate a new crossword" aria-haspopup="dialog" disabled={busy || !!shared || creatingShare} onClick={() => openModal('new')}><Icon name="plus" /></button>
+      <button className="icon-button new-puzzle" aria-label="Generate a new crossword" aria-haspopup="dialog" disabled={busy || creatingShare} onClick={() => openModal('new')}><Icon name="plus" /></button>
     </div></header>
-    {shared && <button className="shared-status" onClick={() => openModal('share')} aria-label="Shared game status and invite link"><span>Playing together</span><span role="status">{shared.status === 'ended' ? 'Game unavailable' : shared.status === 'reconnecting' ? 'Reconnecting…' : shared.pending ? 'Saving…' : 'All changes saved'}</span></button>}
-    <CrosswordBoard game={game} entry={entry} errors={errors} busy={busy} onSelect={tapCell} zoomRef={zoomRef} generationError={generationError} onRetry={() => { const token = new URLSearchParams(location.hash.slice(1)).get('game'); token !== null ? joinShared(token) : startPuzzle(lastModeRef.current); }} />
+    {shared && <button className="shared-status" onClick={() => openModal('share')} aria-label="Shared game status and invite link"><span>Playing together</span><span role="status">{shared.generating ? 'Building a new puzzle…' : shared.status === 'ended' ? 'Game unavailable' : shared.status === 'reconnecting' ? 'Reconnecting…' : shared.pending ? 'Saving…' : 'All changes saved'}</span></button>}
+    <CrosswordBoard game={game} entry={entry} errors={errors} busy={busy} onSelect={tapCell} zoomRef={zoomRef} sharedBoard={shared?.room.view?.board} onBoardView={board => publishView({board})} generationError={generationError} onRetry={() => { const token = new URLSearchParams(location.hash.slice(1)).get('game'); token !== null ? joinShared(token) : startPuzzle(lastModeRef.current); }} />
     <div className="keyboard-dock">
     <section className="clue-bar" aria-label="Active clue">
       <button className="icon-button" disabled={!game || busy} onMouseDown={e => e.preventDefault()} onClick={() => changeClue(-1)} aria-label="Previous clue"><Icon name="prev" /></button>
@@ -270,9 +296,9 @@ export default function Home() {
 
     </div>
     <div className="toast-region" role="status" aria-live="polite">{notice && <div className="toast">{notice}</div>}</div>
-    {modal === 'clues' && game && <ClueList game={game} onClose={closeModal} onSelect={id => { edit((p, s) => selectEntry(p, s, id)); closeModal(); }} />}
+    {modal === 'clues' && game && <ClueList game={game} sharedDirection={shared?.room.view?.clueDirection} onDirection={clueDirection => publishView({clueDirection})} onClose={closeModal} onSelect={id => { edit((p, s) => selectEntry(p, s, id)); closeModal(); }} />}
     {modal === 'new' && <Dialog title="New crossword" onClose={closeModal} className="difficulty-dialog"><div className="difficulty-options">{Object.entries(MODES).map(([key, mode]) => <button className="difficulty-option" key={key} onClick={() => startPuzzle(key)}><span>{mode.label}<small className="difficulty-detail">{mode.cols} × {mode.rows} · {key === 'easy' ? 'Familiar words · Direct clues' : key === 'medium' ? 'Broader words · Mixed clues' : 'Challenging words & clues'}</small></span><Icon name="next" /></button>)}</div></Dialog>}
-    {modal === 'tools' && <Dialog title="Puzzle controls" onClose={closeModal}><div className="difficulty-options"><button className="difficulty-option" disabled={!game || busy} onClick={() => { setShareNotice(''); openModal('share'); }}><span>Play together</span><Icon name="next" /></button>{generationError && !game && <button className="difficulty-option" onClick={leaveShared}><span>Return to solo game</span><Icon name="next" /></button>}<button className="difficulty-option" disabled={!game || busy} onClick={() => openModal('clues')}><span>All clues</span><Icon name="next" /></button><button className="difficulty-option" disabled={!(shared ? shared.canUndo : game?.play.undo?.length) || busy} onClick={() => { undo(); closeModal(); }}><span>Undo last entry</span><Icon name="undo" /></button><button className="difficulty-option" disabled={!game || busy} onClick={() => { closeModal(); check(); }}><span>Check letters</span><Icon name="check" /></button><button className="difficulty-option" disabled={!game || busy || !entry?.cells.some(i => game.play.answers[i])} onClick={() => { edit(clearWord); closeModal(); setNotice('Word cleared. Use Undo to restore it.'); }}><span>Clear current word</span><Icon name="undo" /></button></div></Dialog>}
+    {modal === 'tools' && <Dialog title="Puzzle controls" onClose={closeModal}><div className="difficulty-options"><button className="difficulty-option" disabled={!game || busy} onClick={() => { setShareNotice(''); openModal('share'); }}><span>Play together</span><Icon name="next" /></button>{generationError && !game && <button className="difficulty-option" onClick={leaveShared}><span>Return to solo game</span><Icon name="next" /></button>}<button className="difficulty-option" disabled={!game || busy} onClick={() => openModal('clues')}><span>All clues</span><Icon name="next" /></button><button className="difficulty-option" disabled={!(shared ? shared.canUndo : game?.play.undo?.length) || busy} onClick={() => { undo(); closeModal(); }}><span>Undo last entry</span><Icon name="undo" /></button><button className="difficulty-option" disabled={!game || busy} onClick={() => { closeModal(); check(); }}><span>Check letters</span><Icon name="check" /></button><button className="difficulty-option" disabled={!game || busy || !entry?.cells.some(i => game.play.answers[i])} onClick={() => { edit(clearWord); closeModal(); const message = 'Word cleared. Use Undo to restore it.'; if (sharedRef.current) publishView({notice:message,noticeId:crypto.randomUUID()}); else setNotice(message); }}><span>Clear current word</span><Icon name="undo" /></button></div></Dialog>}
     {modal === 'reveal' && game && <Dialog title="Need a hint?" onClose={closeModal}><p className="dialog-copy">Reveal one letter or {entry.number} {entry.dir}. This solve will be marked as assisted.</p><div className="dialog-actions"><button className="outline-button" onClick={() => { edit(revealLetter); closeModal(); }}>Reveal letter</button><button className="solid-button" onClick={() => { edit(revealWord); closeModal(); }}>Reveal word</button></div></Dialog>}
     {modal === 'share' && <SharedGameDialog shared={shared} creating={creatingShare} notice={shareNotice} onCreate={createShared} onLeave={leaveShared} onClose={closeModal} />}
     {modal === 'studio' && <UiStudio saved={savedTheme} preview={preview} onPreview={setPreview} onClose={closeModal} onSave={theme => themeClientRef.current.save(theme)} onSaved={theme => { setSavedTheme(theme); savedThemeRef.current = theme; setPreview(theme); setNotice('Colours saved for everyone.'); }} />}

@@ -3,12 +3,21 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { fitBoard, fitView, constrain, zoomAt, revealCell, BoardGesture, cellAtPoint } from '../lib/board-view.mjs';
 import { MODES } from '../lib/config.mjs';
 
-export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef, generationError, onRetry }) {
+export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef, sharedBoard, onBoardView, generationError, onRetry }) {
   const area = useRef(null), gesture = useRef(new BoardGesture());
   const frameRef = useRef(null), transform = useRef({ scale: 1, x: 0, y: 0 });
   const [frame, setFrame] = useState(null), [view, setView] = useState(transform.current);
   const puzzle = game?.puzzle, selected = game?.play.selected;
-  function update(next) { transform.current = next; setView(next); }
+  const publishRef = useRef(onBoardView), lastPublish = useRef(0); publishRef.current = onBoardView;
+  function publish(force = false) {
+    const f = frameRef.current, v = transform.current;
+    if (!f || (!force && Date.now() - lastPublish.current < 250)) return;
+    lastPublish.current = Date.now(); publishRef.current?.({scale:v.scale,x:v.x/f.width,y:v.y/f.height});
+  }
+  function update(next, share = false) { transform.current = next; setView(next); if (share) publish(); }
+  useEffect(() => {
+    if (sharedBoard && frame && !gesture.current.pointers.size) update(constrain({scale:sharedBoard.scale,x:sharedBoard.x*frame.width,y:sharedBoard.y*frame.height},frame));
+  }, [sharedBoard?.scale, sharedBoard?.x, sharedBoard?.y, frame]);
   useEffect(() => {
     const element = area.current; if (!element || !puzzle) return;
     let first = true;
@@ -31,7 +40,7 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
     zoomRef.current = direction => {
       const f = frameRef.current; if (!f) return;
       const v = transform.current;
-      update(direction === 0 ? fitView(f) : zoomAt(v, f, v.scale + direction * .5, { x: f.width / 2, y: f.height / 2 }));
+      update(direction === 0 ? fitView(f) : zoomAt(v, f, v.scale + direction * .5, { x: f.width / 2, y: f.height / 2 })); publish(true);
     };
     return () => { zoomRef.current = null; };
   }, [zoomRef]);
@@ -40,7 +49,7 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
     const wheel = event => {
       const f = frameRef.current; if (!f || busy) return;
       event.preventDefault(); const v = transform.current, rect = element.getBoundingClientRect();
-      update(event.ctrlKey || event.metaKey ? zoomAt(v, f, v.scale * Math.exp(-event.deltaY * .008), { x: event.clientX - rect.left, y: event.clientY - rect.top }) : constrain({ ...v, x: v.x - event.deltaX, y: v.y - event.deltaY }, f));
+      update(event.ctrlKey || event.metaKey ? zoomAt(v, f, v.scale * Math.exp(-event.deltaY * .008), { x: event.clientX - rect.left, y: event.clientY - rect.top }) : constrain({ ...v, x: v.x - event.deltaX, y: v.y - event.deltaY }, f), true);
     };
     element.addEventListener('wheel', wheel, { passive: false });
     return () => element.removeEventListener('wheel', wheel);
@@ -54,13 +63,14 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
   function move(event) {
     if (!frameRef.current) return;
     const next = gesture.current.move(event.pointerId, point(event), frameRef.current);
-    if (next) update(next);
+    if (next) update(next, true);
   }
   function up(event, cancelled = false) {
     if (!gesture.current.pointers.has(event.pointerId)) return;
     if (!cancelled) move(event);
     const tap = gesture.current.up(event.pointerId, transform.current, cancelled);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    if (!tap && !cancelled) publish(true);
     if (tap && frameRef.current && puzzle) {
       const index = cellAtPoint(frameRef.current, transform.current, puzzle.cols, puzzle.rows, point(event));
       if (index !== null && puzzle.grid[index]) onSelect(index);
