@@ -13,3 +13,5 @@ The engine runs in `lib/puzzle.worker.mjs`. `GenerationClient` owns worker lifec
 `clue-selection.mjs` allocates variants using a bounded subset search; `grid-fill.mjs` backtracks when this allocation is impossible. `crossing-safety.mjs` reconstructs the published crossing graph and validates `fairnessVersion:1`, independently of the filler. The new version tag leaves older saves valid.
 
 The filler retains per-call WeakMap domain caches for letter groups, answer membership and rating bounds. Unchanged domains reuse their arrays; affected-slot relationships are fixed per layout. Caches are never shared across candidate pools or games. Search order, randomness and node budgets are unchanged from v2.8.1; see `PERFORMANCE-V2.8.2.md`.
+
+`long-clues.mjs` appends explicitly reviewed, source-referenced variants to existing words. Bank assembly rejects unknown answers and duplicate tiers/text. The worker retains source metadata in the bank but publishes only clue text and rating in the puzzle object; it makes no source-site requests. Older saves retain their stored wording.

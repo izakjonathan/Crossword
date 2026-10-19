@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.8.2
+# Crossword puzzle · v2.9.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -19,6 +19,8 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
 
 ## Generation and clue quality
+
+v2.9.0 adds 83 reviewed variants for 74 longer answers, preserving their direct clues and the existing difficulty/crossing rules. See the [source-backed clue review](docs/LONG-CLUES-V2.9.md) and [validation](docs/VALIDATION-V2.9.0.md).
 
 v2.8.2 improves Hard generation speed using per-fill caches. A matched benchmark retained identical output for 300 fresh puzzles and twelve games with repeat exclusions. See [performance evidence and limits](docs/PERFORMANCE-V2.8.2.md).
 

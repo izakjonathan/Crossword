@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.0 — 19 October 2026
+
+- Add 83 source-referenced clue variants for 74 existing longer answers: 59 tier-2 and 24 tier-3 clues.
+- Expand 8+ answer coverage from four tier-2/no tier-3 alternatives to 63 tier-2 and 24 tier-3 answers; retain all direct clues.
+- Keep the 1,906-answer vocabulary, field counts, difficulty/crossing rules, repeat protection, cached search and saved-game compatibility.
+- Validate optional clue-source URLs and add coverage, provenance, mode-selection and deterministic-output tests.
+- Record the editorial rationale, per-variant references and actual use in generated Medium/Hard puzzles.
+
 ## 2.8.2 — 19 October 2026
 
 - Cache crossing letter groups, answer membership and editorial domain bounds within each layout fill.

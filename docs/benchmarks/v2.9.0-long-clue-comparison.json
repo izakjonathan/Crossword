@@ -1,0 +1,35 @@
+{
+  "baseline": "2.8.2",
+  "candidate": "2.9.0",
+  "seedsPerMode": 100,
+  "seedRange": "audit-0 through audit-99",
+  "recentExclusions": [],
+  "baselineModes": {
+    "medium": {
+      "longAnswerUses": 100,
+      "challengingLongClueUses": 25,
+      "hardestLongClueUses": 0,
+      "puzzlesWithChallengingLongClue": 25
+    },
+    "hard": {
+      "longAnswerUses": 100,
+      "challengingLongClueUses": 0,
+      "hardestLongClueUses": 0,
+      "puzzlesWithChallengingLongClue": 0
+    }
+  },
+  "candidateModes": {
+    "medium": {
+      "longAnswerUses": 100,
+      "challengingLongClueUses": 76,
+      "hardestLongClueUses": 0,
+      "puzzlesWithChallengingLongClue": 76
+    },
+    "hard": {
+      "longAnswerUses": 100,
+      "challengingLongClueUses": 90,
+      "hardestLongClueUses": 32,
+      "puzzlesWithChallengingLongClue": 90
+    }
+  }
+}

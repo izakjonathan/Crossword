@@ -51,3 +51,7 @@ The current bank has 1,906 answers. Vocabulary and selected clue variants are no
 ## v2.8.1 crossing support
 
 See `CROSSING-FAIRNESS.md` for new specialist-crossing and clue-support rules, the RAY/PLANE wording corrections, the legacy PIE correction, and stronger rated-variant checks. No new vocabulary was added in this release.
+
+## v2.9 longer-answer review
+
+Added 83 variants for 74 existing 8+ answers, with source links and explicit tiers. The vocabulary remains 1,906 answers. All original direct clues remain available, and Easy still uses them. See `LONG-CLUES-V2.9.md` for the complete review record, measured coverage, source checks and limits of editorial grading.

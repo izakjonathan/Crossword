@@ -1,0 +1,176 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 1906,
+  "longerClueBank": {
+    "answers": 197,
+    "tier2Answers": 63,
+    "tier3Answers": 24
+  },
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 10.793076069999994,
+      "p95Ms": 23.743888000000027,
+      "maxMs": 55.071044,
+      "minFields": 51,
+      "maxFields": 54,
+      "meanVocabulary": 1.150000000000002,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 5,
+      "meanEightPlusAnswers": 0,
+      "meanEightPlusChallengingClues": 0,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 0,
+      "meanReviewedAlternativeAnswers": 8.52,
+      "meanEntries": 20,
+      "meanBlack": 0.36246913580246953,
+      "meanChecking": 0.6270500000000007,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 6.26,
+      "meanAlternativeClues": 15.91,
+      "uniqueAnswersUsed": 608,
+      "mostFrequentAnswers": [
+        [
+          "EAT",
+          23
+        ],
+        [
+          "TIP",
+          23
+        ],
+        [
+          "RAT",
+          19
+        ],
+        [
+          "TIE",
+          17
+        ],
+        [
+          "BEE",
+          16
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 13.347526629999988,
+      "p95Ms": 28.714038999999957,
+      "maxMs": 296.69414900000015,
+      "minFields": 78,
+      "maxFields": 79,
+      "meanVocabulary": 1.5526086956521723,
+      "meanClue": 1.3913043478260898,
+      "meanChallengingFraction": 0.3913043478260866,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0.08652173913043497,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEightPlusAnswers": 1,
+      "meanEightPlusChallengingClues": 0.76,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 76,
+      "meanReviewedAlternativeAnswers": 12.37,
+      "meanEntries": 23,
+      "meanBlack": 0.35504132231405044,
+      "meanChecking": 0.5913540372670802,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 12.93,
+      "meanAlternativeClues": 16.64,
+      "uniqueAnswersUsed": 914,
+      "mostFrequentAnswers": [
+        [
+          "ELEMENT",
+          24
+        ],
+        [
+          "ARRANGE",
+          22
+        ],
+        [
+          "TREASURE",
+          18
+        ],
+        [
+          "TEA",
+          16
+        ],
+        [
+          "EAT",
+          15
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 2.11,
+      "meanMs": 163.15619995000006,
+      "p95Ms": 748.5804559999997,
+      "maxMs": 1082.3104589999998,
+      "minFields": 105,
+      "maxFields": 110,
+      "meanVocabulary": 1.7975958733444504,
+      "meanClue": 1.9030236871925426,
+      "meanChallengingFraction": 0.6676933929856701,
+      "meanHardFraction": 0.23533029420687282,
+      "meanAdvancedFraction": 0.20283173999366824,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 11,
+      "meanEightPlusAnswers": 1,
+      "meanEightPlusChallengingClues": 0.9,
+      "meanEightPlusHardClues": 0.32,
+      "puzzlesWithLongChallengingClue": 90,
+      "meanReviewedAlternativeAnswers": 21.87,
+      "meanEntries": 31.75,
+      "meanBlack": 0.36520710059171657,
+      "meanChecking": 0.5971702072684887,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 17.57,
+      "meanAlternativeClues": 24.67,
+      "uniqueAnswersUsed": 880,
+      "mostFrequentAnswers": [
+        [
+          "RANGE",
+          31
+        ],
+        [
+          "TAR",
+          30
+        ],
+        [
+          "ORE",
+          29
+        ],
+        [
+          "EWE",
+          29
+        ],
+        [
+          "ELEMENT",
+          25
+        ]
+      ]
+    }
+  }
+}

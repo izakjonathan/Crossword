@@ -5,8 +5,10 @@ import { createHash } from 'node:crypto';
 import { generatePuzzle, random } from '../lib/engine.mjs';
 import { fillLayout } from '../lib/grid-fill.mjs';
 
-const reference = JSON.parse(readFileSync(new URL('./fixtures/v2.8.1-generation-hashes.json',import.meta.url)));
-test('cached search preserves complete v2.8.1 puzzle output for fixed inputs',()=>{
+// Editorial revisions intentionally change generated clues/fills. Keep the old
+// v2.8.1 hashes as history; freeze the reviewed v2.9.0 bank for future cost changes.
+const reference = JSON.parse(readFileSync(new URL('./fixtures/v2.9.0-generation-hashes.json',import.meta.url)));
+test('seeded search preserves complete v2.9.0 editorial-bank output for fixed inputs',()=>{
   for (const {input,sha256} of reference.cases) {
     const actual=createHash('sha256').update(JSON.stringify(generatePuzzle(input))).digest('hex');
     assert.equal(actual,sha256,JSON.stringify(input));
