@@ -11,7 +11,7 @@ The status strip shows saving or reconnecting when edits have not reached the se
 ## Vercel setup
 
 1. Add an Upstash Redis database from the Vercel Marketplace and connect it to the crossword project you use.
-2. Verify server environment variables `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` are set for Production (and Preview if wanted). Do not use `NEXT_PUBLIC_` names.
+2. Verify a complete pair of server environment variables is set for Production (and Preview if wanted): either `KV_REST_API_URL` and `KV_REST_API_TOKEN` from Vercel Marketplace, or `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from Upstash. Complete Upstash credentials take precedence; pairs are never mixed. The read-only token cannot save edits. Do not use `NEXT_PUBLIC_` names.
 3. Redeploy the project, then create a link and open it on a second device. Type and delete from each device; reload each and confirm progress.
 4. If both `crossword` and `crosswordapp` should accept the same room tokens, connect the same database to both projects and redeploy both. Otherwise use links on the original project's host.
 

@@ -5,7 +5,7 @@ import { generatePuzzle } from '../lib/engine.mjs';
 import { initialState } from '../lib/input.mjs';
 import { createRoom, validateOperation, applyOperation, playWithRoom, TOKEN_PATTERN } from '../lib/shared-model.mjs';
 import { SharedClient } from '../lib/shared-client.mjs';
-import { sharedStore, roomKey } from '../lib/shared-store.mjs';
+import { sharedStore, roomKey, redisCredentials } from '../lib/shared-store.mjs';
 import { GET, POST, PATCH } from '../app/api/shared/route.js';
 const puzzle = generatePuzzle({mode:'easy',seed:'shared-test'}), game = {puzzle,play:initialState(puzzle)};
 const cells = puzzle.grid.flatMap((cell,i)=>cell?[String(i)]:[]);
@@ -86,4 +86,13 @@ test('joining reserves shared answers without erasing old history or incrementin
   const ledger=JSON.parse(local.getItem(LEDGER_KEY));assert.equal(ledger.sequence,12);assert.ok(ledger.uses.ZZZ);
   for(const entry of puzzle.entries){assert.equal(ledger.uses[entry.answer].day,dayKey(now));assert.equal(ledger.uses[entry.answer].game,12);}
   local.setItem(LEDGER_KEY,'broken');assert.throws(()=>reserveSharedAnswers(local,puzzle,now));assert.equal(local.getItem(LEDGER_KEY),'broken');
+});
+
+
+test('Redis accepts complete Marketplace KV pairs, prefers complete Upstash pairs, and never mixes credentials',()=>{
+  assert.deepEqual(redisCredentials({KV_REST_API_URL:'https://marketplace',KV_REST_API_TOKEN:'write-token',KV_REST_API_READ_ONLY_TOKEN:'read-token'}),{url:'https://marketplace',token:'write-token'});
+  assert.deepEqual(redisCredentials({UPSTASH_REDIS_REST_URL:'https://direct',UPSTASH_REDIS_REST_TOKEN:'direct-token',KV_REST_API_URL:'https://marketplace',KV_REST_API_TOKEN:'write-token'}),{url:'https://direct',token:'direct-token'});
+  assert.deepEqual(redisCredentials({UPSTASH_REDIS_REST_URL:'https://partial',KV_REST_API_URL:'https://marketplace',KV_REST_API_TOKEN:'write-token'}),{url:'https://marketplace',token:'write-token'});
+  assert.deepEqual(redisCredentials({UPSTASH_REDIS_REST_URL:'https://partial',KV_REST_API_TOKEN:'other-token'}),{});
+  assert.deepEqual(redisCredentials({KV_REST_API_URL:'https://marketplace',KV_REST_API_READ_ONLY_TOKEN:'read-token'}),{});
 });
