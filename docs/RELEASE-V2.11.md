@@ -23,3 +23,7 @@ The library caches independently validated archive data and avoids resaving unch
 Use `npm test` with a disposable Redis instance, `npm run build`, `LAYOUT_BUILD=1 node --test tests/layout.test.mjs` and `npm run audit:puzzles`. The final evidence is recorded in docs/testing.md. Historical deterministic fixtures remain; a new v2.11 fixture freezes the intentionally revised clue outputs. There are no dependency changes and no configured lint/typecheck scripts.
 
 Physical iPhone gestures, VoiceOver and broad human difficulty calibration are not certified by automated tests. Presence relies on browser scheduling and network connectivity. This app still generates original quick-definition crosswords; it does not claim newspaper editorial quality or cryptic wordplay.
+
+## Production storage correction
+
+Upstash's Lua JSON encoder can drop null array elements and collapse blocked grid positions. The server now reconstructs exact positions from the existing validated entries, writes false sentinels for blocked squares inside Redis, and restores nulls at the API boundary with independent validation. Existing collapsed room grids recover without deleting answers, memberships, revisions or history. Optional null completion timestamps are normalised too. No publisher content or gameplay rules change. All 112 tests with real Redis and the production build/CSS checks pass after this correction.

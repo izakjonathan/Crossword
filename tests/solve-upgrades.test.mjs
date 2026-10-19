@@ -72,8 +72,14 @@ test('real Redis owns the shared clock/counts, resets each round, and provides n
     const guestHash=createHash('sha256').update(guest).digest('hex');await command(['HSET',profiles,guestHash,JSON.stringify({name:'Emer',lastSeen:1})]);assert.equal((await lobbies.heartbeat(id,host,'Izak')).participants.find(p=>p.name==='Emer').online,false);
     await assert.rejects(lobbies.heartbeat(id,randomUUID(),'Outsider'),e=>e.status===404);await assert.rejects(lobbies.heartbeat(id,host,'x'.repeat(25)),e=>e.status===400);
     const counted=op('edit',{metrics:{hints:1,checks:1},assisted:true});current=await rooms.patch(token,counted);await rooms.patch(token,counted);assert.equal((await rooms.get(token)).stats.hints,1);assert.equal((await rooms.get(token)).stats.checks,1);
-    const startedAt=current.stats.startedAt;current=await rooms.patch(token,op('edit',{changes:puzzle.grid.flatMap((c,i)=>c?[{cell:String(i),value:c.letter}]:[])}));assert.ok(current.stats.completedAt>=startedAt);assert.equal((await rooms.get(token)).stats.completedAt,current.stats.completedAt);
+    const startedAt=current.stats.startedAt;current=await rooms.patch(token,op('edit',{changes:puzzle.grid.flatMap((c,i)=>c?[{cell:String(i),value:c.letter}]:[])}));assert.ok(current.stats.completedAt>=startedAt);const stored=JSON.parse(await command(['GET',roomKey(token)]));assert.equal(stored.puzzle.grid.length,puzzle.grid.length);assert.ok(stored.puzzle.grid.some(cell=>cell===false));assert.deepEqual((await rooms.get(token)).puzzle.grid,puzzle.grid);assert.equal((await rooms.get(token)).stats.completedAt,current.stats.completedAt);
     const lease=op('begin');await rooms.patch(token,lease);const next=generatePuzzle({mode:'medium',seed:'stats-second',recent:current.usedAnswers});current=await rooms.patch(token,op('replace',{leaseId:lease.id,puzzle:next}));assert.equal(current.stats.hints,0);assert.equal(current.stats.checks,0);assert.equal(current.stats.completedAt,null);assert.ok(current.stats.startedAt>=startedAt);assert.equal((await lobbies.join(id,guest)).room.puzzle.id,next.id);
     await lobbies.leave(id,guest);assert.equal((await lobbies.heartbeat(id,host,'Izak')).participants.length,1);await lobbies.leave(id,host);assert.equal(await command(['EXISTS',profiles]),0);
   }finally{await command(['DEL',roomKey(token),lobbyKey(id),`${lobbyKey(id)}:members`,profiles]);await command(['ZREM','crossword:lobbies:v1',id]);}
+});
+
+test('Upstash-style collapsed legacy grids recover exact coordinates without losing progress',async()=>{
+  const room={puzzle:{...puzzle,grid:puzzle.grid.filter(Boolean)},roundId:puzzle.id,answers:{[puzzle.entries[0].cells[0]]:'Z'},writers:{},view:{},revision:4,expiresAt:Date.now()+604800000,stats:{startedAt:Date.now()-1000,hints:2,checks:1}};
+  const store=sharedStore(async()=>JSON.stringify(room));const restored=await store.get('a'.repeat(64));
+  assert.deepEqual(restored.puzzle.grid,puzzle.grid);assert.deepEqual(validatePuzzle(restored.puzzle),[]);assert.equal(restored.answers[puzzle.entries[0].cells[0]],'Z');assert.equal(restored.stats.hints,2);assert.equal(restored.stats.completedAt,null);
 });
