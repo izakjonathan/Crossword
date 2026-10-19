@@ -27,9 +27,9 @@ test('randomized square puzzles have square-cell coordinates, proper numbering, 
     for (const e of p.entries) {
       const source = WORDS.find(w => w.answer === e.answer);
       assert.ok(source, `Unknown answer ${e.answer}`);
-      if (mode === 'hard') assert.equal(e.clue, source.hard);
-      else if (mode === 'easy') assert.equal(e.clue, source.easy);
-      else assert.ok([source.easy,source.hard].includes(e.clue));
+      assert.equal(e.vocabularyLevel, source.vocabularyLevel);
+      assert.ok(source.clues.some(clue=>clue.text===e.clue && clue.level===e.clueLevel));
+      if(mode==='easy')assert.equal(e.clueLevel,1);
       assert.equal(p.grid[e.cells[0]].number, e.number);
       assert.equal(e.number, starts.indexOf(e.cells[0]) + 1);
       for (let n = 1; n < e.cells.length; n++) assert.equal(e.cells[n] - e.cells[n - 1], e.dir === 'across' ? 1 : p.cols);

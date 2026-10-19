@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.7.0
+# Crossword puzzle · v2.8.2
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -20,7 +20,9 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 
 ## Generation and clue quality
 
-The original literal clue bank contains 1,738 unique answers (including 210 additional familiar short answers in v2.7). No AI credentials, external puzzle API, licensed publisher grids or invented cryptic clue generation are used. Definitions and grammatical answer forms are stored together. Automated bank checks catch missing clues, duplicate answers, invalid answer forms and answer leakage, common inflections and known giveaway compounds; they do not replace editorial judgment.
+v2.8.2 improves Hard generation speed using per-fill caches. A matched benchmark retained identical output for 300 fresh puzzles and twelve games with repeat exclusions. See [performance evidence and limits](docs/PERFORMANCE-V2.8.2.md).
+
+The original literal clue bank contains 1,906 unique answers (including 210 additional familiar short answers in v2.7). Every answer has an explicit vocabulary band, and reviewed clue variants have separate demand tiers. Easy, Medium and Hard enforce distinct whole-puzzle mixtures as well as increasing square counts. The v2.8 bank adds 168 answers, mostly longer words, with original direct definitions. No AI credentials, external puzzle API, licensed publisher grids or invented cryptic clue generation are used. Definitions and grammatical answer forms are stored together. Automated bank checks catch missing clues, duplicate answers, invalid answer forms and answer leakage, common inflections and known giveaway compounds; they do not replace editorial judgment.
 
 Each request has a fresh seed and uses a persistent dated ledger of every answer seen by this browser on this site origin. There is no 500-answer rollover in the current generation path. All difficulties share the same history.
 
@@ -31,11 +33,15 @@ Each request has a fresh seed and uses a persistent dated ledger of every answer
 - Old undated 500-answer history and any unknown restored puzzle answers are conservatively treated as used today. Older records that previous versions had already discarded cannot be reconstructed.
 - History survives reloads. It is local to a browser profile/site origin, not shared between devices, aliases, private sessions or browsers. Clearing site storage clears that history. Updated clients, HTTPS and Web Locks support are required for coordinated generation.
 
-The bank remains finite at 1,738 unique answers, with fewer available for short-word modes. No finite bank can supply unlimited unique daily puzzles or guarantee a fixed number of new grids under these constraints.
+The bank remains finite at 1,906 unique answers, with fewer available for short-word modes. No finite bank can supply unlimited unique daily puzzles or guarantee a fixed number of new grids under these constraints.
 
-Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 64 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current templates use 3–7-letter answers. The app retains longer bank entries for future layouts. Full American-style checking and rotational symmetry are not claimed. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
+Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 64 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current layouts use 3–5-letter answers on Easy, 3–9 on Medium and 3–11 on Hard. Medium includes at least one answer of eight or more letters; Hard includes at least one of nine or more. Full American-style checking and rotational symmetry are not claimed. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
 
-See the [v2.7 source-backed construction review](docs/RESEARCH-V2.7.md) and [validation/benchmark report](docs/VALIDATION-V2.7.md). The audit recorded 300 valid distinct fresh-seed grids. Mechanical validity is separate from a human editor's assessment of every clue.
+New puzzles also prevent specialist-to-specialist crossings and give every hardest-tier clue at least one gentler crossing clue. See the [crossing safeguards](docs/CROSSING-FAIRNESS.md) and [v2.8.1 validation](docs/VALIDATION-V2.8.1.md). Earlier saves retain their original rules.
+
+See the [difficulty policy and research](docs/DIFFICULTY.md) and [v2.8 validation](docs/VALIDATION-V2.8.md). The ratings are editorial starting bands, not human-calibrated scores.
+
+For the previous construction changes, see the [v2.7 source-backed construction review](docs/RESEARCH-V2.7.md) and [validation/benchmark report](docs/VALIDATION-V2.7.md). The audit recorded 300 valid distinct fresh-seed grids. Mechanical validity is separate from a human editor's assessment of every clue.
 
 ## Local UI Studio
 

@@ -1,0 +1,1011 @@
+{
+  "puzzle": {
+    "constructionVersion": 3,
+    "difficultyVersion": 1,
+    "version": 3,
+    "id": "v3:checked:hard:fairness-0",
+    "mode": "hard",
+    "cols": 13,
+    "rows": 13,
+    "entries": [
+      {
+        "id": 0,
+        "answer": "CROSSROADS",
+        "clue": "Junction where two routes intersect",
+        "clueLevel": 1,
+        "vocabularyLevel": 2,
+        "number": 1,
+        "dir": "across",
+        "cells": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": 14,
+        "answer": "ROE",
+        "clue": "Small European deer",
+        "clueLevel": 2,
+        "vocabularyLevel": 3,
+        "number": 2,
+        "dir": "down",
+        "cells": [
+          2,
+          15,
+          28
+        ]
+      },
+      {
+        "id": 15,
+        "answer": "SHEET",
+        "clue": "Rope controlling a sail",
+        "clueLevel": 3,
+        "vocabularyLevel": 1,
+        "number": 3,
+        "dir": "down",
+        "cells": [
+          4,
+          17,
+          30,
+          43,
+          56
+        ]
+      },
+      {
+        "id": 16,
+        "answer": "RICH",
+        "clue": "Full of flavour",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 4,
+        "dir": "down",
+        "cells": [
+          6,
+          19,
+          32,
+          45
+        ]
+      },
+      {
+        "id": 17,
+        "answer": "ARRANGE",
+        "clue": "Adapt music for different instruments",
+        "clueLevel": 2,
+        "vocabularyLevel": 2,
+        "number": 5,
+        "dir": "down",
+        "cells": [
+          8,
+          21,
+          34,
+          47,
+          60,
+          73,
+          86
+        ]
+      },
+      {
+        "id": 18,
+        "answer": "SKI",
+        "clue": "Long runner worn for travelling over snow",
+        "clueLevel": 1,
+        "vocabularyLevel": 1,
+        "number": 6,
+        "dir": "down",
+        "cells": [
+          10,
+          23,
+          36
+        ]
+      },
+      {
+        "id": 19,
+        "answer": "ASLEEP",
+        "clue": "Numb with pins and needles",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 7,
+        "dir": "down",
+        "cells": [
+          13,
+          26,
+          39,
+          52,
+          65,
+          78
+        ]
+      },
+      {
+        "id": 1,
+        "answer": "SCENE",
+        "clue": "Subdivision of a play",
+        "clueLevel": 2,
+        "vocabularyLevel": 2,
+        "number": 8,
+        "dir": "across",
+        "cells": [
+          26,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      {
+        "id": 2,
+        "answer": "CARVING",
+        "clue": "Design cut into wood or stone",
+        "clueLevel": 1,
+        "vocabularyLevel": 3,
+        "number": 9,
+        "dir": "across",
+        "cells": [
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ]
+      },
+      {
+        "id": 20,
+        "answer": "GREAT",
+        "clue": "Very large in size or importance",
+        "clueLevel": 1,
+        "vocabularyLevel": 1,
+        "number": 10,
+        "dir": "down",
+        "cells": [
+          38,
+          51,
+          64,
+          77,
+          90
+        ]
+      },
+      {
+        "id": 3,
+        "answer": "EXACT",
+        "clue": "Correct in every detail",
+        "clueLevel": 1,
+        "vocabularyLevel": 1,
+        "number": 11,
+        "dir": "across",
+        "cells": [
+          52,
+          53,
+          54,
+          55,
+          56
+        ]
+      },
+      {
+        "id": 21,
+        "answer": "AIR",
+        "clue": "Broadcast on television",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 12,
+        "dir": "down",
+        "cells": [
+          54,
+          67,
+          80
+        ]
+      },
+      {
+        "id": 4,
+        "answer": "ENABLE",
+        "clue": "Make it possible to do something",
+        "clueLevel": 1,
+        "vocabularyLevel": 2,
+        "number": 13,
+        "dir": "across",
+        "cells": [
+          59,
+          60,
+          61,
+          62,
+          63,
+          64
+        ]
+      },
+      {
+        "id": 22,
+        "answer": "BAG",
+        "clue": "Claim a prize, informally",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 14,
+        "dir": "down",
+        "cells": [
+          62,
+          75,
+          88
+        ]
+      },
+      {
+        "id": 5,
+        "answer": "PARSNIP",
+        "clue": "Pale root vegetable similar to a carrot",
+        "clueLevel": 1,
+        "vocabularyLevel": 3,
+        "number": 15,
+        "dir": "across",
+        "cells": [
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84
+        ]
+      },
+      {
+        "id": 23,
+        "answer": "NAP",
+        "clue": "Raised fibres on the face of cloth",
+        "clueLevel": 3,
+        "vocabularyLevel": 2,
+        "number": 16,
+        "dir": "down",
+        "cells": [
+          82,
+          95,
+          108
+        ]
+      },
+      {
+        "id": 24,
+        "answer": "PITCHER",
+        "clue": "Baseball player who throws towards the batter",
+        "clueLevel": 2,
+        "vocabularyLevel": 2,
+        "number": 17,
+        "dir": "down",
+        "cells": [
+          84,
+          97,
+          110,
+          123,
+          136,
+          149,
+          162
+        ]
+      },
+      {
+        "id": 6,
+        "answer": "EIGHT",
+        "clue": "Number after seven",
+        "clueLevel": 1,
+        "vocabularyLevel": 1,
+        "number": 18,
+        "dir": "across",
+        "cells": [
+          86,
+          87,
+          88,
+          89,
+          90
+        ]
+      },
+      {
+        "id": 7,
+        "answer": "CARPET",
+        "clue": "Reprimand severely",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 19,
+        "dir": "across",
+        "cells": [
+          105,
+          106,
+          107,
+          108,
+          109,
+          110
+        ]
+      },
+      {
+        "id": 25,
+        "answer": "ADAPT",
+        "clue": "Rewrite a book for the screen",
+        "clueLevel": 2,
+        "vocabularyLevel": 2,
+        "number": 20,
+        "dir": "down",
+        "cells": [
+          106,
+          119,
+          132,
+          145,
+          158
+        ]
+      },
+      {
+        "id": 8,
+        "answer": "CRANE",
+        "clue": "Stretch one's neck to see",
+        "clueLevel": 3,
+        "vocabularyLevel": 2,
+        "number": 21,
+        "dir": "across",
+        "cells": [
+          112,
+          113,
+          114,
+          115,
+          116
+        ]
+      },
+      {
+        "id": 26,
+        "answer": "CURE",
+        "clue": "Preserve by salting or smoking",
+        "clueLevel": 3,
+        "vocabularyLevel": 3,
+        "number": 21,
+        "dir": "down",
+        "cells": [
+          112,
+          125,
+          138,
+          151
+        ]
+      },
+      {
+        "id": 27,
+        "answer": "ALIEN",
+        "clue": "Unfamiliar or foreign",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 22,
+        "dir": "down",
+        "cells": [
+          114,
+          127,
+          140,
+          153,
+          166
+        ]
+      },
+      {
+        "id": 28,
+        "answer": "EAGLE",
+        "clue": "Golf score two strokes under par",
+        "clueLevel": 2,
+        "vocabularyLevel": 1,
+        "number": 23,
+        "dir": "down",
+        "cells": [
+          116,
+          129,
+          142,
+          155,
+          168
+        ]
+      },
+      {
+        "id": 9,
+        "answer": "BRASS",
+        "clue": "Alloy made principally from copper and zinc",
+        "clueLevel": 2,
+        "vocabularyLevel": 2,
+        "number": 24,
+        "dir": "across",
+        "cells": [
+          130,
+          131,
+          132,
+          133,
+          134
+        ]
+      },
+      {
+        "id": 29,
+        "answer": "BAR",
+        "clue": "The legal profession collectively",
+        "clueLevel": 3,
+        "vocabularyLevel": 1,
+        "number": 24,
+        "dir": "down",
+        "cells": [
+          130,
+          143,
+          156
+        ]
+      },
+      {
+        "id": 30,
+        "answer": "SAP",
+        "clue": "Gradually weaken someone's strength",
+        "clueLevel": 2,
+        "vocabularyLevel": 3,
+        "number": 25,
+        "dir": "down",
+        "cells": [
+          134,
+          147,
+          160
+        ]
+      },
+      {
+        "id": 10,
+        "answer": "HERRING",
+        "clue": "Oily fish often pickled or smoked",
+        "clueLevel": 1,
+        "vocabularyLevel": 3,
+        "number": 26,
+        "dir": "across",
+        "cells": [
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142
+        ]
+      },
+      {
+        "id": 11,
+        "answer": "ROT",
+        "clue": "Nonsense, in informal British speech",
+        "clueLevel": 3,
+        "vocabularyLevel": 2,
+        "number": 27,
+        "dir": "across",
+        "cells": [
+          156,
+          157,
+          158
+        ]
+      },
+      {
+        "id": 12,
+        "answer": "PAR",
+        "clue": "Equality of standing",
+        "clueLevel": 3,
+        "vocabularyLevel": 3,
+        "number": 28,
+        "dir": "across",
+        "cells": [
+          160,
+          161,
+          162
+        ]
+      },
+      {
+        "id": 13,
+        "answer": "KNEE",
+        "clue": "Joint in the middle of the leg",
+        "clueLevel": 1,
+        "vocabularyLevel": 1,
+        "number": 29,
+        "dir": "across",
+        "cells": [
+          165,
+          166,
+          167,
+          168
+        ]
+      }
+    ],
+    "grid": [
+      null,
+      {
+        "letter": "C",
+        "number": 1
+      },
+      {
+        "letter": "R",
+        "number": 2
+      },
+      {
+        "letter": "O",
+        "number": null
+      },
+      {
+        "letter": "S",
+        "number": 3
+      },
+      {
+        "letter": "S",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": 4
+      },
+      {
+        "letter": "O",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": 5
+      },
+      {
+        "letter": "D",
+        "number": null
+      },
+      {
+        "letter": "S",
+        "number": 6
+      },
+      null,
+      null,
+      {
+        "letter": "A",
+        "number": 7
+      },
+      null,
+      {
+        "letter": "O",
+        "number": null
+      },
+      null,
+      {
+        "letter": "H",
+        "number": null
+      },
+      null,
+      {
+        "letter": "I",
+        "number": null
+      },
+      null,
+      {
+        "letter": "R",
+        "number": null
+      },
+      null,
+      {
+        "letter": "K",
+        "number": null
+      },
+      null,
+      null,
+      {
+        "letter": "S",
+        "number": 8
+      },
+      {
+        "letter": "C",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "C",
+        "number": 9
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "V",
+        "number": null
+      },
+      {
+        "letter": "I",
+        "number": null
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "G",
+        "number": 10
+      },
+      {
+        "letter": "L",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "H",
+        "number": null
+      },
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": 11
+      },
+      {
+        "letter": "X",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": 12
+      },
+      {
+        "letter": "C",
+        "number": null
+      },
+      {
+        "letter": "T",
+        "number": null
+      },
+      null,
+      null,
+      {
+        "letter": "E",
+        "number": 13
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "B",
+        "number": 14
+      },
+      {
+        "letter": "L",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "I",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "letter": "G",
+        "number": null
+      },
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "P",
+        "number": 15
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "S",
+        "number": null
+      },
+      {
+        "letter": "N",
+        "number": 16
+      },
+      {
+        "letter": "I",
+        "number": null
+      },
+      {
+        "letter": "P",
+        "number": 17
+      },
+      null,
+      {
+        "letter": "E",
+        "number": 18
+      },
+      {
+        "letter": "I",
+        "number": null
+      },
+      {
+        "letter": "G",
+        "number": null
+      },
+      {
+        "letter": "H",
+        "number": null
+      },
+      {
+        "letter": "T",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      null,
+      {
+        "letter": "I",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      {
+        "letter": "C",
+        "number": 19
+      },
+      {
+        "letter": "A",
+        "number": 20
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "P",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      {
+        "letter": "T",
+        "number": null
+      },
+      null,
+      {
+        "letter": "C",
+        "number": 21
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": 22
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": 23
+      },
+      null,
+      null,
+      {
+        "letter": "D",
+        "number": null
+      },
+      null,
+      null,
+      null,
+      {
+        "letter": "C",
+        "number": null
+      },
+      null,
+      {
+        "letter": "U",
+        "number": null
+      },
+      null,
+      {
+        "letter": "L",
+        "number": null
+      },
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "B",
+        "number": 24
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "S",
+        "number": null
+      },
+      {
+        "letter": "S",
+        "number": 25
+      },
+      null,
+      {
+        "letter": "H",
+        "number": 26
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      {
+        "letter": "I",
+        "number": null
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "G",
+        "number": null
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      null,
+      {
+        "letter": "P",
+        "number": null
+      },
+      null,
+      {
+        "letter": "A",
+        "number": null
+      },
+      null,
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "E",
+        "number": null
+      },
+      null,
+      {
+        "letter": "L",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": 27
+      },
+      {
+        "letter": "O",
+        "number": null
+      },
+      {
+        "letter": "T",
+        "number": null
+      },
+      null,
+      {
+        "letter": "P",
+        "number": 28
+      },
+      {
+        "letter": "A",
+        "number": null
+      },
+      {
+        "letter": "R",
+        "number": null
+      },
+      null,
+      null,
+      {
+        "letter": "K",
+        "number": 29
+      },
+      {
+        "letter": "N",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      },
+      {
+        "letter": "E",
+        "number": null
+      }
+    ]
+  },
+  "play": {
+    "answers": {
+      "1": "X"
+    },
+    "entryId": 0,
+    "selected": 1,
+    "overwrite": false,
+    "undo": [],
+    "assisted": false
+  }
+}

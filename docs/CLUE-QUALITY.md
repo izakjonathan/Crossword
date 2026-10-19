@@ -43,3 +43,11 @@ A before/after sample used identical seeds and the unchanged bank order/geometry
 ## v2.7 review
 
 The current bank contains 1,738 unique answers: 210 additional familiar three-letter words support the new strongly checked layout families. Original direct/alternative clues include everyday nouns, verbs and adjectives, with explicit abbreviation and regional tags where needed. CLOUD now includes ice crystals; ELEPHANT identifies the trunk rather than assuming visible tusks; PRIME specifies whole-number factors; CACTUS avoids a desert-only definition. The research, objective acceptance rules and limits of mechanical editorial checks are recorded in `RESEARCH-V2.7.md`. Prior bank-size figures in this document are historical.
+
+## v2.8 independent difficulty bands
+
+The current bank has 1,906 answers. Vocabulary and selected clue variants are now explicitly rated independently; unreviewed legacy alternative text is not assumed harder. Added fill includes 168 original definitions, mostly longer answers. See `DIFFICULTY.md` for enforced mixtures, references, examples and calibration limits. Earlier figures above are historical.
+
+## v2.8.1 crossing support
+
+See `CROSSING-FAIRNESS.md` for new specialist-crossing and clue-support rules, the RAY/PLANE wording corrections, the legacy PIE correction, and stronger rated-variant checks. No new vocabulary was added in this release.

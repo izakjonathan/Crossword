@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.8.2 — 19 October 2026
+
+- Cache crossing letter groups, answer membership and editorial domain bounds within each layout fill.
+- Reuse unchanged domains and precompute affected-slot relationships while preserving search order, random draws, budgets and puzzle rules.
+- Add complete-output regression hashes, backtracking coverage and a repeatable matched benchmark against extracted v2.8.1 source.
+- Matched comparison: about 27% lower mean Hard generation time and 39% lower mean time over the twelve-game history-aware sequence; 312 complete puzzle objects remained identical.
+
+## 2.8.1 — 19 October 2026
+
+- Prevent two specialist-rated answers from crossing in newly generated puzzles.
+- Allocate clue variants jointly so every hardest-tier clue has a gentler crossing clue, while preserving the required difficulty mixtures.
+- Backtrack word fill when a valid clue allocation is unavailable; retain strict repeat exclusions and fixed search budgets.
+- Add independent versioned crossing validation and a genuine v2.8 save fixture to preserve older progress.
+- Tighten RAY/PLANE geometry clues, fix the legacy PIE chart prompt, and strengthen rated-bank validation.
+- Extend generation audits with specialist crossing and clue-support metrics.
+
+## 2.8.0 — 19 October 2026
+
+- Independently rate vocabulary and reviewed clue variants; enforce per-mode mixtures during constraint search and final validation.
+- Keep Easy 9×9, Medium 11×11 and Hard 13×13 while requiring more playable squares and higher vocabulary/clue demand at each step.
+- Add 168 authored answer definitions and longer checked boundary lanes: Medium reaches 8–9 letters, Hard 9–11.
+- Use 515 reviewed tier-2 and 109 tier-3 alternatives rather than automatically calling every legacy alternative hard.
+- Preserve valid earlier saves, progress, UI Studio colours and the shared dated repetition ledger.
+- Add profile/provenance tests, difficulty audit metrics and source-backed editorial guidance.
+
 ## 2.7.0 — 19 October 2026
 
 - Replace greedy word packing with checked layout construction and bounded constraint filling.

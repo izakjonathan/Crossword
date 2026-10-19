@@ -1,0 +1,64 @@
+{
+  "baseline": "2.8.1",
+  "candidate": "2.8.2",
+  "seedsPerMode": 100,
+  "method": "Same-process alternating order; three untimed warm-up comparisons; full puzzle equality required.",
+  "modes": {
+    "easy": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 6.212740599999979,
+        "p95Ms": 9.213849999999866,
+        "maxMs": 14.811222000000043
+      },
+      "candidate": {
+        "meanMs": 6.819418860000014,
+        "p95Ms": 10.53958300000022,
+        "maxMs": 17.27181100000007
+      },
+      "meanSpeedup": 0.9110366627340392
+    },
+    "medium": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 10.418862359999975,
+        "p95Ms": 16.066907000000356,
+        "maxMs": 304.62484399999994
+      },
+      "candidate": {
+        "meanMs": 10.209536129999965,
+        "p95Ms": 21.160567000000356,
+        "maxMs": 222.11343299999953
+      },
+      "meanSpeedup": 1.0205030108454116
+    },
+    "hard": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 455.42383716000006,
+        "p95Ms": 1851.723877000004,
+        "maxMs": 4103.081576000004
+      },
+      "candidate": {
+        "meanMs": 334.4380208099999,
+        "p95Ms": 1400.5460930000045,
+        "maxMs": 2907.8917400000064
+      },
+      "meanSpeedup": 1.361758558602206
+    }
+  },
+  "sameDaySequence": {
+    "identicalPuzzles": 12,
+    "distinctAnswers": 301,
+    "baseline": {
+      "meanMs": 1398.4338577499984,
+      "p95Ms": 8122.868262999997,
+      "maxMs": 8122.868262999997
+    },
+    "candidate": {
+      "meanMs": 857.7776290000002,
+      "p95Ms": 5622.645564999999,
+      "maxMs": 5622.645564999999
+    }
+  }
+}

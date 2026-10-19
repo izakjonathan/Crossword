@@ -1,0 +1,147 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 1906,
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 8.057507189999994,
+      "p95Ms": 13.373859000000039,
+      "maxMs": 160.254632,
+      "minFields": 51,
+      "maxFields": 54,
+      "meanVocabulary": 1.150000000000002,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 5,
+      "meanEntries": 20,
+      "meanBlack": 0.36246913580246953,
+      "meanChecking": 0.6270500000000007,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 6.26,
+      "meanAlternativeClues": 15.91,
+      "uniqueAnswersUsed": 608,
+      "mostFrequentAnswers": [
+        [
+          "EAT",
+          23
+        ],
+        [
+          "TIP",
+          23
+        ],
+        [
+          "RAT",
+          19
+        ],
+        [
+          "TIE",
+          17
+        ],
+        [
+          "BEE",
+          16
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 10.856652130000004,
+      "p95Ms": 14.566620999999941,
+      "maxMs": 312.8748700000001,
+      "minFields": 78,
+      "maxFields": 79,
+      "meanVocabulary": 1.5578260869565201,
+      "meanClue": 1.3913043478260898,
+      "meanChallengingFraction": 0.3913043478260866,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0.085217391304348,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEntries": 23,
+      "meanBlack": 0.35504132231405044,
+      "meanChecking": 0.5910020703933742,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 12.91,
+      "meanAlternativeClues": 16.74,
+      "uniqueAnswersUsed": 915,
+      "mostFrequentAnswers": [
+        [
+          "ARRANGE",
+          21
+        ],
+        [
+          "EAR",
+          17
+        ],
+        [
+          "ELEMENT",
+          17
+        ],
+        [
+          "TEA",
+          16
+        ],
+        [
+          "CONSTANT",
+          16
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "distinctGrids": 100,
+      "meanMs": 218.75347664000003,
+      "p95Ms": 1066.039307,
+      "maxMs": 2708.9071170000025,
+      "minFields": 105,
+      "maxFields": 111,
+      "meanVocabulary": 1.8133272475623212,
+      "meanClue": 1.9066966653263926,
+      "meanChallengingFraction": 0.6678145126237368,
+      "meanHardFraction": 0.23888215270265584,
+      "meanAdvancedFraction": 0.21670274652989924,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 11,
+      "meanEntries": 31.58,
+      "meanBlack": 0.3642011834319532,
+      "meanChecking": 0.595307138972921,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 17.65,
+      "meanAlternativeClues": 24.5,
+      "uniqueAnswersUsed": 868,
+      "mostFrequentAnswers": [
+        [
+          "EWE",
+          38
+        ],
+        [
+          "TAR",
+          37
+        ],
+        [
+          "ORE",
+          35
+        ],
+        [
+          "RANGE",
+          28
+        ],
+        [
+          "ARRANGE",
+          27
+        ]
+      ]
+    }
+  }
+}
