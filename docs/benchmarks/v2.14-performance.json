@@ -1,0 +1,66 @@
+{
+  "baseline": "2.13.3",
+  "candidate": "2.13.3",
+  "seedsPerMode": 100,
+  "method": "Same-process alternating order; three untimed warm-up comparisons; full puzzle equality required.",
+  "modes": {
+    "easy": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 19.865290090000013,
+        "p95Ms": 62.24407599999995,
+        "maxMs": 86.99657300000001
+      },
+      "candidate": {
+        "meanMs": 11.004773829999994,
+        "p95Ms": 37.32287199999996,
+        "maxMs": 48.85313200000019
+      },
+      "meanSpeedup": 1.8051520546333684
+    },
+    "medium": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 24.04934827000003,
+        "p95Ms": 78.18625400000019,
+        "maxMs": 126.01799500000016
+      },
+      "candidate": {
+        "meanMs": 16.127209720000014,
+        "p95Ms": 48.08510600000045,
+        "maxMs": 77.149899
+      },
+      "meanSpeedup": 1.4912280975781849
+    },
+    "hard": {
+      "identicalPuzzles": 100,
+      "baseline": {
+        "meanMs": 85.67161982000016,
+        "p95Ms": 225.54675099999986,
+        "maxMs": 492.33584899999914
+      },
+      "candidate": {
+        "meanMs": 57.8912662500001,
+        "p95Ms": 146.69117800000095,
+        "maxMs": 260.83811699999933
+      },
+      "meanSpeedup": 1.479871237399303
+    }
+  },
+  "sameDaySequence": {
+    "identicalPuzzles": 12,
+    "distinctAnswers": 309,
+    "baseline": {
+      "meanMs": 184.83756666666736,
+      "p95Ms": 1499.257571000002,
+      "maxMs": 1499.257571000002
+    },
+    "candidate": {
+      "meanMs": 104.9992563333338,
+      "p95Ms": 861.6424240000015,
+      "maxMs": 861.6424240000015
+    }
+  },
+  "release": "2.14.0",
+  "note": "The matched comparison ran before the package version was bumped; candidate production code is the v2.14.0 dictionary-index change. No competing benchmark/build/audit process was started during this run."
+}

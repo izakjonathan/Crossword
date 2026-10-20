@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.14.0 — 20 October 2026
+
+- Introduce a dedicated per-fill dictionary index for length and arbitrary-position crossing matches.
+- Build specialist-filtered letter groups on demand and cache up to 16 excluded-answer variants per domain.
+- Preserve seeded CSP search, numbering, fairness, repeat exclusions, saved games and shared play.
+- Compare indexed matches with linear matching over the full curated bank and benchmark complete output against v2.13.3.
+
 ## 2.9.0 — 19 October 2026
 
 - Add 83 source-referenced clue variants for 74 existing longer answers: 59 tier-2 and 24 tier-3 clues.

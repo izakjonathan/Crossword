@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.13.3
+# Crossword puzzle · v2.14.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -9,6 +9,8 @@ v2.13.1 fixes shared dialogs reopening after Close by preserving explicit view c
 v2.13.2 makes the active clue text non-interactive and adds a separate small **All clues** button beside it, reducing accidental popup openings.
 
 v2.13.3 removes direction/progress labels from the active clue and gives the home-screen keyboard 12px plus the bottom safe-area inset below its keys.
+
+v2.14.0 improves the CSP dictionary index: lazy specialist-crossing queries and bounded reuse of excluded-answer matches reduce repeated backtracking work. Grid extraction and row-major clue numbering remain automatic. See [generator methodology and measurements](docs/PERFORMANCE-V2.14.md).
 
 ## Run
 
