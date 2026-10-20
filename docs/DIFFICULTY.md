@@ -61,3 +61,7 @@ Before claiming calibrated difficulty, collect actual clue/word feedback from no
 ## v2.12 geometry update
 
 Difficulty version 1 and all editorial/field profiles remain unchanged. New construction v4 adds symmetric quick grids and tighter block limits; see [geometry policy](GEOMETRY-V2.12.md) for measured effects and legacy-save compatibility.
+
+## v2.13 construction and wordplay update
+
+Current bank: 1,910 answers. Difficulty version 1 and its editorial limits are unchanged. Six reviewed tier-3 question-mark wordplay variants may appear in Hard; Easy/Medium retain their existing clue styles. New clue-policy annotations enforce shortened/informal signals. See [current construction and clue policy](PROFESSIONAL-V2.13.md), including nine targeted grammar corrections and limits of automated checking.

@@ -25,7 +25,7 @@ test('new puzzles independently satisfy symmetry, density, clump limits and whit
       const i = r * p.cols + c;
       if ([i, i + 1, i + p.cols, i + p.cols + 1].every(j => p.grid[j] === null)) patches++;
     }
-    assert.ok(patches <= 2);
+    assert.equal(patches, 0);
     const seen = new Set([white[0]]), queue = [white[0]];
     for (const i of queue) for (const j of [i - p.cols, i + p.cols, ...(i % p.cols ? [i - 1] : []), ...(i % p.cols < p.cols - 1 ? [i + 1] : [])]) {
       if (p.grid[j] && !seen.has(j)) { seen.add(j); queue.push(j); }

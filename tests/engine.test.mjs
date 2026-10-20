@@ -19,8 +19,8 @@ test('randomized square puzzles have square-cell coordinates, proper numbering, 
   for (let i = 0; i < 24; i++) for (const mode of Object.keys(MODES)) {
     const p = generatePuzzle({ mode, seed: `invariant-${i}` });
     assert.deepEqual(validatePuzzle(p), []);
-    assert.equal(p.constructionVersion, 4);
-    assert.ok(acceptableQuickGrid(p.grid,p.cols,p.rows,mode));
+    assert.equal(p.constructionVersion, 5);
+    assert.ok(acceptableQuickGrid(p.grid,p.cols,p.rows,mode,5));
     assert.ok(acceptableGrid(gridQuality(p.grid,p.cols,p.rows)));
     assert.equal(p.rows, p.cols);
     assert.ok(p.entries.length >= MODES[mode].target - 5);

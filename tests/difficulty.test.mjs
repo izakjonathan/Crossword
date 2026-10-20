@@ -29,7 +29,7 @@ test('new rated puzzles reject missing ratings, invalid versions and downgraded 
   const downgraded=structuredClone(p);downgraded.entries.forEach(e=>{e.clueLevel=1;e.vocabularyLevel=1;});
   for(const bad of [missing,downgraded,{...p,difficultyVersion:99}])assert.ok(validatePuzzle(bad).length);
   // Pre-rating saves are still playable; no new policy is retroactively imposed.
-  const legacy=structuredClone(p);delete legacy.difficultyVersion;delete legacy.fairnessVersion;
+  const legacy=structuredClone(p);delete legacy.difficultyVersion;delete legacy.fairnessVersion;delete legacy.cluePolicyVersion;
   legacy.entries.forEach(e=>{delete e.clueLevel;delete e.vocabularyLevel;});
   assert.deepEqual(validatePuzzle(legacy),[]);
 });

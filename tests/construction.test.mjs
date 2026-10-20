@@ -45,3 +45,13 @@ test('validator rejects corrupt paths, IDs, numbering, dimensions, entries and u
   const letter = structuredClone(p); letter.grid[p.entries[0].cells[0]].letter = 'AA'; variants.push(letter);
   for (const bad of variants) assert.ok(validatePuzzle(bad).length);
 });
+
+test('equally constrained fill slots prefer the centre while maskless callers retain stable order', () => {
+  const slots = [[0,1,2],[11,12,13],[22,23,24]].map((cells,id)=>({id,cells,crossings:[]}));
+  const bank=['CAT','DOG','PIG'].map(answer=>({answer}));
+  const ranks=()=>{let index=0;return()=>[.9,.6,.3][index++];};
+  const centered=fillLayout({mask:Array(25).fill(true),slots},bank,ranks());
+  assert.equal(centered.words[1].answer,'CAT');
+  const legacy=fillLayout({slots},bank,ranks());
+  assert.equal(legacy.words[0].answer,'CAT');
+});

@@ -1,0 +1,69 @@
+{
+  "baseline": "2.13.0",
+  "reason": "Construction v5 removes 2x2 block clumps and reviewed clue policy/wordplay change fills and wording; historical fixtures retained.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "37b24a4ce384600f9f0736d9d21b4232e3821480f157722902cef456741e9774"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "eb27c1ccd7e5f5c9e4c69e052bc1a2ec72b5e2a257fc0e247fba0a2baf9e2a05"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "0186e9d73093b749bf62e60620a539eec07d5bf5b8a1a681e97b8a8cae4b3d51"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "dde3cbca5f64bd78e74fe51486caf52afaba8da54249ea70fd358b2f533ec132"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "8e2524ba6fcaea6c9dd73685dee1dd095c94713b3ac632a781422fa8e007ba2f"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "be5f3494f9b7da283f2ce7d2702aabc0e8383d3159c7710988a1be9703d7b3a6"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "27ef9da9cae36e91bf16d1e812e599cc2eea95ae4a3c1e372c8e1e6519808e7b"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "4a9aa0b5100bfefb72bcf9ca7d4d0a44ff19cb843a2d81a5b32bae3ece2fe25d"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "22aa45b7bd85355daf42b7711d2481b68c4f6e17d339ac483e67ec515d9d0e35"
+    }
+  ]
+}

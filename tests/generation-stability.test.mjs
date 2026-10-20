@@ -5,10 +5,10 @@ import { createHash } from 'node:crypto';
 import { generatePuzzle, random } from '../lib/engine.mjs';
 import { fillLayout } from '../lib/grid-fill.mjs';
 
-// Construction v4 intentionally changes layouts and resulting fills/clues.
-// Keep historical hashes; freeze v2.12.0 for future search-cost changes.
-const reference = JSON.parse(readFileSync(new URL('./fixtures/v2.12.0-generation-hashes.json',import.meta.url)));
-test('seeded search preserves complete v2.12.0 editorial-bank output for fixed inputs',()=>{
+// Construction v5 intentionally changes layouts and resulting fills/clues.
+// Keep historical hashes; freeze v2.13.0 for future search-cost changes.
+const reference = JSON.parse(readFileSync(new URL('./fixtures/v2.13.0-generation-hashes.json',import.meta.url)));
+test('seeded search preserves complete v2.13.0 editorial-bank output for fixed inputs',()=>{
   for (const {input,sha256} of reference.cases) {
     const actual=createHash('sha256').update(JSON.stringify(generatePuzzle(input))).digest('hex');
     assert.equal(actual,sha256,JSON.stringify(input));

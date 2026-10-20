@@ -1,8 +1,8 @@
-# Crossword puzzle · v2.12.0
+# Crossword puzzle · v2.13.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
-New puzzles use rotationally symmetric quick-crossword grids with tighter block limits and stronger average checking. Older games keep their original grids and progress. See [geometry policy and validation](docs/GEOMETRY-V2.12.md).
+New puzzles use rotationally symmetric quick grids without solid 2×2 block clumps. Hard mode includes reviewed wordplay signalled by a question mark. Older games keep their original grids and progress. See [current construction and clue policy](docs/PROFESSIONAL-V2.13.md).
 
 ## Run
 
@@ -37,9 +37,9 @@ Each request has a fresh seed and uses a persistent dated ledger of every answer
 - Old undated 500-answer history and any unknown restored puzzle answers are conservatively treated as used today. Older records that previous versions had already discarded cannot be reconstructed.
 - History survives reloads. It is local to a browser profile/site origin, not shared between devices, aliases, private sessions or browsers. Clearing site storage clears that history. Updated clients, HTTPS and Web Locks support are required for coordinated generation.
 
-The bank remains finite at 1,906 unique answers, with fewer available for short-word modes. No finite bank can supply unlimited unique daily puzzles or guarantee a fixed number of new grids under these constraints.
+The bank remains finite at 1,910 unique answers, with fewer available for short-word modes. No finite bank can supply unlimited unique daily puzzles or guarantee a fixed number of new grids under these constraints.
 
-Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 64 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current layouts use 3–5-letter answers on Easy, 3–9 on Medium and 3–11 on Hard. Medium includes at least one answer of eight or more letters; Hard includes at least one of nine or more. Full American-style checking and rotational symmetry are not claimed. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
+Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 1,024 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current layouts use 3–7-letter answers on Easy, 3–9 on Medium and 3–11 on Hard. Medium includes at least one answer of eight or more letters; Hard includes at least one of nine or more. Rotational symmetry is enforced; these remain partially checked quick grids, with no claim of American publication compliance. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
 
 New puzzles also prevent specialist-to-specialist crossings and give every hardest-tier clue at least one gentler crossing clue. See the [crossing safeguards](docs/CROSSING-FAIRNESS.md) and [v2.8.1 validation](docs/VALIDATION-V2.8.1.md). Earlier saves retain their original rules.
 
