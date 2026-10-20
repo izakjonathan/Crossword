@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.15.0 — 21 October 2026
+
+- Maintain arc consistency across crossing agreement, distinct answers and specialist-crossing constraints throughout backtracking.
+- Select slots using remaining candidate counts and dynamic unfilled-crossing degree; rank values by surviving support, difficulty targets and seeded variation.
+- Restore branches through immutable domains and cache repeated arc revisions within each fill.
+- Preserve existing puzzle rules, stored games and shared sessions; distinguish new solver IDs with mac1.
+- Add exhaustive small-network/solver checks and new deterministic-output fixtures. Extend the matched benchmark with an explicit changed-search mode.
+
 ## 2.14.0 — 20 October 2026
 
 - Introduce a dedicated per-fill dictionary index for length and arbitrary-position crossing matches.

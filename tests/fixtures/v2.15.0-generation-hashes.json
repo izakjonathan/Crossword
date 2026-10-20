@@ -1,0 +1,69 @@
+{
+  "baseline": "2.15.0",
+  "reason": "Maintaining arc consistency, dynamic degree and difficulty-aware LCV deliberately change seeded search; historical fixtures retained.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "72503d4a9244c1310957b929a2012365f339868dcb4c991e6c9aee0ff371c2e3"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "876509f79155de5364596daa1bbc56a726935cbf2310b4a496133112bb1fac42"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "cb1d74a5ca82c5b1af2504ba8cece5f2199e1ac4a5a4ab25deca9377cc55faca"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "ae05889049e44c0bfb158c08392a970bfc841d030b2922c8a1a2c986c2a0053d"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "f8567ce2fc6a517e347df6876b014866986634ed53cb5db79390de16391c2455"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "0c58ce0b5d4785731413901af429344902ea851ffb3383ae983d0676000c944f"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "9951728c566fe34dfaf2ec4eed014d5d0677b88f987c5c821ae908f76bf465a0"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "2c312efb7027165be23a6943553de5cf7737a390ea7514bfb5e2bf285b8f4ace"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "67a63a43e0dbe8b702188f9ed45893a805a2f1c3152ca42d9fc8ec0657ccc87e"
+    }
+  ]
+}

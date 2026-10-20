@@ -1,0 +1,69 @@
+{
+  "baseline": "2.14.0",
+  "candidate": "2.15.0",
+  "seedsPerMode": 30,
+  "method": "Same-process alternating order; three untimed warm-ups; both outputs independently validated; changed solver output permitted.",
+  "modes": {
+    "easy": {
+      "validatedPuzzles": 30,
+      "identicalPuzzles": 0,
+      "baseline": {
+        "meanMs": 13.235052266666647,
+        "p95Ms": 63.46588500000007,
+        "maxMs": 65.98317599999973
+      },
+      "candidate": {
+        "meanMs": 38.129098033333285,
+        "p95Ms": 70.49019599999974,
+        "maxMs": 84.02850000000012
+      },
+      "meanSpeedup": 0.34711160109521283
+    },
+    "medium": {
+      "validatedPuzzles": 30,
+      "identicalPuzzles": 0,
+      "baseline": {
+        "meanMs": 22.8573686333333,
+        "p95Ms": 78.23441300000013,
+        "maxMs": 85.63794600000074
+      },
+      "candidate": {
+        "meanMs": 54.122610133333275,
+        "p95Ms": 118.87631500000043,
+        "maxMs": 312.40269700000044
+      },
+      "meanSpeedup": 0.4223256893380278
+    },
+    "hard": {
+      "validatedPuzzles": 30,
+      "identicalPuzzles": 0,
+      "baseline": {
+        "meanMs": 73.64183786666685,
+        "p95Ms": 219.60220599999957,
+        "maxMs": 265.88732700000037
+      },
+      "candidate": {
+        "meanMs": 1099.5146013000005,
+        "p95Ms": 4640.332281999999,
+        "maxMs": 4907.872619000002
+      },
+      "meanSpeedup": 0.06697668023653085
+    }
+  },
+  "sameDaySequence": {
+    "validatedPuzzles": 12,
+    "distinctAnswers": 315,
+    "baselineDistinctAnswers": 309,
+    "historyMethod": "Each solver records its own generated puzzles in its own ledger.",
+    "baseline": {
+      "meanMs": 123.2821625000009,
+      "p95Ms": 945.5796450000053,
+      "maxMs": 945.5796450000053
+    },
+    "candidate": {
+      "meanMs": 901.5535993333324,
+      "p95Ms": 7917.035744999994,
+      "maxMs": 7917.035744999994
+    }
+  }
+}
