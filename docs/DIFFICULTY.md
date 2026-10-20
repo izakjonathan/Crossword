@@ -57,3 +57,7 @@ These are targeted checks, not a claim that an independent editor has certified 
 The save schema remains engine version 3. New puzzles carry `difficultyVersion:1` and per-entry ratings; older valid saves keep their original wording and answers without retroactively applying new quotas. Progress, assisted status, colours and the dated repeat ledger are preserved. Generate a new puzzle to see the new policy.
 
 Before claiming calibrated difficulty, collect actual clue/word feedback from novice and experienced solvers: solve time, wrong guesses, hints, abandoned clues and ambiguous definitions. Review outliers by answer familiarity, clue sense and crossing support separately, then revise the explicit bands and mixtures. The 300-seed audit checks algorithmic compliance, not human enjoyment or universal difficulty ordering.
+
+## v2.12 geometry update
+
+Difficulty version 1 and all editorial/field profiles remain unchanged. New construction v4 adds symmetric quick grids and tighter block limits; see [geometry policy](GEOMETRY-V2.12.md) for measured effects and legacy-save compatibility.

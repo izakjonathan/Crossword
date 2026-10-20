@@ -1,0 +1,182 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 1906,
+  "longerClueBank": {
+    "answers": 197,
+    "tier2Answers": 63,
+    "tier3Answers": 24
+  },
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 30.614573810000007,
+      "p95Ms": 119.10308600000008,
+      "maxMs": 213.672389,
+      "minFields": 56,
+      "maxFields": 58,
+      "meanVocabulary": 1.1296431068931065,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 7,
+      "meanEightPlusAnswers": 0,
+      "meanEightPlusChallengingClues": 0,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 0,
+      "meanReviewedAlternativeAnswers": 10.89,
+      "meanEntries": 24.16,
+      "meanBlack": 0.29407407407407393,
+      "meanChecking": 0.7617366910866914,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 7.26,
+      "meanAlternativeClues": 19.07,
+      "uniqueAnswersUsed": 695,
+      "mostFrequentAnswers": [
+        [
+          "AIR",
+          34
+        ],
+        [
+          "EAR",
+          30
+        ],
+        [
+          "LIE",
+          28
+        ],
+        [
+          "OIL",
+          24
+        ],
+        [
+          "TEA",
+          22
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 2,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 55.40782615999997,
+      "p95Ms": 204.17373000000043,
+      "maxMs": 330.75437299999976,
+      "minFields": 80,
+      "maxFields": 82,
+      "meanVocabulary": 1.5299273946665244,
+      "meanClue": 1.3734832892550286,
+      "meanChallengingFraction": 0.3734832892550285,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0.08011227339488204,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEightPlusAnswers": 2.04,
+      "meanEightPlusChallengingClues": 1.16,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 91,
+      "meanReviewedAlternativeAnswers": 12.75,
+      "meanEntries": 24.04,
+      "meanBlack": 0.33206611570247885,
+      "meanChecking": 0.6454171227725578,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 13.08,
+      "meanAlternativeClues": 16.87,
+      "uniqueAnswersUsed": 952,
+      "mostFrequentAnswers": [
+        [
+          "TEA",
+          24
+        ],
+        [
+          "EWE",
+          18
+        ],
+        [
+          "EVE",
+          18
+        ],
+        [
+          "AXE",
+          17
+        ],
+        [
+          "PRACTICAL",
+          17
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 2,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 1.66,
+      "meanMs": 109.26512644999998,
+      "p95Ms": 301.87899899999866,
+      "maxMs": 425.68783299999996,
+      "minFields": 108,
+      "maxFields": 112,
+      "meanVocabulary": 1.790200711053653,
+      "meanClue": 1.8870501687854622,
+      "meanChallengingFraction": 0.6700459895496662,
+      "meanHardFraction": 0.21700417923579673,
+      "meanAdvancedFraction": 0.18705707731810656,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 11,
+      "meanEightPlusAnswers": 4.76,
+      "meanEightPlusChallengingClues": 3.29,
+      "meanEightPlusHardClues": 1.18,
+      "puzzlesWithLongChallengingClue": 100,
+      "meanReviewedAlternativeAnswers": 20.78,
+      "meanEntries": 29.92,
+      "meanBlack": 0.3531360946745567,
+      "meanChecking": 0.5924279355370738,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 16.5,
+      "meanAlternativeClues": 20.55,
+      "uniqueAnswersUsed": 962,
+      "mostFrequentAnswers": [
+        [
+          "EWE",
+          44
+        ],
+        [
+          "TAR",
+          30
+        ],
+        [
+          "ORE",
+          29
+        ],
+        [
+          "NAP",
+          26
+        ],
+        [
+          "PAR",
+          24
+        ]
+      ]
+    }
+  }
+}

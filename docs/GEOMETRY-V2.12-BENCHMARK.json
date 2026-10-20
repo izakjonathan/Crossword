@@ -1,0 +1,84 @@
+{
+  "method": "Same-process alternating execution order; identical inputs, intentionally different geometry; generation only timed. No history exclusions.",
+  "seedsPerMode": 30,
+  "modes": {
+    "easy": {
+      "baseline": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 6.425803266666663,
+        "p95Ms": 11.32250700000003,
+        "maxMs": 24.359790000000004,
+        "meanBlack": 0.36255144032921816,
+        "meanChecking": 0.6271666666666663,
+        "meanClumps": 1.5333333333333334,
+        "maxClumps": 2,
+        "symmetricPuzzles": 0
+      },
+      "candidate": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 26.75198806666665,
+        "p95Ms": 96.68885,
+        "maxMs": 119.83194900000001,
+        "meanBlack": 0.29218106995884785,
+        "meanChecking": 0.7754910274910274,
+        "meanClumps": 0,
+        "maxClumps": 0,
+        "symmetricPuzzles": 30
+      }
+    },
+    "medium": {
+      "baseline": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 5.311969799999982,
+        "p95Ms": 8.412812999999915,
+        "maxMs": 18.98488599999996,
+        "meanBlack": 0.35537190082644626,
+        "meanChecking": 0.5916149068322979,
+        "meanClumps": 2.033333333333333,
+        "maxClumps": 3,
+        "symmetricPuzzles": 0
+      },
+      "candidate": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 36.201218466666646,
+        "p95Ms": 104.10817799999995,
+        "maxMs": 147.37123999999994,
+        "meanBlack": 0.3325068870523416,
+        "meanChecking": 0.6343198900120915,
+        "meanClumps": 1.3333333333333333,
+        "maxClumps": 2,
+        "symmetricPuzzles": 30
+      }
+    },
+    "hard": {
+      "baseline": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 145.49991933333334,
+        "p95Ms": 887.127187,
+        "maxMs": 1022.179451,
+        "meanBlack": 0.36410256410256403,
+        "meanChecking": 0.5943021731413114,
+        "meanClumps": 2.466666666666667,
+        "maxClumps": 3,
+        "symmetricPuzzles": 0
+      },
+      "candidate": {
+        "successes": 30,
+        "failures": [],
+        "meanMs": 124.05543006666652,
+        "p95Ms": 290.16269399999874,
+        "maxMs": 369.19102699999985,
+        "meanBlack": 0.3542406311637081,
+        "meanChecking": 0.5990567250469211,
+        "meanClumps": 1.4666666666666666,
+        "maxClumps": 2,
+        "symmetricPuzzles": 30
+      }
+    }
+  }
+}

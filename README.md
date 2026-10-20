@@ -1,6 +1,8 @@
-# Crossword puzzle · v2.9.0
+# Crossword puzzle · v2.12.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
+
+New puzzles use rotationally symmetric quick-crossword grids with tighter block limits and stronger average checking. Older games keep their original grids and progress. See [geometry policy and validation](docs/GEOMETRY-V2.12.md).
 
 ## Run
 
@@ -15,7 +17,7 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - A game-owned three-row QWERTY keyboard with backspace, as shown in the latest Mirror reference. This replaces the earlier native-keyboard requirement. No hidden text input opens the iOS keyboard during solving. UI Studio colour text fields still use the native keyboard.
 - Current clue directly above the keys, with its number, Across/Down direction, fill progress and previous/next arrows. Tap it for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
 - Hardware letters, arrows, Backspace and Cmd/Ctrl+Z. Enter on the board advances clues; Space switches direction. Tab remains available to leave the board and navigate controls.
-- Normal typing skips filled crossing letters. Explicitly tapping a filled square overwrites that letter and activates the immediate next square; subsequent normal typing resumes skipping filled squares.
+- Typing advances one square, including when the next square already contains a letter. Saved navigation preferences control end-of-word and Space behavior.
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
 
 ## Generation and clue quality

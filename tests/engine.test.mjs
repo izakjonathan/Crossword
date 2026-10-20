@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { generatePuzzle, rememberAnswers, validatePuzzle, MODES, RECENT_LIMIT } from '../lib/engine.mjs';
-import { acceptableGrid, gridQuality } from '../lib/grid-quality.mjs';
+import { acceptableGrid, gridQuality, acceptableQuickGrid } from '../lib/grid-quality.mjs';
 import { WORDS } from '../lib/words.mjs';
 
 test('clue bank uses unique ordinary answer forms, complete literal clues and no answer leakage', () => {
@@ -19,7 +19,8 @@ test('randomized square puzzles have square-cell coordinates, proper numbering, 
   for (let i = 0; i < 24; i++) for (const mode of Object.keys(MODES)) {
     const p = generatePuzzle({ mode, seed: `invariant-${i}` });
     assert.deepEqual(validatePuzzle(p), []);
-    assert.equal(p.constructionVersion, 3);
+    assert.equal(p.constructionVersion, 4);
+    assert.ok(acceptableQuickGrid(p.grid,p.cols,p.rows,mode));
     assert.ok(acceptableGrid(gridQuality(p.grid,p.cols,p.rows)));
     assert.equal(p.rows, p.cols);
     assert.ok(p.entries.length >= MODES[mode].target - 5);

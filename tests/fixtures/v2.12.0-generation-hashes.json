@@ -1,0 +1,69 @@
+{
+  "baseline": "2.12.0",
+  "reason": "Symmetric construction v4 intentionally changes layouts, fills and clue allocation; old fixtures remain historical.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "da1bec7b66861a60642409d709f08cd0182e8e97a2d0f4491c9851bcbbe1b282"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "76a1f48ad3f78335a0cf33766876a94658be81d8c1e29c42b2c284ac7a7b8c0d"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "89bb5c8fcb026d65621c8b5c0e1a5683ac7ca33380ef0f62994e5ceb2054a5b3"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "208dff8bf9b49fd697421b27a802762408bdf834c1da764f221cd81135e79231"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "e645bd1dee9fcb3361ba5a97afc11559e133132e26035956a25e1377f9e78901"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "56f503e37245eec6f0df3452702c616459d1d8d9efe66a4f14441c29f2d4be13"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "88e6fddeed2e37d28c66ea18ee191f3edaff34ed675ddd03454d9d876831f09c"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "3da5f42955d26aae872b401926a355cb27a5c8ef187190c1e17635845238fefc"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "05f7fd7f7deb2b8159fded372c12fbc42225b51d4742e19b36d9712538531afd"
+    }
+  ]
+}
