@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.13.2
+# Crossword puzzle · v2.13.3
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -7,6 +7,8 @@ New puzzles use rotationally symmetric quick grids without solid 2×2 block clum
 v2.13.1 fixes shared dialogs reopening after Close by preserving explicit view clears through Redis. Existing lobbies work without resetting their games. See [regression details](docs/SHARED-DIALOG-V2.13.1.md).
 
 v2.13.2 makes the active clue text non-interactive and adds a separate small **All clues** button beside it, reducing accidental popup openings.
+
+v2.13.3 removes direction/progress labels from the active clue and gives the home-screen keyboard 12px plus the bottom safe-area inset below its keys.
 
 ## Run
 
@@ -19,7 +21,7 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - Grid counts: Easy 9×9, Medium 11×11, Hard 13×13. Cells grow vertically into spare space, up to 20% taller than wide; short layouts retain square cells. Existing portrait puzzles and progress remain playable; tap + for the new square format.
 - Board-only pinch zoom (1–3×), drag to pan, and − / Fit / + controls. The entire grid fits initially; zoom does not move the header, clue or keyboard. Zoom is anchored beneath the fingers, panning is bounded, and the active cell is brought into view when typing. Rotation resets gesture state and preserves zoom level.
 - A game-owned three-row QWERTY keyboard with backspace, as shown in the latest Mirror reference. This replaces the earlier native-keyboard requirement. No hidden text input opens the iOS keyboard during solving. UI Studio colour text fields still use the native keyboard.
-- Current clue directly above the keys, with its number, Across/Down direction, fill progress and previous/next arrows. Use the separate All clues button for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
+- Current clue directly above the keys, with previous/next arrows. Use the separate All clues button for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
 - Hardware letters, arrows, Backspace and Cmd/Ctrl+Z. Enter on the board advances clues; Space switches direction. Tab remains available to leave the board and navigate controls.
 - Typing advances one square, including when the next square already contains a letter. Saved navigation preferences control end-of-word and Space behavior.
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.

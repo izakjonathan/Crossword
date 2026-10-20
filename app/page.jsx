@@ -345,8 +345,6 @@ export default function Home() {
     try{saveSession(localStorage,restored);}catch{setNotice('This game could not be saved as your current game.');}
   }
 
-  const filled = game ? game.puzzle.grid.filter((cell, i) => cell && game.play.answers[i]).length : 0;
-  const total = game ? game.puzzle.grid.filter(Boolean).length : 0;
   function publishView(value) {
     try { sharedRef.current?.setView(value); } catch (error) { setNotice(error.message); }
   }
@@ -380,7 +378,6 @@ export default function Home() {
     <section className="clue-bar" aria-label="Active clue">
       <button className="icon-button" disabled={!game || busy} onMouseDown={e => e.preventDefault()} onClick={() => changeClue(-1)} aria-label="Previous clue"><Icon name="prev" /></button>
       <div className="clue-body">
-        <span className="clue-meta"><span>{entry ? `${entry.number} ${entry.dir}` : 'Crossword'}</span><span>{game ? `${filled}/${total} filled` : ''}</span></span>
         <span className="clue-text" aria-live="polite">{entry ? (solved ? (game.play.assisted ? 'Completed with a little help.' : 'Every letter in place. Well done.') : <>{entry.clue} <span className="enumeration">({entry.answer.length})</span></>) : (busy ? 'Building your crossword…' : 'Tap + to start a crossword.')}</span>
       </div>
       <button className="all-clues-button" disabled={!game || busy} onClick={() => openModal('clues')} aria-label="All clues" aria-haspopup="dialog">All<br />clues</button>

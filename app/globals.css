@@ -36,8 +36,6 @@
 .clue-body { flex:1; min-width:0; height:74px; padding:7px 8px; overflow:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:center; text-align:left; border-radius:0; }
 .all-clues-button { flex:0 0 44px; height:40px; margin-inline:3px; border:1px solid var(--line); border-radius:8px; font-size:11px; line-height:13px; font-weight:600; text-align:center; touch-action:manipulation; }
 .all-clues-button:active:not(:disabled) { background:var(--content); color:var(--bg); }
-.clue-meta { display:flex; justify-content:space-between; gap:10px; margin-bottom:3px; font-size:10px; line-height:14px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
-.clue-meta > span:last-child { font-weight:400; letter-spacing:0; text-transform:none; }
 .clue-text { display:block; font-size:var(--clue-font); line-height:var(--clue-line); letter-spacing:-.2px; font-weight:500; overflow-wrap:anywhere; max-height:calc(2 * var(--clue-line)); overflow:auto; overscroll-behavior:contain; }
 .enumeration { white-space:nowrap; opacity:.7; }
 .puzzle-keyboard { padding:7px 5px 3px; display:grid; gap:6px; background:var(--soft); }
@@ -92,7 +90,7 @@ body { isolation:isolate; }
 .clue-row-arrow { font-size:23px; font-weight:400; }
 .empty-board { height:100%; padding:28px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:18px; text-align:center; font-size:14px; line-height:1.5; }
 .generating small { font-size:11px; opacity:.7; }
-@media (max-height:500px) and (orientation:landscape) { .clue-list-dialog { height:90dvh; } .clue-meta { margin-bottom:0; } }
+@media (max-height:500px) and (orientation:landscape) { .clue-list-dialog { height:90dvh; } }
 
 .shared-status { flex-shrink:0; width:100%; max-width:680px; margin-inline:auto; display:flex; justify-content:space-between; gap:12px; padding:7px 12px; background:var(--soft); color:var(--content); font-size:11px; line-height:16px; text-align:left; }
 .shared-status span:first-child { font-weight:600; }
@@ -106,3 +104,8 @@ body { isolation:isolate; }
 .library-dialog .clue-tabs{grid-template-columns:repeat(3,1fr)}
 @media(max-height:500px) and (orientation:landscape){.solve-workspace{grid-column:1;grid-row:2;min-height:0;height:100%}.keyboard-dock{grid-row:2}.solve-timer{position:absolute;top:34px;left:12px;padding:0;font-size:10px}.shared-status{position:absolute;top:0;left:50px;max-width:calc(100% - 100px);z-index:2;transform:translateY(40px)}.app.has-shared .solve-workspace{padding-top:28px}}
 @media(min-width:1000px) and (min-height:600px){.solve-workspace{padding:0 20px}.clue-sidebar{display:flex;flex-direction:column;width:310px;flex-shrink:0;min-height:0;gap:16px}.clue-sidebar section{display:flex;flex-direction:column;min-height:0;flex:1}.sidebar-list{overflow:auto;min-height:0}.clue-sidebar .clue-row{padding:10px 8px;font-size:13px;min-height:50px}.clue-sidebar .clue-row.current{background:var(--content);color:var(--bg)}.clue-sidebar .clue-row small{display:block;font-size:11px;margin-top:5px}}
+
+/* Lift home-screen keys clear of the system gesture area, including devices without an inset. */
+@media (display-mode:standalone) {
+ .puzzle-keyboard { padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px)); }
+}
