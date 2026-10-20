@@ -379,10 +379,11 @@ export default function Home() {
     <div className="keyboard-dock">
     <section className="clue-bar" aria-label="Active clue">
       <button className="icon-button" disabled={!game || busy} onMouseDown={e => e.preventDefault()} onClick={() => changeClue(-1)} aria-label="Previous clue"><Icon name="prev" /></button>
-      <button className="clue-body" disabled={!game || busy} onClick={() => openModal('clues')} aria-label={entry ? `All clues. Current clue ${entry.number} ${entry.dir}: ${entry.clue}` : 'All clues'} aria-haspopup="dialog">
+      <div className="clue-body">
         <span className="clue-meta"><span>{entry ? `${entry.number} ${entry.dir}` : 'Crossword'}</span><span>{game ? `${filled}/${total} filled` : ''}</span></span>
         <span className="clue-text" aria-live="polite">{entry ? (solved ? (game.play.assisted ? 'Completed with a little help.' : 'Every letter in place. Well done.') : <>{entry.clue} <span className="enumeration">({entry.answer.length})</span></>) : (busy ? 'Building your crossword…' : 'Tap + to start a crossword.')}</span>
-      </button>
+      </div>
+      <button className="all-clues-button" disabled={!game || busy} onClick={() => openModal('clues')} aria-label="All clues" aria-haspopup="dialog">All<br />clues</button>
       <button className="icon-button" disabled={!game || busy} onMouseDown={e => e.preventDefault()} onClick={() => changeClue(1)} aria-label="Next clue"><Icon name="next" /></button>
     </section>
     <PuzzleKeyboard disabled={!game || busy || !!modal} onLetter={letter => edit((p, s) => enterText(p, s, letter, preferencesRef.current))} onDelete={() => edit(backspace)} />

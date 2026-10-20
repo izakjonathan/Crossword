@@ -34,7 +34,8 @@
 .keyboard-dock { flex-shrink:0; width:100%; max-width:680px; margin-inline:auto; background:var(--bg); padding-bottom:0; }
 .clue-bar { display:flex; align-items:center; gap:0; min-height:76px; padding:0; background:var(--bg); border-block:1px solid var(--line); --clue-font:16px; --clue-line:22px; height:76px; max-height:76px; }
 .clue-body { flex:1; min-width:0; height:74px; padding:7px 8px; overflow:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:center; text-align:left; border-radius:0; }
-.clue-body:disabled { opacity:1; }
+.all-clues-button { flex:0 0 44px; height:40px; margin-inline:3px; border:1px solid var(--line); border-radius:8px; font-size:11px; line-height:13px; font-weight:600; text-align:center; touch-action:manipulation; }
+.all-clues-button:active:not(:disabled) { background:var(--content); color:var(--bg); }
 .clue-meta { display:flex; justify-content:space-between; gap:10px; margin-bottom:3px; font-size:10px; line-height:14px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
 .clue-meta > span:last-child { font-weight:400; letter-spacing:0; text-transform:none; }
 .clue-text { display:block; font-size:var(--clue-font); line-height:var(--clue-line); letter-spacing:-.2px; font-weight:500; overflow-wrap:anywhere; max-height:calc(2 * var(--clue-line)); overflow:auto; overscroll-behavior:contain; }
