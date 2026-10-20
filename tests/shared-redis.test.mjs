@@ -56,3 +56,23 @@ test('real Redis keeps devices in one room across new rounds and fences all old 
     assert.deepEqual((await store.get(token)).answers,{});
   }finally{await command(['DEL',key,...ids.map(id=>`${key}:op:${id}`)]);}
 });
+
+test('real Redis keeps a shared popup closed after either client dismisses it and polling continues',{skip:!cli},async()=>{
+  const {SharedClient}=await import('../lib/shared-client.mjs');
+  const command=async args=>JSON.parse(execFileSync(cli,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const store=sharedStore(command),puzzle=generatePuzzle({mode:'easy',seed:'popup-real-redis'});
+  const {token,room}=await store.create({puzzle,play:initialState(puzzle)},randomUUID()),ids=[],clients=[];
+  const key=roomKey(token),states=[];
+  const request=async(_,method,operation)=>method==='PATCH'?store.patch(token,operation):store.get(token);
+  try{
+    for(let i=0;i<2;i++)clients.push(new SharedClient({token,room:structuredClone(room),request,onChange:state=>{states[i]=state;},schedule:()=>0,cancel:()=>{},uuid:()=>{const id=randomUUID();ids.push(id);return id;}}));
+    const [a,b]=clients;
+    a.setView({modal:'clues',clueDirection:'down',board:{scale:2,x:-.1,y:-.2}});await a.flush();await b.poll();
+    assert.equal(states[1].room.view.modal,'clues');
+    b.setView({modal:null,board:null});await b.flush();
+    for(let i=0;i<3;i++){await a.poll();await b.poll();assert.equal(states[0].room.view.modal,null);assert.equal(states[1].room.view.modal,null);}
+    assert.equal(states[0].room.view.board,null);assert.equal(states[0].room.view.clueDirection,'down');
+    a.setView({clueDirection:'across'});await a.flush();await b.poll();assert.equal(states[1].room.view.modal,null);
+    assert.equal(JSON.parse(await command(['GET',key])).view.modal,false);
+  }finally{clients.forEach(client=>client.stop());await command(['DEL',key,...ids.map(id=>`${key}:op:${id}`)]);}
+});

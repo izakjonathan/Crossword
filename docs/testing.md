@@ -28,4 +28,6 @@ A targeted manual solve checklist:
 
 The historical v2.8.2 performance comparison requires matching editorial banks: use the v2.8.2 source and extracted v2.8.1 source. v2.9.0 intentionally changes seeded clue outputs, so its exact-output benchmark against an older bank must fail. For the historical comparison, extract the delivered v2.8.1 ZIP to a separate directory and run `node scripts/benchmark-generation.mjs /path/to/v2.8.1-source 100`. The script fails on any complete-puzzle difference or repeat in its twelve-game sequence. See `PERFORMANCE-V2.8.2.md` for benchmark limits; do not add machine-dependent timing assertions to unit tests.
 
-Browser verification also exposed native timers being invoked with a client object as receiver. Shared-game and global-theme clients now call timer functions through wrappers, matching GenerationClient. A regression test models browser receiver requirements and verifies both polling and clean stop. Full verification after this correction: 113/113 tests with real Redis, production build and 3/3 built CSS checks passed.
+## Shared dialog clearing (v2.13.1)
+
+`tests/shared-dialog.test.mjs` models the production null-dropping JSON boundary; native Redis alone does not reproduce that behavior. `tests/shared-redis.test.mjs` also exercises opening on one SharedClient, closing on another and repeated polls. See [failure and fix](SHARED-DIALOG-V2.13.1.md).

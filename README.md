@@ -1,8 +1,10 @@
-# Crossword puzzle · v2.13.0
+# Crossword puzzle · v2.13.1
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
 New puzzles use rotationally symmetric quick grids without solid 2×2 block clumps. Hard mode includes reviewed wordplay signalled by a question mark. Older games keep their original grids and progress. See [current construction and clue policy](docs/PROFESSIONAL-V2.13.md).
+
+v2.13.1 fixes shared dialogs reopening after Close by preserving explicit view clears through Redis. Existing lobbies work without resetting their games. See [regression details](docs/SHARED-DIALOG-V2.13.1.md).
 
 ## Run
 
