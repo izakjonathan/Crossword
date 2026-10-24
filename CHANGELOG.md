@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.16.0 — 24 October 2026
+
+- Replace permanent same-day/session and 7-day-plus-20-game exclusions with a last-five-puzzle window. Prefer unused, then oldest eligible answers.
+- Recover old exhausted histories and shared lobbies while retaining progress, membership and room IDs. Atomically bound shared round history in Redis.
+- Expand 1,910 answers to 5,730 with sourced WordNet definitions, explicit provenance/licences and provisional vocabulary ratings.
+- Bound supplemental domains with seeded selection and early distinct-word difficulty-capacity checks. Distinguish pool exhaustion from search-limit failures.
+- Add legacy-exhaustion, five-round rollover, source-provenance and real-Redis migration coverage.
+
 ## 2.15.0 — 21 October 2026
 
 - Maintain arc consistency across crossing agreement, distinct answers and specialist-crossing constraints throughout backtracking.

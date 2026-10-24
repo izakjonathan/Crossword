@@ -1,0 +1,69 @@
+{
+  "baseline": "2.16.0",
+  "reason": "Expanded dictionary and bounded seeded tier selection; older fixtures preserved.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "405da1f9aabf7f143e99861ac35675570327a76f015468f88a76e877ef7b74f9"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "e0e9c2c405e964e1ee9ff89ffbcae1a53f53be812ea4bce9cc1ff611c8f09aa2"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "6ef8bca108326ca7c71b45f479bd86d77e32e78c739e2896832766b2fe125c9d"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "f15ebdf3e26f125416e0e3e04462cddfd4ad470103bff7c3e7f2597c235237e2"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "4ba785d1a95df1004b34d1c5ae44d4e68683e890c0ec042bc09168dc3009086d"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "2a1762853f0e3ca58f0e3a3071637fe0beea4cd89dd4330245ab66568f061498"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "464708b8ba6c8e0e47636a33452f8466b93fdb60cc39eb052e1ca7e98c7d3617"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "37da6d2b0c9d95d0af5763204820cd5c38bddc8733e6e78a1e249ba6f9f56bdb"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "7e633a9feabb22020abe861a0f0eed995a8f92648b5dee9dc2687df20365b45e"
+    }
+  ]
+}

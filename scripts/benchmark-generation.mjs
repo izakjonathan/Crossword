@@ -1,3 +1,4 @@
+import { recentAnswers, ledgerRounds } from '../lib/recent-rounds.mjs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readFileSync } from 'node:fs';
@@ -49,7 +50,8 @@ for(let index=0;index<12;index++){
   const result=compare(baselineFresh.generateFreshPuzzle,generateFreshPuzzle,input,index%2===1,changedSearch?{...input,history:oldHistory}:input);
   for(const entry of result.baselinePuzzle.entries){if(oldSeen.has(entry.answer))throw new Error('Baseline repeated answer in sequence');oldSeen.add(entry.answer);}
   oldHistory=recordPuzzle(oldHistory,result.baselinePuzzle,now+index*1000);
-  for(const entry of result.puzzle.entries){if(seen.has(entry.answer))throw new Error('Repeated answer in sequence');seen.add(entry.answer);}
+  const blocked = recentAnswers(ledgerRounds(history));
+  for(const entry of result.puzzle.entries){if(blocked.has(entry.answer))throw new Error('Repeated protected answer in sequence');seen.add(entry.answer);}
   history=recordPuzzle(history,result.puzzle,now+index*1000);
   before.push(result.beforeMs);after.push(result.afterMs);
 }

@@ -1,0 +1,98 @@
+{
+  "initialSeenAnswers": 5730,
+  "games": 18,
+  "protectedRepeats": 0,
+  "recentRounds": 5,
+  "runs": [
+    {
+      "mode": "easy",
+      "ms": 773,
+      "answers": 20
+    },
+    {
+      "mode": "medium",
+      "ms": 2333,
+      "answers": 26
+    },
+    {
+      "mode": "hard",
+      "ms": 3052,
+      "answers": 36
+    },
+    {
+      "mode": "easy",
+      "ms": 502,
+      "answers": 20
+    },
+    {
+      "mode": "medium",
+      "ms": 2078,
+      "answers": 22
+    },
+    {
+      "mode": "hard",
+      "ms": 15852,
+      "answers": 28
+    },
+    {
+      "mode": "easy",
+      "ms": 1500,
+      "answers": 26
+    },
+    {
+      "mode": "medium",
+      "ms": 1998,
+      "answers": 26
+    },
+    {
+      "mode": "hard",
+      "ms": 11467,
+      "answers": 36
+    },
+    {
+      "mode": "easy",
+      "ms": 685,
+      "answers": 20
+    },
+    {
+      "mode": "medium",
+      "ms": 2091,
+      "answers": 22
+    },
+    {
+      "mode": "hard",
+      "ms": 4395,
+      "answers": 34
+    },
+    {
+      "mode": "easy",
+      "ms": 977,
+      "answers": 24
+    },
+    {
+      "mode": "medium",
+      "ms": 1848,
+      "answers": 22
+    },
+    {
+      "mode": "hard",
+      "ms": 10653,
+      "answers": 30
+    },
+    {
+      "mode": "easy",
+      "ms": 1012,
+      "answers": 28
+    },
+    {
+      "mode": "medium",
+      "ms": 1933,
+      "answers": 26
+    },
+    {
+      "mode": "hard",
+      "ms": 6098,
+      "answers": 30
+    }
+  ]
+}

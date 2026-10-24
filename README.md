@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.15.0
+# Crossword puzzle · v2.16.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -13,6 +13,8 @@ v2.13.3 removes direction/progress labels from the active clue and gives the hom
 v2.14.0 improves the CSP dictionary index: lazy specialist-crossing queries and bounded reuse of excluded-answer matches reduce repeated backtracking work. Grid extraction and row-major clue numbering remain automatic. See [generator methodology and measurements](docs/PERFORMANCE-V2.14.md).
 
 v2.15.0 adds maintaining arc consistency (AC-3 before search and after every assignment), dynamic unfilled-crossing degree and difficulty-aware value support ranking. This changes new puzzle search while retaining saved games and strict quality/repeat rules. See [CSP implementation and evidence](docs/CSP-V2.15.md).
+
+v2.16.0 triples the bank to 5,730 answers and replaces lifetime/daily exclusions with a rolling five-puzzle window in solo and shared play. Existing exhausted ledgers and lobbies recover without clearing saved games. New dictionary definitions have provisional ratings and accessible source/licence credits. See [continuous-play policy and validation](docs/CONTINUOUS-PLAY-V2.16.md).
 
 ## Run
 
@@ -40,14 +42,14 @@ The original literal clue bank contains 1,906 unique answers (including 210 addi
 
 Each request has a fresh seed and uses a persistent dated ledger of every answer seen by this browser on this site origin. There is no 500-answer rollover in the current generation path. All difficulties share the same history.
 
-- Same-day answers are excluded without exception. The day uses Europe/Copenhagen, including daylight-saving transitions.
-- Reuse requires at least **7 elapsed days and 20 intervening generated puzzles**. Never-used answers are tried first. Next preference is the oldest answers rested for **30 days and 40 puzzles**; smaller oldest-first batches are widened only when needed for a valid grid. The 30/40 target is a preference, not an additional hard minimum.
-- If eligible answers cannot form a valid grid, generation stops and preserves the current puzzle. It does not relax same-day or minimum-cooldown rules.
+- Answers from the latest five puzzles are excluded across difficulties; shared rooms protect the latest five shared rounds.
+- Prefer never-used answers, then introduce the oldest eligible answers when necessary. Calendar dates and total games no longer prevent reuse forever.
+- True pool shortage and bounded-search failure have distinct messages; generation failures preserve the current puzzle.
 - Generation holds an exclusive Web Lock while reading history, generating and committing it. This serialises requests from tabs on the same origin. The ledger must persist before a new puzzle is shown; a storage error rejects the new puzzle.
-- Old undated 500-answer history and any unknown restored puzzle answers are conservatively treated as used today. Older records that previous versions had already discarded cannot be reconstructed.
+- Old undated history becomes a seen-word preference; identifiable recent rounds and the current saved puzzle stay protected. No history or game reset is required.
 - History survives reloads. It is local to a browser profile/site origin, not shared between devices, aliases, private sessions or browsers. Clearing site storage clears that history. Updated clients, HTTPS and Web Locks support are required for coordinated generation.
 
-The bank remains finite at 1,910 unique answers, with fewer available for short-word modes. No finite bank can supply unlimited unique daily puzzles or guarantee a fixed number of new grids under these constraints.
+The bank contains 5,730 unique answers, including 3,820 licensed direct-definition additions with provisional vocabulary ratings. Not all are eligible for every mode, and not all supplemental definitions have individual editorial review. Seeded bounded subsets keep the expanded dictionary manageable; constraints and worker deadlines can still prevent a particular request from succeeding.
 
 Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 1,024 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current layouts use 3–7-letter answers on Easy, 3–9 on Medium and 3–11 on Hard. Medium includes at least one answer of eight or more letters; Hard includes at least one of nine or more. Rotational symmetry is enforced; these remain partially checked quick grids, with no claim of American publication compliance. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
 

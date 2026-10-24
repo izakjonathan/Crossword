@@ -1,0 +1,197 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 5730,
+  "longerClueBank": {
+    "answers": 1996,
+    "tier2Answers": 63,
+    "tier3Answers": 24
+  },
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 17,
+      "totalInformalClues": 17,
+      "maxEntries": 28,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 190.77194289000008,
+      "p95Ms": 266.045108,
+      "maxMs": 5993.974348,
+      "minFields": 56,
+      "maxFields": 58,
+      "meanVocabulary": 1.1304360639360636,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 7,
+      "meanEightPlusAnswers": 0,
+      "meanEightPlusChallengingClues": 0,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 0,
+      "meanReviewedAlternativeAnswers": 10.02,
+      "meanEntries": 24.84,
+      "meanBlack": 0.29333333333333306,
+      "meanChecking": 0.7815624764124768,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 7.12,
+      "meanAlternativeClues": 18.42,
+      "uniqueAnswersUsed": 750,
+      "mostFrequentAnswers": [
+        [
+          "TEA",
+          31
+        ],
+        [
+          "EYE",
+          31
+        ],
+        [
+          "AIR",
+          29
+        ],
+        [
+          "LIE",
+          29
+        ],
+        [
+          "EAR",
+          28
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 17,
+      "totalInformalClues": 7,
+      "maxEntries": 30,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 212.97344447000003,
+      "p95Ms": 817.6991210000051,
+      "maxMs": 3591.5108510000027,
+      "minFields": 80,
+      "maxFields": 82,
+      "meanVocabulary": 1.5520466719271058,
+      "meanClue": 1.3759530738987267,
+      "meanChallengingFraction": 0.3759530738987262,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0.07773621627969449,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEightPlusAnswers": 2.02,
+      "meanEightPlusChallengingClues": 1.17,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 82,
+      "meanReviewedAlternativeAnswers": 12.05,
+      "meanEntries": 24.54,
+      "meanBlack": 0.3274380165289251,
+      "meanChecking": 0.6562567066971826,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 12.62,
+      "meanAlternativeClues": 15.7,
+      "uniqueAnswersUsed": 1054,
+      "mostFrequentAnswers": [
+        [
+          "ERA",
+          23
+        ],
+        [
+          "AIR",
+          23
+        ],
+        [
+          "TEA",
+          22
+        ],
+        [
+          "ELEMENT",
+          18
+        ],
+        [
+          "ARRANGE",
+          15
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 27,
+      "puzzlesWithWordplay": 26,
+      "totalShortenedAnswers": 15,
+      "totalInformalClues": 106,
+      "maxEntries": 38,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 2.02,
+      "meanMs": 2604.2950871100015,
+      "p95Ms": 10503.369196,
+      "maxMs": 20830.730663999973,
+      "minFields": 108,
+      "maxFields": 110,
+      "meanVocabulary": 1.7935854188166496,
+      "meanClue": 1.8954702135240051,
+      "meanChallengingFraction": 0.6691279669762641,
+      "meanHardFraction": 0.22634224654774168,
+      "meanAdvancedFraction": 0.17495753476829312,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 11,
+      "meanEightPlusAnswers": 4.82,
+      "meanEightPlusChallengingClues": 3.11,
+      "meanEightPlusHardClues": 1.44,
+      "puzzlesWithLongChallengingClue": 99,
+      "meanReviewedAlternativeAnswers": 20.71,
+      "meanEntries": 30.62,
+      "meanBlack": 0.35242603550295903,
+      "meanChecking": 0.606793872417831,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 16.96,
+      "meanAlternativeClues": 20.25,
+      "uniqueAnswersUsed": 1057,
+      "mostFrequentAnswers": [
+        [
+          "EGO",
+          32
+        ],
+        [
+          "EWE",
+          31
+        ],
+        [
+          "PAR",
+          29
+        ],
+        [
+          "TAR",
+          29
+        ],
+        [
+          "TEA",
+          27
+        ]
+      ]
+    }
+  }
+}

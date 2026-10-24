@@ -86,9 +86,9 @@ export default function Home() {
     lastModeRef.current = mode;
     setModal(null); setBusy(true); setNotice(''); setGenerationError('');
     try {
-      const generate = async room => generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), makePuzzle:(history, now) => {
+      const generate = async room => generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), historyForGeneration:(history,now) => room ? sharedHistory(history,room,now) : history, makePuzzle:(history, now) => {
         if (lifecycle !== lifecycleRef.current || !generatorRef.current) throw new Error('Generation cancelled.');
-        return generatorRef.current.generate({mode,seed:makeSeed(),history:room ? sharedHistory(history,room,now) : history,now});
+        return generatorRef.current.generate({mode,seed:makeSeed(),history,now});
       }});
       if (client) await client.newRound(generate);
       else {
