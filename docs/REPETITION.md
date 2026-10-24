@@ -1,39 +1,32 @@
-# Answer repetition policy · v2.3
+# Answer repetition policy · v2.16.0
 
-The old rolling 500-answer exclusion has been replaced in the app generation path by a versioned ledger retaining each answer's last timestamp, Copenhagen calendar day and generated-puzzle sequence number. It is shared between difficulties and is not truncated to 500 answers.
+The app retains a versioned word ledger across difficulties, but only answers from the latest **five puzzles** are hard exclusions. There is no same-day lockout, seven-day wait or twenty-game requirement. This policy supersedes the v2.3 rules.
 
 ## Hard rules
 
-1. No answer from the same Copenhagen calendar day may appear again. The day does not depend on the UTC server date or a traveller's changed device time zone.
-2. An answer cannot return until at least seven elapsed days and twenty intervening generated puzzles have passed.
-3. Every proposed grid is checked against the ledger again before publishing it to the screen.
-4. If no suitable grid can be formed without violating those rules, retain the current puzzle and report that generation is unavailable. The finite bank does not justify silently repeating a word.
+1. No answer may repeat within a puzzle or appear in any of the five protected rounds.
+2. Proposed puzzles are revalidated against the current history before committing them.
+3. Failed generation or storage writes preserve the current puzzle.
+4. Shared rooms protect their latest five shared rounds; this room history also governs the local commit of a shared replacement.
 
-The Copenhagen zone is deliberate for this app's user. Device clock correctness is assumed. There is no remote trusted clock or cross-device account history.
+## Preference order and capacity
 
-## Preference order
+Try never-used answers first. If they cannot form a valid grid, introduce the oldest eligible answers in progressively larger pools. Protected answers remain excluded throughout. The exact oldest eligible answer is not guaranteed to appear because crossing, clue and difficulty constraints determine the fill.
 
-Within the difficulty's word-length allowance:
+The bank contains **5,730 distinct answers**: 1,910 authored answers and 3,820 supplemental WordNet-derived definitions. Supplemental entries have provisional vocabulary band 2 and direct tier-1 clues only. They do not receive fabricated difficult clue variants. Difficulty requirements and specialist-crossing safeguards still apply, so the full bank is not equally useful in every mode.
 
-- Try never-used answers alone first.
-- Add the oldest answers that have rested at least thirty days AND forty intervening puzzles, starting with a small batch and widening it only after unsuccessful arrangements.
-- If that cannot form a grid, add the oldest other eligible answers in progressively larger batches, still respecting the hard seven-day/twenty-game minimum.
-- Exclude every other answer from the underlying construction engine. The low-level engine now honours its full exclusion set, rather than silently keeping only the latest 500 items.
-
-A candidate pool gets two seed variations; each construction run retains the existing connected-grid validator. Minimum viable candidate counts are kept so scarcity does not result in a malformed puzzle. The oldest eligible candidate pool is prioritised; the exact single oldest answer is not guaranteed to appear, because crossing constraints still determine the grid.
+The generator distinguishes insufficient eligible words from failure to find a valid grid within its search budget. A search-limit failure does not prove no valid fill exists. See [continuous play, provenance and release verification](CONTINUOUS-PLAY-V2.16.md).
 
 ## Transaction and persistence
 
-A Web Lock covers the whole read → worker generation → revalidation → save transaction. Two updated tabs cannot both choose against an outdated ledger. Waiting requests read fresh history after the previous request commits. A worker error or timeout rejects the request and releases the lock. Replies from stale worker requests are ignored. If saving fails, the generated puzzle is not published.
+A Web Lock covers the read → worker generation → revalidation → save transaction. Waiting requests read fresh history after the previous commit. Worker errors and timeouts release the lock; stale responses are ignored. If saving fails, the new puzzle is not published.
 
-The old undated history is migrated conservatively by treating all surviving legacy records as used today. It is impossible to reconstruct records already discarded by an older version. Restored puzzle answers absent from the ledger are also reserved conservatively. The ledger must be readable; a damaged current ledger is not silently erased.
+The existing ledger key and complete seen-word history remain intact. A bounded recentRounds array records the five actual round boundaries. Legacy ledgers recover identifiable recent game groups. Undated/game-zero legacy imports remain seen-word preferences rather than blocking the vocabulary. The current saved puzzle is reserved during migration. Damaged ledgers are not silently erased.
 
-Web Locks are an origin-scoped coordination API, not a cloud synchronisation service. Updated tabs under the same site origin cooperate. Different Vercel aliases, browser profiles, private sessions and devices have separate storage. Clearing browser data clears the ledger. Old tabs running a previous release should be reloaded to participate in the new policy.
+Viewing a shared puzzle reserves its round locally without counting reloads as new generated games. Shared rooms maintain a bounded five-round history, atomically updated in Redis. Old rooms without round metadata migrate from their current puzzle while preserving membership, edits and room identity.
 
-Primary API reference: https://developer.mozilla.org/en-US/docs/Web/API/Web_Locks_API
+Web Locks coordinate tabs under one site origin; they do not synchronise browser profiles or devices. Solo history remains browser-local. Shared-room history is server-backed. Copenhagen timestamps remain in the ledger for compatibility and ordering, but calendar days no longer control eligibility.
 
-## Capacity and tests
+## Verification
 
-The curated clue bank contains 1,242 distinct answers. Difficulty length constraints reduce the eligible pool. It cannot produce unlimited non-repeating puzzles. Under heavy usage, generation will eventually stop rather than break the restrictions.
-
-Tests generate more than 500 distinct same-day answers across all three modes, verify full-history reload and conservative migration, test Copenhagen summer/winter midnight boundaries, verify cooldown preference ordering, exclude all answers to exercise exhaustion, and simulate concurrent generators and failed storage commits. Worker tests exercise both the legacy low-level engine contract and the app's dated-history generation path.
+Regression coverage includes exhausted legacy ledgers, five-round rollover, bounded exclusions with complete seen-word history, concurrent generators, failed storage commits, shared-room migration and distinct shortage/search-limit errors. Automated validation does not replace human clue review or mobile performance checks.
