@@ -3,7 +3,7 @@
 Development only: install nltk, then pass an nltk_data directory containing
 corpora/wordnet. This script never downloads data or modifies the word bank.
 """
-import argparse, json
+import argparse, json, subprocess
 from pathlib import Path
 import nltk
 from nltk.corpus import wordnet
@@ -12,8 +12,9 @@ parser=argparse.ArgumentParser()
 parser.add_argument('corpus_root')
 args=parser.parse_args()
 nltk.data.path.insert(0,args.corpus_root)
-source=(Path(__file__).resolve().parents[1]/'lib/supplemental-words.mjs').read_text()
-rows=json.loads(source.split('export const SUPPLEMENTAL_WORDS = ',1)[1].rsplit(';',1)[0])
+module=(Path(__file__).resolve().parents[1]/'lib/supplemental-words.mjs').as_uri()
+rows=json.loads(subprocess.check_output(['node','--input-type=module','-e',
+    'import {SUPPLEMENTAL_WORDS} from '+json.dumps(module)+'; console.log(JSON.stringify(SUPPLEMENTAL_WORDS))'],text=True))
 for row in rows:
     sense=wordnet.synset(row['wordnetSense'])
     definition=sense.definition().split(';')[0]
