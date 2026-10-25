@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.17.1 — 25 October 2026
+
+- Allow native text/Scribble input in Pencil cells rather than suppressing it with inputMode=none.
+- Remove focus-driven selection and text selection so writing can start in an unselected square without moving the board.
+- Prevent finger/mouse taps on Pencil fields from requesting the software keyboard; retain original keyboard mode.
+- Accept a single replacement letter appended by Scribble to the existing letter. Physical iPad confirmation remains required.
+
+
 ## 2.17.0 — 25 October 2026
 
 - Add optional experimental Apple Pencil mode in Solving preferences; original keyboard remains the default.

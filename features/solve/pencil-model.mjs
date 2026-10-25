@@ -13,3 +13,8 @@ export function writePencilCell(puzzle,state,index,value) {
   return {...selected,answers:{...state.answers,[index]:letter},overwrite:!!letter,
     undo:[...(state.undo||[]).slice(-99),{answers:state.answers,entryId:state.entryId,selected:state.selected,overwrite:state.overwrite,assisted:state.assisted}]};
 }
+
+export function pencilReplacement(previous,text) {
+  const inserted=previous&&text.length===2&&text.startsWith(previous)?text.slice(1):text;
+  return pencilLetter(inserted);
+}

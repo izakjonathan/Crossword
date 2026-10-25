@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {writePencilCell,pencilLetter} from '../features/solve/pencil-model.mjs';
+import {writePencilCell,pencilLetter,pencilReplacement} from '../features/solve/pencil-model.mjs';
 import {preferences,loadPreferences,savePreferences} from '../features/solve/model.mjs';
 import {initialState,undoInput} from '../lib/input.mjs';
 const puzzle={grid:[{letter:'C'},null,{letter:'A'},{letter:'T'}],entries:[{id:'a',dir:'across',cells:[0,2,3]}]};
@@ -22,4 +22,12 @@ test('Input mode is opt-in, device-local and survives preferences storage withou
  assert.equal(preferences().inputMode,'keyboard');assert.equal(preferences({inputMode:'unexpected'}).inputMode,'keyboard');
  const data=new Map(),storage={setItem:(k,v)=>data.set(k,v),getItem:k=>data.get(k)};
  savePreferences(storage,{inputMode:'pencil',showTimer:true});assert.equal(loadPreferences(storage).inputMode,'pencil');assert.equal(loadPreferences(storage).showTimer,true);
+});
+
+test('direct Scribble can replace a filled tile without selecting its existing text',()=>{
+ assert.equal(pencilReplacement('A','Ab'),'B');
+ assert.equal(pencilReplacement('A','C'),'C');
+ assert.equal(pencilReplacement('','AB'),null);
+ assert.equal(pencilReplacement('A','ABC'),null);
+ assert.equal(pencilReplacement('A',''),'');
 });

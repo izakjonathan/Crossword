@@ -15,3 +15,9 @@ New domain tests cover coordinate-independent target indexes, overwrite/clear/un
 Sources: https://developer.apple.com/design/human-interface-guidelines/apple-pencil-and-scribble ; https://developer.apple.com/documentation/uikit/handwriting-recognition .
 
 Release validation: production build passed; three built-CSS layout tests passed; 300/300 generator audit puzzles passed. Full npm test run: 131 passed, one preferences object expectation failed because it omitted the new default inputMode, seven Redis integration cases skipped (no disposable Redis configured). Updated that expected object and reran the affected preference test: passed. Thus all 132 executed test cases passed across the initial run and focused correction. Three new Pencil model tests also passed independently. Physical iPad/Pencil recognition remains unverified.
+
+## v2.17.1 direct-writing correction
+
+Input fields use text input mode so Scribble is not asked to suppress input. Focus no longer selects the square or selects text, avoiding board movement before handwriting is committed. The native field under the Pencil receives text; its index is committed only after recognition. Finger/mouse pointer defaults are prevented on Pencil inputs so they do not request the native text keyboard. This still uses native Scribble fields, not custom canvas ink capture. Actual direct writing remains subject to physical iPad verification.
+
+Correction validation: production build and all 12 focused input/Pencil tests passed. No engine, database or CSS/layout rules changed. Native Pencil gestures could not be exercised in the desktop browser.
