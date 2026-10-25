@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { WORDS } from '../lib/words.mjs';
+import { GENERATION_WORDS as WORDS } from '../lib/words.mjs';
 import { LONG_CLUES } from '../lib/long-clues.mjs';
 import { validateWordBank } from '../lib/word-quality.mjs';
 import { generatePuzzle } from '../lib/engine.mjs';

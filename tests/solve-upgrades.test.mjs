@@ -38,7 +38,7 @@ test('library rejects corrupt boards and reports capacity/storage errors without
 });
 test('preferences are local, validated and leave filled-square skipping disabled',()=>{
   const storage=memory();assert.equal(loadPreferences(storage).showTimer,false);assert.equal(loadPreferences(storage).advanceWord,false);
-  savePreferences(storage,{showTimer:true,autoCheck:true,advanceWord:true,spaceAction:'clear',playerName:'  Izak  '});assert.deepEqual(loadPreferences(storage),{showTimer:true,autoCheck:true,advanceWord:true,spaceAction:'clear',playerName:'Izak',inputMode:'keyboard'});
+  savePreferences(storage,{showTimer:true,autoCheck:true,advanceWord:true,spaceAction:'clear',playerName:'  Izak  '});assert.deepEqual(loadPreferences(storage),{showTimer:true,autoCheck:true,advanceWord:true,spaceAction:'clear',playerName:'Izak'});
   storage.setItem('daily-cross:preferences:v1','{bad');assert.equal(loadPreferences(storage).autoCheck,false);
   const entry=puzzle.entries[0],play={...initialState(puzzle),selected:entry.cells.at(-1)};
   assert.equal(enterText(puzzle,play,'Z').selected,entry.cells.at(-1));assert.notEqual(enterText(puzzle,play,'Z',{advanceWord:true}).entryId,entry.id);

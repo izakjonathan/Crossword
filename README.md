@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.17.0
+# Crossword puzzle · v2.18.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -119,6 +119,10 @@ Baseline: the recovered v2.6.0 production source. Browser colour metadata is now
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
 
-### Experimental Apple Pencil mode
+## Editorial recovery and reliable Hard loading · v2.18.0
 
-More puzzle controls → Solving preferences → Play using → Apple Pencil (experimental). Enable Scribble in iPad Settings → Apple Pencil. Write one letter in a white square. Clear square and Undo are available with no app keyboard; Use keyboard restores the original view without changing the game. Mode is saved only on this device. Native editable square targets form the board surface; this is not a whole-board ink recognition engine. Apple Pencil recognition, palm rejection and home-screen Safari behavior require physical iPad testing. See [Pencil implementation and verification](docs/PENCIL-V2.17.md).
+Pencil mode has been removed; saved Pencil preferences are ignored and the original keyboard always appears. New puzzles use 2,010 answers: the original 1,910 plus 100 individually rewritten additions. The remaining 3,720 raw dictionary additions are quarantined; the full archived data remains available for saved-game compatibility.
+
+Hard first selects from 64 offline CSP-built puzzles, checking active clue eligibility, structure, difficulty, crossing fairness and the last-five-answer window. The selector checks a five-round continuation along the prepared sequence before offering a packet. Existing seen-word history still prioritises unused/oldest eligible answers. This finite supply can reuse a cooled puzzle; it is not 64 endlessly unique puzzles. If older/mixed-mode histories leave no prepared match, bounded CSP search remains available. The worker deadline is retained, and all fallback pool searches share a seven-second cooperative budget.
+
+Hard profile v2 retains its minimum 65% challenging clues, 20% hardest-tier clues and 1.85 mean clue demand, but drops compulsory specialist fill and lowers the required vocabulary mean to 1.5. Old v1 games retain their original validation profile. See [research, decisions and release evidence](docs/EDITORIAL-V2.18.md).

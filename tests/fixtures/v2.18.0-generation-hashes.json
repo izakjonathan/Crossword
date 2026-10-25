@@ -1,0 +1,69 @@
+{
+  "baseline": "2.18.0",
+  "reason": "Editorial quarantine and rewritten clues; Hard profile v2 preserves clue demand without a forced specialist quota.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "635e4c742780e0011f148474609493f1c47635ec559cf0dc161cde98f25805c2"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "0132d0d7a1eb9c6ce9427436490657afe7819da1e09c2e854754cecca51588a4"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "707396126f560a4f53750cadd981c89067008c870d58eb26f9fc068563707a5c"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "ad36e169272c3f03f567a9788b3d05b2674d6fcb038856b70eae0ec45160fecc"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "c8e759ad3abc7be0c0061ba71d01c506a66a567f062d596abbf4c487ca3ae6be"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "dff68360f17afbfe3f7217dd3af3807f2c59c8b986cc4db35deff8c9606fe5d8"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "0c26df33dfc33e46e42cf253f752f50aa855c8ef720dd4e42da58a823ccb88b6"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "83465dc24e5c28312d601bae19ac2b0235dbb61e75d6aed7523ff7ad35b2dd9b"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "85d20872b193d8c4223111f6402316c3400d4c4290875a474599f420f619e051"
+    }
+  ]
+}

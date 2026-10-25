@@ -3,7 +3,7 @@ import { difficultySummary } from '../lib/difficulty.mjs';
 import { generatePuzzle } from '../lib/engine.mjs';
 import { checkingQuality, validatePuzzle } from '../lib/validate.mjs';
 import { gridQuality, rotationallySymmetric } from '../lib/grid-quality.mjs';
-import { WORDS } from '../lib/words.mjs';
+import { GENERATION_WORDS as WORDS } from '../lib/words.mjs';
 const count = Number(process.argv[2] || 100);
 if (!Number.isInteger(count) || count < 1 || count > 1000) throw new Error('Choose 1–1000 seeds per difficulty.');
 const longerBank=WORDS.filter(word=>word.answer.length>=8);

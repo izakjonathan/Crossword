@@ -2,8 +2,6 @@
 import Dialog from '../../components/dialog';
 export default function PreferencesDialog({value,onChange,onClose}){
   return <Dialog title="Solving preferences" onClose={onClose}><div className="preference-fields">
-    <label><span>Play using</span><select value={value.inputMode} onChange={e=>onChange({inputMode:e.target.value})}><option value="keyboard">Keyboard (original)</option><option value="pencil">Apple Pencil (experimental)</option></select></label>
-    <p className="dialog-copy">Pencil mode: write directly in any white square without tapping it first with Scribble enabled in iPad Settings → Apple Pencil. The app keyboard is hidden. Use Clear square to erase. Switch back here at any time.</p>
     <label><span>Show timer</span><input type="checkbox" checked={value.showTimer} onChange={e=>onChange({showTimer:e.target.checked})}/></label>
     <label><span>Check errors as I type</span><input type="checkbox" checked={value.autoCheck} onChange={e=>onChange({autoCheck:e.target.checked})}/></label>
     <label><span>At the end of a word</span><select value={value.advanceWord?'next':'stay'} onChange={e=>onChange({advanceWord:e.target.value==='next'})}><option value="stay">Stay in this clue</option><option value="next">Move to next clue</option></select></label>

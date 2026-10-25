@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.18.0 — 25 October 2026
+
+- Remove experimental Pencil input and restore the original keyboard for every device.
+- Quarantine raw WordNet senses from new puzzles; rewrite 100 common additions and clarify the direct ELM clue. Preserve stored games.
+- Prepare 64 Hard grids ahead of play and select valid, repeat-safe puzzles without phone-side CSP search when possible.
+- Keep Hard clue quotas, remove mandatory specialist vocabulary under a versioned profile, and preserve v1 saves.
+- Bound fallback searches across all candidate pools with one cooperative deadline.
+
+
 ## 2.17.1 — 25 October 2026
 
 - Allow native text/Scribble input in Pencil cells rather than suppressing it with inputMode=none.

@@ -1,6 +1,6 @@
 export const PREFERENCES_KEY='daily-cross:preferences:v1';
-export const DEFAULT_PREFERENCES={showTimer:false,autoCheck:false,advanceWord:false,spaceAction:'direction',playerName:'',inputMode:'keyboard'};
-export function preferences(value={}) { return {inputMode:value.inputMode==='pencil'?'pencil':'keyboard',showTimer:value.showTimer===true,autoCheck:value.autoCheck===true,advanceWord:value.advanceWord===true,spaceAction:value.spaceAction==='clear'?'clear':'direction',playerName:typeof value.playerName==='string'?value.playerName.trim().slice(0,24):''}; }
+export const DEFAULT_PREFERENCES={showTimer:false,autoCheck:false,advanceWord:false,spaceAction:'direction',playerName:''};
+export function preferences(value={}) { return {showTimer:value.showTimer===true,autoCheck:value.autoCheck===true,advanceWord:value.advanceWord===true,spaceAction:value.spaceAction==='clear'?'clear':'direction',playerName:typeof value.playerName==='string'?value.playerName.trim().slice(0,24):''}; }
 export function loadPreferences(storage) {try{return preferences(JSON.parse(storage.getItem(PREFERENCES_KEY))||{});}catch{return {...DEFAULT_PREFERENCES};}}
 export function savePreferences(storage,value){storage.setItem(PREFERENCES_KEY,JSON.stringify(preferences(value)));}
 export function isSolved(puzzle,play){return puzzle.grid.every((cell,i)=>!cell||play.answers[i]===cell.letter);}
