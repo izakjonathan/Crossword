@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.17.0 — 25 October 2026
+
+- Add optional experimental Apple Pencil mode in Solving preferences; original keyboard remains the default.
+- Overlay native editable fields in white squares for iPadOS Scribble; hide the app keyboard and provide Clear square, Undo and Use keyboard.
+- Target edits by the written cell index, preserve shared editing and undo, and reject multi-letter recognition instead of spilling into other squares.
+- Keep input mode local to each device and preserve saves when switching.
+
+
 ## 2.16.0 — 24 October 2026
 
 - Replace permanent same-day/session and 7-day-plus-20-game exclusions with a last-five-puzzle window. Prefer unused, then oldest eligible answers.

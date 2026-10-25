@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.16.0
+# Crossword puzzle · v2.17.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -118,3 +118,7 @@ A six-puzzle fixed-seed sample (two per difficulty) contained 60 answers with di
 Baseline: the recovered v2.6.0 production source. Browser colour metadata is now declared before the saved-theme bootstrap and is owned by UI Studio rather than a separate static Next.js viewport colour. A fixed full-viewport background follows the same `--bg` as the app, including exposed top/bottom areas when browser controls or the native keyboard resize the game. Preview, Save, Cancel, reload and cross-tab theme updates retain their existing behaviour.
 
 Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
+
+### Experimental Apple Pencil mode
+
+More puzzle controls → Solving preferences → Play using → Apple Pencil (experimental). Enable Scribble in iPad Settings → Apple Pencil. Write one letter in a white square. Clear square and Undo are available with no app keyboard; Use keyboard restores the original view without changing the game. Mode is saved only on this device. Native editable square targets form the board surface; this is not a whole-board ink recognition engine. Apple Pencil recognition, palm rejection and home-screen Safari behavior require physical iPad testing. See [Pencil implementation and verification](docs/PENCIL-V2.17.md).

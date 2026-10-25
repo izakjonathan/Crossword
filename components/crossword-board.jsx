@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { fitBoard, fitView, constrain, zoomAt, revealCell, BoardGesture, cellAtPoint } from '../lib/board-view.mjs';
+import PencilCell from '../features/solve/pencil-cell';
 import { MODES } from '../lib/config.mjs';
 
-export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef, sharedBoard, onBoardView, generationError, onRetry }) {
+export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zoomRef, sharedBoard, onBoardView, generationError, onRetry, pencilMode=false, onPencilWrite }) {
   const area = useRef(null), gesture = useRef(new BoardGesture());
   const frameRef = useRef(null), transform = useRef({ scale: 1, x: 0, y: 0 });
   const [frame, setFrame] = useState(null), [view, setView] = useState(transform.current);
@@ -56,6 +57,7 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
   }, [busy]);
   function point(event) { const r = area.current.getBoundingClientRect(); return { x: event.clientX - r.left, y: event.clientY - r.top }; }
   function down(event) {
+    if (pencilMode && event.pointerType === 'pen' && event.target.closest('input')) return;
     if (busy || !puzzle || (event.pointerType === 'mouse' && event.button !== 0)) return;
     gesture.current.down(event.pointerId, point(event), transform.current);
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -73,14 +75,14 @@ export default function CrosswordBoard({ game, entry, errors, busy, onSelect, zo
     if (!tap && !cancelled) publish(true);
     if (tap && frameRef.current && puzzle) {
       const index = cellAtPoint(frameRef.current, transform.current, puzzle.cols, puzzle.rows, point(event));
-      if (index !== null && puzzle.grid[index]) onSelect(index);
+      if (index !== null && puzzle.grid[index] && (!pencilMode || index !== selected)) onSelect(index);
     }
   }
   // A gesture only changes the wrapper transform; letter buttons stay cached.
   const cells = useMemo(() => puzzle && frame ? (<div className="board" role="group" aria-label={`${MODES[puzzle.mode].label} crossword, ${puzzle.cols} columns by ${puzzle.rows} rows. Pinch to zoom; drag to move.`} style={{ gridTemplateColumns: `repeat(${puzzle.cols},var(--cell))` }}>
-        {puzzle.grid.map((cell, i) => cell ? <button key={i} tabIndex={selected === i ? 0 : -1} disabled={busy} className={`cell ${entry?.cells.includes(i) ? 'active-word' : ''} ${selected === i ? `selected direction-${entry?.dir}` : ''} ${errors.includes(i) ? 'incorrect' : ''}`} onClick={e => { if (e.detail === 0) onSelect(i); }} aria-label={`Row ${Math.floor(i / puzzle.cols) + 1}, column ${i % puzzle.cols + 1}, ${cell.number ? `clue ${cell.number}, ` : ''}${game.play.answers[i] || 'empty'}${selected === i && entry ? `, ${entry.number} ${entry.dir}, ${entry.clue}, ${entry.answer.length} letters` : ''}`} aria-pressed={selected === i}>{cell.number && <span className="cell-number">{cell.number}</span>}<span className="cell-letter">{game.play.answers[i] || ''}</span></button> : <span className="blocked" key={i} />)}
+        {puzzle.grid.map((cell, i) => cell ? (pencilMode ? <span key={i} className={`cell ${entry?.cells.includes(i)?'active-word':''} ${selected===i?'selected':''} ${errors.includes(i)?'incorrect':''}`}>{cell.number&&<span className="cell-number">{cell.number}</span>}<PencilCell key={`${puzzle.id}:${i}`} value={game.play.answers[i]||''} disabled={busy} label={`Write letter: row ${Math.floor(i/puzzle.cols)+1}, column ${i%puzzle.cols+1}`} onSelect={()=>{if(selected!==i)onSelect(i);}} onWrite={letter=>onPencilWrite(i,letter)}/></span> : <button key={i} tabIndex={selected === i ? 0 : -1} disabled={busy} className={`cell ${entry?.cells.includes(i) ? 'active-word' : ''} ${selected === i ? `selected direction-${entry?.dir}` : ''} ${errors.includes(i) ? 'incorrect' : ''}`} onClick={e => { if (e.detail === 0) onSelect(i); }} aria-label={`Row ${Math.floor(i / puzzle.cols) + 1}, column ${i % puzzle.cols + 1}, ${cell.number ? `clue ${cell.number}, ` : ''}${game.play.answers[i] || 'empty'}${selected === i && entry ? `, ${entry.number} ${entry.dir}, ${entry.clue}, ${entry.answer.length} letters` : ''}`} aria-pressed={selected === i}>{cell.number && <span className="cell-number">{cell.number}</span>}<span className="cell-letter">{game.play.answers[i] || ''}</span></button>) : <span className="blocked" key={i} />)}
       </div>) : null,
-    [puzzle, frame?.cell, selected, entry, game?.play, busy, errors, onSelect]);
+    [puzzle, frame?.cell, selected, entry, game?.play, busy, errors, onSelect, pencilMode, onPencilWrite]);
   return <div ref={area} className="board-stage" aria-busy={busy} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={e => up(e, true)} onLostPointerCapture={e => { gesture.current.up(e.pointerId, transform.current, true); }} onContextMenu={e => e.preventDefault()}>
     {puzzle && frame && <div className="board-shell" style={{ width: frame.boardWidth, height: frame.boardHeight, '--cell': `${frame.cell}px`, '--cell-height': `${frame.cellHeight}px`, transform: `translate(${view.x}px,${view.y}px) scale(${view.scale})` }}>
       {cells}

@@ -109,3 +109,10 @@ body { isolation:isolate; }
 @media (display-mode:standalone) {
  .puzzle-keyboard { padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Native editable tiles let iPadOS Scribble resolve writing by grid location. */
+.board .pencil-cell-input{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:transparent;color:inherit;text-align:center;font-size:max(16px,calc(var(--cell) * .59));font-weight:600;padding:calc(var(--cell) * .12) 0 0;outline:none;touch-action:manipulation;user-select:text;-webkit-user-select:text;caret-color:currentColor}
+.board .cell-number{pointer-events:none;z-index:1}
+.cell.incorrect .pencil-cell-input{text-decoration:underline wavy}
+.pencil-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;padding:12px 8px calc(16px + env(safe-area-inset-bottom));font-size:13px}
+.pencil-controls button{padding:8px 12px;border:1px solid var(--line);border-radius:8px;min-height:44px}

@@ -18,6 +18,7 @@ import SharedGameDialog from '../components/shared-game-dialog';
 import { playerId, loadSharedSession, saveSharedSession, clearSharedSession, lobbyRequest } from '../lib/lobby-session.mjs';
 import GameLibrary from '../features/library/game-library';
 import { saveLibraryGame } from '../features/library/store.mjs';
+import {writePencilCell} from '../features/solve/pencil-model.mjs';
 import PreferencesDialog from '../features/solve/preferences-dialog';
 import SolveSummary from '../features/solve/solve-summary';
 import ClueSidebar from '../features/solve/clue-sidebar';
@@ -371,7 +372,7 @@ export default function Home() {
     {shared && <button className="shared-status" onClick={() => openModal('share')} aria-label="Shared session and players"><span>{shared.lobby?.name||'Playing together'}{players.participants.length?` · ${players.participants.filter(p=>p.online).length} online`:''}</span><span role="status">{shared.generating ? 'Building a new puzzle…' : shared.status === 'ended' ? 'Game unavailable' : shared.status === 'reconnecting' ? 'Reconnecting…' : shared.pending ? 'Saving…' : 'All changes saved'}</span></button>}
     {game&&preferences.showTimer&&<div className="solve-timer" aria-label="Elapsed solving time">{formatTime(elapsedSeconds(game.stats,clock))}{shared?' · Session time':''}</div>}
     <div className="solve-workspace">
-    <CrosswordBoard game={game} entry={entry} errors={visibleErrors} busy={busy} onSelect={tapCell} zoomRef={zoomRef} sharedBoard={shared?.room.view?.board} onBoardView={board => publishView({board})} generationError={generationError} onRetry={() => { const token = new URLSearchParams(location.hash.slice(1)).get('game'); token !== null ? joinShared(token) : startPuzzle(lastModeRef.current); }} />
+    <CrosswordBoard game={game} entry={entry} errors={visibleErrors} busy={busy} onSelect={tapCell} zoomRef={zoomRef} sharedBoard={shared?.room.view?.board} onBoardView={board => publishView({board})} pencilMode={preferences.inputMode==='pencil'} onPencilWrite={(index,letter)=>{if(!busy&&!modal)edit((p,s)=>writePencilCell(p,s,index,letter));}} generationError={generationError} onRetry={() => { const token = new URLSearchParams(location.hash.slice(1)).get('game'); token !== null ? joinShared(token) : startPuzzle(lastModeRef.current); }} />
     {game&&<ClueSidebar game={game} busy={busy||!!modal} onSelect={id=>edit((p,s)=>selectEntry(p,s,id))}/>}
     </div>
     <div className="keyboard-dock">
@@ -383,7 +384,7 @@ export default function Home() {
       <button className="all-clues-button" disabled={!game || busy} onClick={() => openModal('clues')} aria-label="All clues" aria-haspopup="dialog">All<br />clues</button>
       <button className="icon-button" disabled={!game || busy} onMouseDown={e => e.preventDefault()} onClick={() => changeClue(1)} aria-label="Next clue"><Icon name="next" /></button>
     </section>
-    <PuzzleKeyboard disabled={!game || busy || !!modal} onLetter={letter => edit((p, s) => enterText(p, s, letter, preferencesRef.current))} onDelete={() => edit(backspace)} />
+    {preferences.inputMode==='pencil'?<div className="pencil-controls" role="group" aria-label="Pencil controls"><span>Apple Pencil · write in a square</span><button disabled={!game||busy||!!modal} onClick={()=>edit((p,s)=>writePencilCell(p,s,s.selected,''))}>Clear square</button><button disabled={!game||busy||!!modal} onClick={undo}>Undo</button><button onClick={()=>changePreferences({inputMode:'keyboard'})}>Use keyboard</button></div>:<PuzzleKeyboard disabled={!game || busy || !!modal} onLetter={letter => edit((p, s) => enterText(p, s, letter, preferencesRef.current))} onDelete={() => edit(backspace)} />}
 
     </div>
     <div className="toast-region" role="status" aria-live="polite">{notice && <div className="toast">{notice}</div>}</div>

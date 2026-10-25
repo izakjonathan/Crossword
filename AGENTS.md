@@ -9,3 +9,5 @@ Keep `app` for route/UI composition, with generation and input logic in the exis
 Run `npm test`, `npm run build`, `LAYOUT_BUILD=1 node --test tests/layout.test.mjs`, and `npm run audit:puzzles` after engine/layout changes. No lint or standalone typecheck scripts are currently configured. Review `docs/RESEARCH-V2.7.md` and `docs/DIFFICULTY.md` / `docs/CROSSING-FAIRNESS.md`, update testing evidence and report actual limitations. Exclude dependencies, build output and credentials from deliverables.
 
 For search-cost changes, preserve seeded output and benchmark against the previous source using `scripts/benchmark-generation.mjs`. Keep domain caches local to each fill and never reuse a cached pool across history exclusions. Record relative timings and limitations in `docs/PERFORMANCE-V2.8.2.md` / the next versioned report.
+
+Pencil mode is experimental and opt-in per device. Preserve the original keyboard default, target recognized edits by the input square index, and never claim physical Apple Pencil/Scribble verification from desktop text-entry tests.
