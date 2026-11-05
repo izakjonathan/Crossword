@@ -3,7 +3,7 @@ import {writeFileSync,renameSync} from 'node:fs';
 const games=[],rounds=[];
 for(let seed=0;games.length<64 && seed<256;seed++) {
  try {
- const p=generatePuzzle({mode:'hard',seed:'edited-ready-'+seed,recent:rounds.slice(-5).flat(),deadline:Date.now()+2500});
+ const p=generatePuzzle({mode:'hard',seed:'fresh-ready-'+seed,recent:rounds.slice(-5).flat(),deadline:Date.now()+2500});
  if(validatePuzzle(p).length)throw Error('Invalid output');
  games.push(p);rounds.push(p.entries.map(e=>e.answer));
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { GENERATION_WORDS as WORDS } from '../lib/words.mjs';
+import { GENERATION_WORDS as WORDS, LEGACY_GENERATION_WORDS } from '../lib/words.mjs';
 import { LONG_CLUES } from '../lib/long-clues.mjs';
 import { validateWordBank } from '../lib/word-quality.mjs';
 import { generatePuzzle } from '../lib/engine.mjs';
@@ -12,7 +12,7 @@ test('longer-answer alternatives are explicit, sourced, distinct and integrated 
   assert.equal(variants.filter(c=>c.level===2).length,59);
   assert.equal(variants.filter(c=>c.level===3).length,24);
   for(const [answer,clues] of entries){
-    const word=WORDS.find(w=>w.answer===answer);
+    const word=LEGACY_GENERATION_WORDS.find(w=>w.answer===answer);
     assert.ok(word);assert.ok(answer.length>=8);
     assert.equal(word.clues.find(c=>c.level===1).text,word.easy);
     for(const clue of clues){
@@ -32,7 +32,7 @@ test('new variants reach Medium/Hard games, keep Easy direct and preserve crossi
       const word=WORDS.find(w=>w.answer===entry.answer);
       assert.ok(word.clues.some(c=>c.text===entry.clue && c.level===entry.clueLevel));
       if(mode==='easy'){assert.equal(entry.clueLevel,1);assert.equal(entry.clue,word.easy);}
-      if(LONG_CLUES[entry.answer]?.some(c=>c.text===entry.clue && c.level===entry.clueLevel))counts[mode]++;
+      if(entry.answer.length>=8&&entry.clueLevel>1)counts[mode]++;
       if(mode==='hard'&&entry.answer.length>=8&&entry.clueLevel===3)counts.hardestLong++;
     }
   }

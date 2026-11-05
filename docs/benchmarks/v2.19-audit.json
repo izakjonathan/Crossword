@@ -1,0 +1,197 @@
+{
+  "seedsPerMode": 100,
+  "bankAnswers": 1520,
+  "longerClueBank": {
+    "answers": 460,
+    "tier2Answers": 105,
+    "tier3Answers": 37
+  },
+  "modes": {
+    "easy": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 0,
+      "totalInformalClues": 0,
+      "maxEntries": 28,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 260.99333257999984,
+      "p95Ms": 1085.2380040000003,
+      "maxMs": 5437.146085,
+      "minFields": 56,
+      "maxFields": 58,
+      "meanVocabulary": 1.1302812187812186,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 7,
+      "meanEightPlusAnswers": 0,
+      "meanEightPlusChallengingClues": 0,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 0,
+      "meanReviewedAlternativeAnswers": 21.97,
+      "meanEntries": 24.94,
+      "meanBlack": 0.29382716049382684,
+      "meanChecking": 0.7850216838716841,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 7.04,
+      "meanAlternativeClues": 21.97,
+      "uniqueAnswersUsed": 600,
+      "mostFrequentAnswers": [
+        [
+          "ENYA",
+          22
+        ],
+        [
+          "INSET",
+          18
+        ],
+        [
+          "LATTE",
+          18
+        ],
+        [
+          "ALI",
+          17
+        ],
+        [
+          "OLE",
+          16
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 0,
+      "totalInformalClues": 0,
+      "maxEntries": 30,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 94.12341317000009,
+      "p95Ms": 423.98087499999747,
+      "maxMs": 1277.1008309999997,
+      "minFields": 80,
+      "maxFields": 82,
+      "meanVocabulary": 1.3757567649741553,
+      "meanClue": 1.3757071624028152,
+      "meanChallengingFraction": 0.37570716240281465,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEightPlusAnswers": 2.04,
+      "meanEightPlusChallengingClues": 0.53,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 46,
+      "meanReviewedAlternativeAnswers": 18.42,
+      "meanEntries": 24.53,
+      "meanBlack": 0.3271074380165284,
+      "meanChecking": 0.6578655593744875,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 12.52,
+      "meanAlternativeClues": 18.42,
+      "uniqueAnswersUsed": 938,
+      "mostFrequentAnswers": [
+        [
+          "ENYA",
+          25
+        ],
+        [
+          "CHER",
+          21
+        ],
+        [
+          "OHANA",
+          14
+        ],
+        [
+          "OVA",
+          14
+        ],
+        [
+          "ALADDIN",
+          11
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 100,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 0,
+      "totalInformalClues": 0,
+      "maxEntries": 36,
+      "symmetricPuzzles": 100,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 100,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 2,
+      "meanMs": 1193.752556850001,
+      "p95Ms": 4346.517835999999,
+      "maxMs": 7934.516782000006,
+      "minFields": 108,
+      "maxFields": 112,
+      "meanVocabulary": 1.5021221001221001,
+      "meanClue": 1.8845088208360259,
+      "meanChallengingFraction": 0.6695248868778281,
+      "meanHardFraction": 0.21498393395819845,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 11,
+      "meanEightPlusAnswers": 4.42,
+      "meanEightPlusChallengingClues": 2.13,
+      "meanEightPlusHardClues": 0.93,
+      "puzzlesWithLongChallengingClue": 95,
+      "meanReviewedAlternativeAnswers": 22.06,
+      "meanEntries": 29.52,
+      "meanBlack": 0.35147928994082883,
+      "meanChecking": 0.5931151084501396,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 17.96,
+      "meanAlternativeClues": 22.06,
+      "uniqueAnswersUsed": 943,
+      "mostFrequentAnswers": [
+        [
+          "ADELE",
+          24
+        ],
+        [
+          "RNA",
+          19
+        ],
+        [
+          "NAS",
+          19
+        ],
+        [
+          "ATP",
+          18
+        ],
+        [
+          "COPENHAGEN",
+          18
+        ]
+      ]
+    }
+  }
+}

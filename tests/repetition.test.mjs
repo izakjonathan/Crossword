@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { emptyLedger, dayKey, recordPuzzle, candidatePools, readLedger, generateAndRecord, LEDGER_KEY } from '../lib/repetition.mjs';
 import { generateFreshPuzzle } from '../lib/fresh-puzzle.mjs';
 import { ledgerRounds, recentAnswers } from '../lib/recent-rounds.mjs';
-import { WORDS } from '../lib/words.mjs';
+import { WORDS, GENERATION_WORDS } from '../lib/words.mjs';
 import { HISTORY_KEY } from '../lib/storage.mjs';
 const now=Date.parse('2026-10-19T10:00:00Z'), day=86400000;
 function storage(){const values=new Map();return{getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)};}
@@ -32,9 +32,9 @@ test('unused and well-rested answers precede younger answers in candidate pools'
  assert.deepEqual(pools.at(-1),['APPLE','PEAR','GRAPE']);
 });
 test('true rolling-window exhaustion has a distinct error and cannot repeat a protected answer',()=>{
- const history=recordPuzzle(emptyLedger(),puzzle(WORDS.map(w=>w.answer)),now);
+ const history=recordPuzzle(emptyLedger(),puzzle(GENERATION_WORDS.map(w=>w.answer)),now);
  assert.throws(()=>generateFreshPuzzle({mode:'easy',seed:'exhausted',history,now}),/Too few eligible answers/);
- assert.throws(()=>recordPuzzle(history,puzzle(['APPLE']),now),/last five puzzles/);
+ assert.throws(()=>recordPuzzle(history,puzzle([GENERATION_WORDS[0].answer]),now),/last five puzzles/);
 });
 test('full history survives reload and undated legacy history becomes a preference',()=>{
  const s=storage();s.setItem(HISTORY_KEY,JSON.stringify(['APPLE','PEAR']));

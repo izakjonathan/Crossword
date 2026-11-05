@@ -11,3 +11,5 @@ Run `npm test`, `npm run build`, `LAYOUT_BUILD=1 node --test tests/layout.test.m
 For search-cost changes, preserve seeded output and benchmark against the previous source using `scripts/benchmark-generation.mjs`. Keep domain caches local to each fill and never reuse a cached pool across history exclusions. Record relative timings and limitations in `docs/PERFORMANCE-V2.8.2.md` / the next versioned report.
 
 Raw WordNet additions are quarantined from new puzzles except individually rewritten clues. Hard profile v2 keeps clue quotas but drops mandatory specialist vocabulary. Preserve v1 save validation. Prepared Hard supply must pass active-clue, geometry, difficulty and last-five-answer checks.
+
+New construction uses replacement-words.mjs, compiled from data/replacement. Every active answer must be absent from the entire retired bank in legacy-words.mjs. Maintain the explicit entertainment share and abbreviation cap in word-mix.mjs, including independent validation and prepared supply. Historical bank fixtures test legacy data; new generation fixtures must use the current bank. No silent old-bank fallback.

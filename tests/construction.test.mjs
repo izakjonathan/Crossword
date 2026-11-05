@@ -4,7 +4,7 @@ import { generatePuzzle, random } from '../lib/engine.mjs';
 import { checkingQuality, validatePuzzle } from '../lib/validate.mjs';
 import { createLayout } from '../lib/grid-layout.mjs';
 import { fillLayout } from '../lib/grid-fill.mjs';
-import { WORDS } from '../lib/words.mjs';
+import { GENERATION_WORDS as WORDS } from '../lib/words.mjs';
 
 test('every new answer has at least half its letters checked, no adjacent unches and natural varied lengths', () => {
   const lengths = new Set();

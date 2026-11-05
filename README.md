@@ -1,8 +1,8 @@
-# Crossword puzzle · v2.18.0
+# Crossword puzzle · v2.19.0
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
-New puzzles use rotationally symmetric quick grids without solid 2×2 block clumps. Hard mode includes reviewed wordplay signalled by a question mark. Older games keep their original grids and progress. See [current construction and clue policy](docs/PROFESSIONAL-V2.13.md).
+New puzzles use rotationally symmetric quick grids without solid 2×2 block clumps. The replacement uses literal clues and pop-culture trivia. Older Hard games can contain reviewed wordplay signalled by a question mark. Older games keep their original grids and progress. See [current construction and clue policy](docs/PROFESSIONAL-V2.13.md).
 
 v2.13.1 fixes shared dialogs reopening after Close by preserving explicit view clears through Redis. Existing lobbies work without resetting their games. See [regression details](docs/SHARED-DIALOG-V2.13.1.md).
 
@@ -15,6 +15,8 @@ v2.14.0 improves the CSP dictionary index: lazy specialist-crossing queries and 
 v2.15.0 adds maintaining arc consistency (AC-3 before search and after every assignment), dynamic unfilled-crossing degree and difficulty-aware value support ranking. This changes new puzzle search while retaining saved games and strict quality/repeat rules. See [CSP implementation and evidence](docs/CSP-V2.15.md).
 
 v2.16.0 triples the bank to 5,730 answers and replaces lifetime/daily exclusions with a rolling five-puzzle window in solo and shared play. Existing exhausted ledgers and lobbies recover without clearing saved games. New dictionary definitions have provisional ratings and accessible source/licence credits. See [continuous-play policy and validation](docs/CONTINUOUS-PLAY-V2.16.md).
+
+v2.19.0 replaces the active supply with 1,520 authored answers, all absent from the retired 5,730-answer bank. Pop culture accounts for 384 entries (25.26%). New grids include 20–35% entertainment answers and at most 25% abbreviations. Saved older games remain readable. See [replacement policy and editorial scope](docs/plans/replacement-bank.md).
 
 ## Run
 

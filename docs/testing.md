@@ -31,3 +31,11 @@ The historical v2.8.2 performance comparison requires matching editorial banks: 
 ## Shared dialog clearing (v2.13.1)
 
 `tests/shared-dialog.test.mjs` models the production null-dropping JSON boundary; native Redis alone does not reproduce that behavior. `tests/shared-redis.test.mjs` also exercises opening on one SharedClient, closing on another and repeated polls. See [failure and fix](SHARED-DIALOG-V2.13.1.md).
+
+## Replacement bank release · v2.19.0 · 5 November 2026
+
+Baseline: v2.18.0, 2beb818566fee6745662066208816c4188173883. Final source verification: npm test completed with 138 passing, 0 failing and 7 skipped tests (145 total); npm run build passed; LAYOUT_BUILD=1 node --test tests/layout.test.mjs passed 3/3; npm run audit:puzzles passed 300/300 (100 seeds per mode) against the final 1,520-answer bank. The skipped cases require a disposable real Redis server unavailable in this environment. Mocked shared-state and storage checks ran normally.
+
+The focused history run passed 19/19 checks after fixing prepared continuation and candidate-pool budget starvation. New coverage proves disjointness from all 5,730 retired answers, the 384-entry entertainment share, active-clue membership, retained legacy data, classification and abbreviation limits, rejection of invalid proper-name spellings, exhausted-history recovery and protected mixed-mode rounds. All 64 rebuilt Hard packets passed active-answer and geometry/difficulty/mix checks; 120 consecutive prepared selections respected protected rounds. New exact-output hashes identify the deliberately changed bank; older fixtures remain intact.
+
+Source tests that previously expected original answers in new grids now test their archived metadata and exclusion from new construction. The production build and layout checks cover compilation and CSS, not a new iPhone/Safari device test. Clue ambiguity, enjoyment and human difficulty calibration still need play-testing. Factual reference checks are documented separately; there is no claim of independent human certification of every clue.

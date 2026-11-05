@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.19.0 — 5 November 2026
+
+- Replace new-puzzle vocabulary with 1,520 authored answers, excluding all 5,730 previous answers.
+- Include 384 pop-culture entries and enforce a 20–35% share in each new grid; cap abbreviations at 25%.
+- Preserve old saves, the seen-word ledger, difficulty and checking constraints, and last-five-round protection.
+- Rebuild the prepared Hard supply from the new bank and add independent content-mix validation.
+- Retain editorial TSVs, repeatable bank compilation, source-check notes and explicit human-review limitations.
+
+
 ## 2.18.0 — 25 October 2026
 
 - Remove experimental Pencil input and restore the original keyboard for every device.

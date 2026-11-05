@@ -57,10 +57,10 @@ test('solve timing persists through reload, freezes at completion and counts ass
   const undone=updateStats(stats,puzzle,one.play,{},now+2000);assert.equal(undone.completedAt,null);assert.equal(undone.hints,3);
   storage.setItem(SESSION_KEY,JSON.stringify({puzzle,play:initialState(puzzle)}));assert.ok(loadSession(storage).stats.startedAt);
 });
-test('62 original alternative clues retain direct wording, provenance and difficulty/crossing guarantees',()=>{
+test('62 original alternative clues remain archived and are excluded from new puzzles',()=>{
   assert.equal(Object.keys(VARIED_CLUES).length,62);
   for(const [answer,clues] of Object.entries(VARIED_CLUES)){const word=WORDS.find(w=>w.answer===answer);assert.equal(word.clues.find(c=>c.level===1).text,word.easy);assert.ok(word.clues.some(c=>c.text===clues[0].text&&c.level===2&&c.source.startsWith('https://')));}
-  let seen=0;for(const mode of ['easy','medium','hard'])for(let i=0;i<12;i++){const next=generatePuzzle({mode,seed:`varied-review-${i}`});assert.deepEqual(validatePuzzle(next),[]);for(const entry of next.entries){if(VARIED_CLUES[entry.answer]?.some(c=>c.text===entry.clue)){assert.notEqual(mode,'easy');seen++;}}}assert.ok(seen>0);
+  let seen=0;for(const mode of ['easy','medium','hard'])for(let i=0;i<12;i++){const next=generatePuzzle({mode,seed:`varied-review-${i}`});assert.deepEqual(validatePuzzle(next),[]);for(const entry of next.entries){if(VARIED_CLUES[entry.answer]?.some(c=>c.text===entry.clue)){assert.notEqual(mode,'easy');seen++;}}}assert.equal(seen,0);
 });
 test('shared operations reject forged count fields',()=>{
   for(const metrics of [{hints:-1},{checks:50},{hints:1,unknown:1},[]])assert.throws(()=>validateOperation(puzzle,{id:randomUUID(),changes:[],assisted:false,metrics}),/statistics/);

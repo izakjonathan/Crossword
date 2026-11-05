@@ -4,7 +4,7 @@ import { generatePuzzle } from '../lib/engine.mjs';
 import { DIFFICULTY_PROFILES, difficultySummary, validateDifficulty } from '../lib/difficulty.mjs';
 import { validatePuzzle } from '../lib/validate.mjs';
 import { validateWordBank } from '../lib/word-quality.mjs';
-import { GENERATION_WORDS as WORDS } from '../lib/words.mjs';
+import { GENERATION_WORDS as WORDS, LEGACY_GENERATION_WORDS } from '../lib/words.mjs';
 
 test('difficulty bands separate word familiarity, clue demand, field counts and longer answers',()=>{
   for(const mode of Object.keys(DIFFICULTY_PROFILES)) for(let seed=0;seed<12;seed++) {
@@ -35,7 +35,7 @@ test('new rated puzzles reject missing ratings, invalid versions and downgraded 
 });
 test('ratings are explicit and legacy alternative text is not automatically considered difficult',()=>{
   assert.ok(WORDS.every(w=>[1,2,3].includes(w.vocabularyLevel)));
-  const sonnet=WORDS.find(w=>w.answer==='SONNET');
+  const sonnet=LEGACY_GENERATION_WORDS.find(w=>w.answer==='SONNET');
   assert.notEqual(sonnet.easy,sonnet.hard);
   assert.ok(sonnet.clues.every(c=>c.level===1));
   assert.ok(WORDS.filter(w=>w.answer.length>=8).length>=150);
