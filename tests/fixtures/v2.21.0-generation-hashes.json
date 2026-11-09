@@ -1,0 +1,70 @@
+{
+  "baseline": "2.19.0",
+  "reason": "Entirely disjoint authored bank and explicit pop-culture/abbreviation constraints.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "cfcee70ca20c650824e29ccf99164c1f8300ad2cad5b54e5f1d94a4ea0bfd54a"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "0608e96574b16c23d8c67202cd2bc9c938777222c58247f5d3b5e668de8be250"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "236b3ca7ec9f475114e5aaa4a66ad52704af79ebc8e7b5d2d8b10c9967f97c9a"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "e0be40651a683ec824cca7d6ac4147b2188bdfc880c8ddb6dda8e505ea1a0a34"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "df7aa3c97ce35c8fb27e9d7553cf543e2a2daa331ac70027af3bb46a8e7cbe78"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "57365b1ebaa9e0187108968ff18cea21d20a07b5bf46a100b3d61ec3706296d2"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "f834f64b4cfbd1262ebc440aa1492547417ab0db667f5bb986ddd414e93762b4"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "88bdef90e49a474a8c3fc9cfa6eb8c76c90f7d65c2b5e65d4e59a4e8d1c393a0"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "e908a12e9f3019f251fae080ce9ee35505c1064ed20f4190ea9b32d7354a1fa2"
+    }
+  ],
+  "version": "2.21.0"
+}

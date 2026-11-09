@@ -34,3 +34,7 @@ The 1,520-answer bank and 64 Hard packets are finite. Permanent exclusions can e
 Expired Redis rooms, answers rolled out of their five-round metadata, deleted device data and library items deleted before capture cannot be reconstructed unless another surviving device ledger/save still contains them. This release does not claim a complete historical census. Open every participating device before rebuilding the bank.
 
 Tests cover complete-ledger/library recovery, no mutation of saved games, persistent exclusions after deletion/reload, failed network/storage, post-five-round exclusions, prepared/CSP filtering, exhausted supply, atomic competing reservations, idempotent retries and shared/solo races. See docs/testing.md for actual release results.
+
+## v2.21.0 publication change
+
+New games now come from the ready-puzzle publication API. Its Lua transaction reserves all answers and an immutable receipt together. The browser records that already-owned puzzle locally without rejecting its own server reservation. Shared replacement verifies the receipt's room and live lease and uses the authoritative stored puzzle. The old public answer-only claim action requires a refresh. Drafts, content edits, inventory regeneration and catalog revisions never clear the global history. Bounded cache planning and background refill improve supply; they do not relax permanent exclusions.

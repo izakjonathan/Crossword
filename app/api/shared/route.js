@@ -1,3 +1,5 @@
+import { publicationStore } from '../../../features/publication/store.mjs';
+import { roomKey } from '../../../lib/shared-store.mjs';
 import { sharedStore } from '../../../lib/shared-store.mjs';
 import { SharedError, TOKEN_PATTERN } from '../../../lib/shared-model.mjs';
 
@@ -47,5 +49,7 @@ export function POST(request) {
 }
 export function GET(request) { return respond(() => sharedStore().get(tokenFrom(request))); }
 export function PATCH(request) {
-  return respond(async () => { sameOrigin(request); const token = tokenFrom(request); return sharedStore().patch(token, await readBody(request)); });
+  return respond(async () => { sameOrigin(request); const token = tokenFrom(request); const operation=await readBody(request);
+    if(operation.kind==='replace'){const publication=await publicationStore().verify(operation.puzzle,{id:operation.leaseId,scope:roomKey(token)});operation.puzzle=publication.puzzle;}
+    return sharedStore().patch(token, operation); });
 }

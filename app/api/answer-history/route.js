@@ -24,6 +24,7 @@ export async function POST(request) {
     let body;
     try { body = JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { throw new SharedError('Invalid JSON.'); }
     if (!body || !['sync','claim'].includes(body.action)) throw new SharedError('Invalid answer-history action.');
+    if(body.action==='claim')throw new SharedError('Refresh the app to load an approved puzzle from the new puzzle service.',409);
     const store = answerHistoryStore();
     const result = body.action === 'sync' ? await store.sync(body.answers) : await store.claim(body.id,body.answers);
     return Response.json(result,{headers});

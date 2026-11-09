@@ -1,3 +1,13 @@
+## v2.21.0 · Editorial catalog and server publication
+
+- Separate answer, meaning, clue, evidence, assessment and revision records. Gate drafts and changed text on recorded review; retain 1,519 unchanged legacy acceptances transparently rather than claiming new human certification.
+- Add 123 original everyday answers and 30 explicit alternate senses. Replace volatile TRAVIS relationship wording with primary-source name identification. Active catalog: 1,643 answers, still disjoint from all retired answers.
+- Score bounded MAC/CSP fills and retain paired best-fill/clue assignments. Add failure-pattern diagnostics and positional query/review tools.
+- Serve immutable, independently checked ready packets for Easy/Medium/Hard. Reserve answers and receipts atomically; plan selections across modes to avoid immediate Hard starvation. Client waits with the same identity during bounded refill.
+- Move CPU search off the HTTP event loop. Add fenced partial-success replenishment after selections and a secret-protected daily Vercel schedule.
+- Verify and use authoritative publication receipts when replacing the puzzle in an existing shared room. Preserve membership, original saves and permanent exclusions; old clients must refresh to start new games.
+- Add clue reporting and aggregate quality events; metrics flag editorial review without automatically rewriting content or claiming calibrated difficulty.
+
 ## v2.20.0 · Permanent answer-history protection
 
 - Preserve the complete device ledger, legacy answer list, saved library and current puzzle before generation; synchronize known answers across devices through a non-expiring Redis hash.

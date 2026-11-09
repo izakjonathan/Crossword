@@ -35,3 +35,10 @@ test('backtracking queries preserve parent domains, duplicate exclusion and hist
   assert.deepEqual(restricted.forLength(3).map(word => word.answer), ['CAR', 'BAT', 'BAR']);
   assert.notStrictEqual(restricted.forLength(3), child);
 });
+
+test('positional pattern queries equal linear matching and retain score and exclusion filters',()=>{
+ const bank=[{answer:'APPLE',editorialScore:90},{answer:'AMPLE',editorialScore:60},{answer:'ANGLE',editorialScore:80}];
+ const index=createDictionaryIndex(bank);
+ assert.deepEqual(index.matching('A..LE',{minimumScore:70,excluded:new Set(['ANGLE'])}).map(w=>w.answer),['APPLE']);
+ assert.throws(()=>index.matching('A.*LE'));assert.deepEqual(index.matching('.....'),bank);
+});

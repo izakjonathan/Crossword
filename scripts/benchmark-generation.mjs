@@ -48,7 +48,7 @@ for(let index=0;index<12;index++){
   const mode=['easy','medium','hard'][index%3];
   const input={mode,seed:`day-${index}`,history,now:now+index*1000};
   const result=compare(baselineFresh.generateFreshPuzzle,generateFreshPuzzle,input,index%2===1,changedSearch?{...input,history:oldHistory}:input);
-  for(const entry of result.baselinePuzzle.entries){if(oldSeen.has(entry.answer))throw new Error('Baseline repeated answer in sequence');oldSeen.add(entry.answer);}
+  for(const entry of result.baselinePuzzle.entries){if(recentAnswers(ledgerRounds(oldHistory)).has(entry.answer))throw new Error('Baseline repeated protected answer in sequence');oldSeen.add(entry.answer);}
   oldHistory=recordPuzzle(oldHistory,result.baselinePuzzle,now+index*1000);
   const blocked = recentAnswers(ledgerRounds(history));
   for(const entry of result.puzzle.entries){if(blocked.has(entry.answer))throw new Error('Repeated protected answer in sequence');seen.add(entry.answer);}

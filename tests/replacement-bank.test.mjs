@@ -10,15 +10,15 @@ import {validateWordMix} from '../lib/word-mix.mjs';
 
 test('the replacement bank is wholly disjoint, individually clued and roughly one-quarter pop culture',()=>{
  const old=new Set(retired.map(w=>w.answer));
- assert.equal(bank.length,1520);assert.equal(bank.filter(w=>w.category==='pop-culture').length,384);
- assert.ok(bank.every(w=>!old.has(w.answer)&&w.editorialStatus==='authored'));
+ assert.equal(bank.length,1643);assert.equal(bank.filter(w=>w.category==='pop-culture').length,384);
+ assert.ok(bank.every(w=>!old.has(w.answer)&&w.editorialStatus==='approved'));
  assert.deepEqual(validateWordBank(bank),[]);
  assert.ok(bank.filter(w=>w.answer.length===3).length>=300);
  assert.ok(bank.filter(w=>w.clues.some(c=>c.level===3)).length>=150);
  const share=bank.filter(w=>w.category==='pop-culture').length/bank.length;
- assert.ok(share>=.24&&share<=.27);
+ assert.ok(share>=.22&&share<=.25);
  assert.ok(!bank.some(w=>['FIERO','LORELAX'].includes(w.answer)));
- assert.match(bank.find(w=>w.answer==='TRAVIS').easy,/Taylor Swift/);
+ assert.match(bank.find(w=>w.answer==='TRAVIS').easy,/football player Kelce/);
  assert.match(bank.find(w=>w.answer==='TRAVIS').easy,/First name/);
 });
 

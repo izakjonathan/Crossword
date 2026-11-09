@@ -1,6 +1,6 @@
 {
   "name": "daily-cross",
-  "version": "2.20.0",
+  "version": "2.21.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "test": "node --test --test-concurrency=2 tests/*.test.mjs",
-    "audit:puzzles": "node scripts/audit-puzzles.mjs"
+    "audit:puzzles": "node scripts/audit-puzzles.mjs",
+    "editorial:build": "node scripts/build-editorial.mjs",
+    "editorial:audit": "node scripts/editorial.mjs audit",
+    "inventory:prepare": "node scripts/prepare-inventory.mjs",
+    "verify:backend": "node scripts/verify-backend.mjs"
   },
   "dependencies": {
     "@fontsource/work-sans": "5.3.0",

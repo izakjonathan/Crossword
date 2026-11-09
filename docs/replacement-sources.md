@@ -28,3 +28,7 @@ Do not mark this bank as externally certified. Further human clue review and dif
 
 - BERN and SWITZERLAND: federal-city wording follows https://www.aboutswitzerland.eda.admin.ch/en/political-system .
 - MBABANE and ESWATINI: administrative-capital distinction follows https://au.int/en/cities/lobambaroyal-and-legislative-mbabane-administrative .
+
+## v2.21.0 clarification
+
+The historical relationship-based TRAVIS wording above is no longer active. It was replaced with first-name identification supported by the primary Chiefs player record: https://www.chiefs.com/team/players-roster/travis-kelce/ . Existing saved puzzles keep their original snapshots. The 123 everyday additions and thirty explicit alternate senses are original assistant-authored wording, with content-specific assistant reviews in data/editorial/reviews.json; independence is explicitly false. The earlier release acceptance is preserved separately in legacy-acceptance.json, not restated as a new human fact-check.

@@ -1,134 +1,95 @@
-# Crossword puzzle · v2.20.0
+# Crossword puzzle · v2.21.0
 
-v2.20.0 preserves all recoverable played answers in a non-expiring Redis registry and device exclusion list before the next content rebuild. Every device must open the updated app online to contribute its local ledger and saved puzzles. New solo and shared games cannot reuse registered answers, even after five rounds; existing saves remain playable. See [current answer-history policy](docs/REPETITION.md). The finite bank can run short; the app keeps the current game instead of relaxing exclusions.
+A mobile-first Next.js crossword app with solo saves, discoverable shared lobbies, a global two-colour UI Studio and a versioned editorial publication backend.
 
-A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
+Production: https://crosswordapp.vercel.app/ · Repository: izakjonathan/Crossword.
 
-New puzzles use rotationally symmetric quick grids without solid 2×2 block clumps. The replacement uses literal clues and pop-culture trivia. Older Hard games can contain reviewed wordplay signalled by a question mark. Older games keep their original grids and progress. See [current construction and clue policy](docs/PROFESSIONAL-V2.13.md).
+## Play and saved games
 
-v2.13.1 fixes shared dialogs reopening after Close by preserving explicit view clears through Redis. Existing lobbies work without resetting their games. See [regression details](docs/SHARED-DIALOG-V2.13.1.md).
+- Easy 9×9, Medium 11×11 and Hard 13×13 quick crosswords, with symmetric blocks, connected entries, minimum three-letter answers, at least half of each answer checked and no consecutive unchecked letters. These are not fully checked American publication grids.
+- Tap a square or clue to select; tap a selected crossing to switch direction. QWERTY controls support typing, deletion and undo. Typing advances one square even when the next square already contains a letter.
+- Small All clues button, separate hint/check controls, optional timer/preferences and a saved-game library. Old games retain their original grids, clues and progress.
+- Home-screen layout leaves safe-area space below the custom keyboard. Apple Pencil input is not included.
 
-v2.13.2 makes the active clue text non-interactive and adds a separate small **All clues** button beside it, reducing accidental popup openings.
+## Shared play and colours
 
-v2.13.3 removes direction/progress labels from the active clue and gives the home-screen keyboard 12px plus the bottom safe-area inset below its keys.
+Players can host a named lobby, discover it on another device, join and explicitly leave. Letters, deletions, selection, clue direction, checks and shared dialogs synchronize through Redis. Creating a new game changes the puzzle inside the existing session; joined players stay together. Round fencing rejects late edits from an earlier puzzle. Original room capabilities, membership and expiry remain intact.
 
-v2.14.0 improves the CSP dictionary index: lazy specialist-crossing queries and bounded reuse of excluded-answer matches reduce repeated backtracking work. Grid extraction and row-major clue numbering remain automatic. See [generator methodology and measurements](docs/PERFORMANCE-V2.14.md).
+UI Studio changes the background and content colours for everyone. Local preview/cancel remains immediate; validated saved colours synchronize through the server. Do not put Redis credentials in browser code.
 
-v2.15.0 adds maintaining arc consistency (AC-3 before search and after every assignment), dynamic unfilled-crossing degree and difficulty-aware value support ranking. This changes new puzzle search while retaining saved games and strict quality/repeat rules. See [CSP implementation and evidence](docs/CSP-V2.15.md).
+## Answer and clue backend
 
-v2.16.0 triples the bank to 5,730 answers and replaces lifetime/daily exclusions with a rolling five-puzzle window in solo and shared play. Existing exhausted ledgers and lobbies recover without clearing saved games. New dictionary definitions have provisional ratings and accessible source/licence credits. See [continuous-play policy and validation](docs/CONTINUOUS-PLAY-V2.16.md).
+The active catalog contains **1,643 approved answers**, including 123 new everyday phrases/household terms and 30 explicit alternative senses. Entertainment accounts for 384 answers; every generated grid requires 20–35% entertainment and at most 25% abbreviations. Every active answer remains absent from the archived 5,730-answer bank.
 
-v2.19.0 replaces the active supply with 1,520 authored answers, all absent from the retired 5,730-answer bank. Pop culture accounts for 384 entries (25.26%). New grids include 20–35% entertainment answers and at most 25% abbreviations. Saved older games remain readable. See [replacement policy and editorial scope](docs/plans/replacement-bank.md).
+Answers, display forms, normalized grid forms, meanings, grammatical information, clues, evidence, assessments and revisions are separate linked records. New/changed content must match an explicit review decision before entering generation. Low-quality, draft, rejected, quarantined or unapproved meanings/clues stay outside the pool.
 
-## Run
+**Review limits:** 1,519 unchanged records retain documented prior-release acceptance. Their migrated meaning/grammar metadata is flagged for further semantic review. New content and the TRAVIS correction were reviewed by the assistant, not independently certified by human editors. Difficulty ratings remain provisional. Automated checks do not prove that every clue is natural, factually correct or universally fair.
 
-Node 24, then `npm ci` and `npm run dev`. Production: `npm run build` and `npm start`. Validation: `npm test`. Generator audit: `npm run audit:puzzles` (100 fixed seeds per difficulty).
+New-game requests load immutable ready puzzles from the server. Scored MAC/CSP runs off-thread during preparation and replenishment. An independent publisher checks structure, active clue revisions, geometry, crossing fairness, subject concentration, clue leakage and freshness before accepting a packet. There are initially eight ready packets per difficulty. Compatible-stock planning protects future choices across modes.
 
-## The screen
+After selections, fenced background jobs replenish usable stock. A protected daily 04:00 UTC Vercel job provides another retry opportunity. Clients wait with the same request identity during bounded refill; failures keep the current board. A finite bank cannot supply unlimited permanently unique games.
 
-A borderless, title-free header with seven evenly spaced controls and a plain + in the content colour. The + dialog starts a new Easy, Medium or Hard puzzle immediately when an option is tapped. The board occupies the remaining screen above a dock with the clue and QWERTY keys. The Baros two-colour theme is retained.
+See [the backend design, source workflow and limitations](docs/EDITORIAL-BACKEND-V2.21.md).
 
-- Grid counts: Easy 9×9, Medium 11×11, Hard 13×13. Cells grow vertically into spare space, up to 20% taller than wide; short layouts retain square cells. Existing portrait puzzles and progress remain playable; tap + for the new square format.
-- Board-only pinch zoom (1–3×), drag to pan, and − / Fit / + controls. The entire grid fits initially; zoom does not move the header, clue or keyboard. Zoom is anchored beneath the fingers, panning is bounded, and the active cell is brought into view when typing. Rotation resets gesture state and preserves zoom level.
-- A game-owned three-row QWERTY keyboard with backspace, as shown in the latest Mirror reference. This replaces the earlier native-keyboard requirement. No hidden text input opens the iOS keyboard during solving. UI Studio colour text fields still use the native keyboard.
-- Current clue directly above the keys, with previous/next arrows. Use the separate All clues button for the scrollable clue list. Tap the selected crossing to switch Across/Down. Active word shading and selected-cell shading derive from the chosen two colours.
-- Hardware letters, arrows, Backspace and Cmd/Ctrl+Z. Enter on the board advances clues; Space switches direction. Tab remains available to leave the board and navigate controls.
-- Typing advances one square, including when the next square already contains a letter. Saved navigation preferences control end-of-word and Space behavior.
-- Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
+## Permanent answer exclusions
 
-## Generation and clue quality
+All recoverable device ledgers, legacy history, saved libraries/current games and surviving shared-room history are merged into non-expiring exclusions. Each device must open the updated app online to contribute local-only history. Deleted or expired history cannot be reconstructed without another surviving record.
 
-The release notes below describe earlier bank and rolling-window behavior. v2.20.0 permanent exclusions supersede those reuse policies; the current active bank remains the v2.19.0 replacement.
+Publication atomically reserves answers and a receipt. Repeated requests return the same puzzle; different requests cannot consume the same answer. Shared replacements verify the publication's room/lease and use the authoritative stored snapshot. Changing a clue does not make a used answer new. Existing games remain playable; new games require online synchronization. See [repetition policy](docs/REPETITION.md).
 
-v2.9.0 adds 83 reviewed variants for 74 longer answers, preserving their direct clues and the existing difficulty/crossing rules. See the [source-backed clue review](docs/LONG-CLUES-V2.9.md) and [validation](docs/VALIDATION-V2.9.0.md).
+## Editorial operations
 
-v2.8.2 improves Hard generation speed using per-fill caches. A matched benchmark retained identical output for 300 fresh puzzles and twelve games with repeat exclusions. See [performance evidence and limits](docs/PERFORMANCE-V2.8.2.md).
+```bash
+npm ci
+npm run editorial:build
+npm run editorial:audit
+node scripts/editorial.mjs brief TRAVIS
+node scripts/editorial.mjs candidates '.A..E'
+node scripts/editorial.mjs check-draft /path/to/draft.json
+node scripts/editorial.mjs review /path/to/review-request.json
+node scripts/editorial.mjs import-reviewed /path/to/reviewed-record.json
+```
 
-The original literal clue bank contains 1,906 unique answers (including 210 additional familiar short answers in v2.7). Every answer has an explicit vocabulary band, and reviewed clue variants have separate demand tiers. Easy, Medium and Hard enforce distinct whole-puzzle mixtures as well as increasing square counts. The v2.8 bank adds 168 answers, mostly longer words, with original direct definitions. No AI credentials, external puzzle API, licensed publisher grids or invented cryptic clue generation are used. Definitions and grammatical answer forms are stored together. Automated bank checks catch missing clues, duplicate answers, invalid answer forms and answer leakage, common inflections and known giveaway compounds; they do not replace editorial judgment.
+The reviewed import is a versioned source change, not a production write. Increment the catalog revision, rebuild and independently revalidate the inventory before releasing content changes. AI drafting briefs preserve meaning, grammar and evidence context; model output is never approved automatically. No model API key or publisher clue corpus is required.
 
-Each request has a fresh seed and uses a persistent dated ledger of every answer seen by this browser on this site origin. There is no 500-answer rollover in the current generation path. All difficulties share the same history.
+Prepare all difficulties against an exported current exclusion snapshot:
 
-- Answers from the latest five puzzles are excluded across difficulties; shared rooms protect the latest five shared rounds.
-- Prefer never-used answers, then introduce the oldest eligible answers when necessary. Calendar dates and total games no longer prevent reuse forever.
-- True pool shortage and bounded-search failure have distinct messages; generation failures preserve the current puzzle.
-- Generation holds an exclusive Web Lock while reading history, generating and committing it. This serialises requests from tabs on the same origin. The ledger must persist before a new puzzle is shown; a storage error rejects the new puzzle.
-- Old undated history becomes a seen-word preference; identifiable recent rounds and the current saved puzzle stay protected. No history or game reset is required.
-- History survives reloads. It is local to a browser profile/site origin, not shared between devices, aliases, private sessions or browsers. Clearing site storage clears that history. Updated clients, HTTPS and Web Locks support are required for coordinated generation.
+```bash
+node scripts/prepare-inventory.mjs --history=/path/to/history.json
+```
 
-The bank contains 5,730 unique answers, including 3,820 licensed direct-definition additions with provisional vocabulary ratings. Not all are eligible for every mode, and not all supplemental definitions have individual editorial review. Seeded bounded subsets keep the expanded dictionary manageable; constraints and worker deadlines can still prevent a particular request from succeeding.
+`history.json` contains an `answers` array from the existing answer-history sync API. `--reuse` independently rechecks compatible existing packets. Failed preparation retains the previous complete inventory. Generation diagnostics and `editorial priorities HEALTH.json HISTORY.json` identify scarce lengths and failing letter patterns.
 
-Generation runs in a dedicated Web Worker. New layouts guarantee at least half of every answer's letters are checked and no adjacent unchecked letters. A constraint search fills the legal slots from the permitted bank, with forward checking, answer uniqueness and bounded backtracking. It tries up to 1,024 candidate layouts and 48,000 search nodes per arrangement search; fresh-history pool retries remain bounded by the worker deadline. Current layouts use 3–7-letter answers on Easy, 3–9 on Medium and 3–11 on Hard. Medium includes at least one answer of eight or more letters; Hard includes at least one of nine or more. Rotational symmetry is enforced; these remain partially checked quick grids, with no claim of American publication compliance. Request IDs reject stale replies; a timed-out or failed worker is terminated and recreated for the next request. A 20-second client deadline prevents indefinite loading.
+## Feedback and calibration
 
-New puzzles also prevent specialist-to-specialist crossings and give every hardest-tier clue at least one gentler crossing clue. See the [crossing safeguards](docs/CROSSING-FAIRNESS.md) and [v2.8.1 validation](docs/VALIDATION-V2.8.1.md). Earlier saves retain their original rules.
+Published games offer Report this clue in Puzzle controls. Reports and aggregate hint/check/completion events are validated against publication receipts and deduplicated. Free-text reports expire after thirty days; short-lived address hashes enforce rate limits. Typed letters and raw IP addresses are not stored in these metrics.
 
-See the [difficulty policy and research](docs/DIFFICULTY.md) and [v2.8 validation](docs/VALIDATION-V2.8.md). The ratings are editorial starting bands, not human-calibrated scores.
+Sample-size and error/hint/report indicators flag editorial review. They do not automatically rewrite clues or certify difficulty. Active time excludes hidden-tab time but cannot identify every distraction.
 
-For the previous construction changes, see the [v2.7 source-backed construction review](docs/RESEARCH-V2.7.md) and [validation/benchmark report](docs/VALIDATION-V2.7.md). The audit recorded 300 valid distinct fresh-seed grids. Mechanical validity is separate from a human editor's assessment of every clue.
+## Development and verification
 
-## Local UI Studio
+Node 24.x is configured. No new dependency was added for the editorial backend.
 
-The two colours default to Baros canvas `#fff4c4` and ink `#000000`. UI Studio previews both and saves to this browser's localStorage when **Save** is pressed. Changes persist after reload and synchronise between tabs on this device, without a server, account, database, environment variable or network request. Other devices keep their own palette. Cancel restores the saved colours. Invalid colours and low contrast are rejected; unavailable browser storage produces an explicit save error.
+```bash
+npm run dev
+npm test
+npm run build
+LAYOUT_BUILD=1 node --test tests/layout.test.mjs
+npm run audit:puzzles
+REDIS_TEST_CLI=/path/to/redis-cli npm run verify:backend
+```
 
-The unused shared-theme API and Blob dependency have been removed.
+Real Redis tests require disposable local Redis binaries. The HTTP verifier starts its own local Redis and REST adapter; it never connects to production credentials. Tests cover catalog gating, multi-sense clues, scored backtracking, worker deadlines, immutable receipts, publication races/refills, saved games, shared round replacement and feedback. There is no configured lint or standalone typecheck script.
 
-## Compact mobile layout
+See [testing evidence](docs/testing.md), [architecture](docs/architecture.md) and [development workflow](docs/development-workflow.md). Historical release documents remain under docs and CHANGELOG.md.
 
-The header is 48px tall, with evenly sized 44px-high controls and no title. Hints, zoom − / Fit / +, UI Studio and new puzzle remain in the header. The ··· menu contains All clues, Undo, Check letters and Clear current word. The 76px portrait clue strip contains the current number, direction, fill progress and up to two lines of clue text; tap it to browse Across/Down clues. Landscape uses a 66px clue strip beside the grid. Selection uses the inverse two-colour palette with an inset frame. Tap the selected crossing to switch direction.
+## Deployment configuration
 
-## Validation and limits
+Vercel builds main using the existing Next.js project. Redis uses a complete server-only pair:
 
-`npm test` covers randomized square grids, sequential generations and more than 500 dated answer reservations, input skipping and overwrites, direction changes, deletion, undo, multi-character entry, assisted reveals, theme contrast, local theme persistence, storage failures and CSS layout regression checks. Gesture tests cover anchoring, bounds, fit reset, selected-cell visibility, tap/drag separation, pointer cancellation, and pinch-to-pan transitions. `npm run build` verifies production compilation, worker bundling.
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`, or
+- `KV_REST_API_URL` and `KV_REST_API_TOKEN` from the Marketplace integration.
 
-Physical iPhone touch behaviour and comparative performance against other crossword apps have not been tested in this environment. There is no claim of outperforming publishers or of human-edited newspaper construction quality. See [current research and implementation rationale](docs/RESEARCH-V2.7.md) for primary sources and tradeoffs.
+`CRON_SECRET` authenticates scheduled replenishment; never expose it as a NEXT_PUBLIC variable. The production scheduler credential was configured for this release. The endpoint returns 401 when authorization is missing or incorrect. `next.config.mjs` includes the ESM worker sources in the relevant function traces. `vercel.json` schedules the daily job.
 
-## Deployment
-
-Existing Vercel project: `daily-cross` (`prj_WGNWhHvLtU77WANBFmbHWPD8sxEO`). Node 24.x, `npm ci`, `npm run build`, default Next.js output directory. Preserve the current deployment protection settings.
-
-Independent of The Guardian. No Guardian clues, assets, branding or grids are included.
-
-## Historical release notes
-
-The following notes describe their named releases; the v2.7 behaviour and reports above take precedence.
-
-### v2.1.1 layout repair
-
-Restores the header, board and keyboard rules accidentally removed in v2.1.0. A PostCSS regression check rejects that released broken stylesheet, checks the restored layout, and can validate built assets with `LAYOUT_BUILD=1 node --test tests/layout.test.mjs` after a production build. No gameplay or saved progress changes.
-
-### v2.2.1 browser canvas and clue stability
-
-The local palette is restored in the head before hydration, and applied explicitly to html/body backgrounds, CSS variables, theme-color and colour-scheme metadata. This covers the browser-exposed page canvas; Safari retains control of its native translucent toolbar material. Portrait clues reserve 62px (two 22px lines), with a stable 52px two-line landscape variant. Longer clues scroll inside the field. The broader square-board layout proposal and research are in [docs/LAYOUT-PLAN.md](docs/LAYOUT-PLAN.md); that redesign is not yet applied.
-
-### v2.3 geometry and repetition validation
-
-The grid uses separate cell width/height in rendering, hit testing and selected-cell auto-pan. Pinch zoom keeps both dimensions in proportion. Tests cover tall-cell taps after zoom, all-day histories beyond 500 answers, all difficulties, Copenhagen day boundaries, history migration/reload, cooldown tiers, exhaustion, concurrent reservations and failed final writes. See [repetition policy](docs/REPETITION.md).
-
-### v2.4 denser construction
-
-New grids accept at most 42% black cells and at most three solid 2×2 black patches. Longer-answer candidate ordering, extra fill passes and area-based scoring reduce sparse boards. Ordinary adjacent black cells remain allowed. New grids are validated against these limits; old saved grids retain progress and use the earlier restore rules. See [research and measurements](docs/GRID-CONSTRUCTION.md).
-
-### v2.5 content editing
-
-Revised 143 existing entries and added 286 familiar answers with original direct/less-direct clue pairs. There are now 505 answers with distinct Easy and Hard clues (previously 89). Remaining entries retain one direct definition at both levels; difficulty is not presented as a calibrated human editorial rating. The bank now extends through Z instead of the large expansion stopping at L. Silent duplicate-answer overrides have been removed. Runtime bank validation runs in the worker as well as in tests. Existing saved puzzles retain their original clues and progress; generate a new puzzle for the edited bank. See [editorial review](docs/CLUE-QUALITY.md).
-
-### v2.6 second editorial pass
-
-Revised another 400 existing answer entries, without adding more fill or changing the grid algorithm. There are now 904 of 1,528 answers with distinct direct/less-direct clues. The review covers the A–C portion of the expansion and a broad selection of objects, plants, food, animals and everyday words from the other bank. Alternative senses use natural English; harder clues are not automatically certified harder for every solver.
-
-Runtime validation now also rejects the same normalized clue attached to different answers of equal length. Typography, repeated spaces and a terminal full stop cannot bypass this check. Answer-leak detection handles dropped final E, consonant doubling and Y-to-IES changes. It still avoids rejecting coincidental substrings. Tests exercise the checks with real editorial failure examples.
-
-A six-puzzle fixed-seed sample (two per difficulty) contained 60 answers with distinct direct/less-direct clue pairs after editing, versus 33 before, out of 105 entries. This is a small content-coverage check, not a broad benchmark or a rating of solver difficulty. No layout, progress, reuse-window or history changes were made.
-
-### v2.6.1 · Browser background
-
-Baseline: the recovered v2.6.0 production source. Browser colour metadata is now declared before the saved-theme bootstrap and is owned by UI Studio rather than a separate static Next.js viewport colour. A fixed full-viewport background follows the same `--bg` as the app, including exposed top/bottom areas when browser controls or the native keyboard resize the game. Preview, Save, Cancel, reload and cross-tab theme updates retain their existing behaviour.
-
-Validation: `npm test` and `npm run build`. Manual iPhone check: change Background in UI Studio; preview both viewport edges, cancel to restore, then save and reload. Repeat with a dark background and light content, and with Safari controls expanded/collapsed. Browser controls may apply their own translucency/tint; real iPhone Safari appearance must be checked on-device.
-
-## Editorial recovery and reliable Hard loading · v2.18.0
-
-Pencil mode has been removed; saved Pencil preferences are ignored and the original keyboard always appears. New puzzles use 2,010 answers: the original 1,910 plus 100 individually rewritten additions. The remaining 3,720 raw dictionary additions are quarantined; the full archived data remains available for saved-game compatibility.
-
-Hard first selects from 64 offline CSP-built puzzles, checking active clue eligibility, structure, difficulty, crossing fairness and the last-five-answer window. The selector checks a five-round continuation along the prepared sequence before offering a packet. Existing seen-word history still prioritises unused/oldest eligible answers. This finite supply can reuse a cooled puzzle; it is not 64 endlessly unique puzzles. If older/mixed-mode histories leave no prepared match, bounded CSP search remains available. The worker deadline is retained, and all fallback pool searches share a seven-second cooperative budget.
-
-Hard profile v2 retains its minimum 65% challenging clues, 20% hardest-tier clues and 1.85 mean clue demand, but drops compulsory specialist fill and lowers the required vocabulary mean to 1.5. Old v1 games retain their original validation profile. See [research, decisions and release evidence](docs/EDITORIAL-V2.18.md).
+Do not reset the permanent history, replace existing publication receipts, or fall back to unchecked client-generated puzzles when stock is empty.

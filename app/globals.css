@@ -109,3 +109,7 @@ body { isolation:isolate; }
 @media (display-mode:standalone) {
  .puzzle-keyboard { padding-bottom:calc(12px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Clue reports use the same compact two-colour controls as other dialogs. */
+.field-label { display: grid; gap: 8px; margin: 16px 0; font-weight: 600; }
+.field-label select, .field-label textarea { width: 100%; font: inherit; color: var(--content); background: var(--bg); border: 1px solid currentColor; border-radius: 8px; padding: 10px; }

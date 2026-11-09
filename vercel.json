@@ -1,0 +1,1 @@
+{"crons":[{"path":"/api/puzzles/replenish","schedule":"0 4 * * *"}]}

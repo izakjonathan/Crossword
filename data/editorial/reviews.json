@@ -1,0 +1,2909 @@
+[
+  {
+    "answer": "WASHUP",
+    "content": "g7742t",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WIPEDOWN",
+    "content": "1t6rxgv",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TIDYUP",
+    "content": "j5d697",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PACKAWAY",
+    "content": "1kjoywj",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PUTAWAY",
+    "content": "1i228rj",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANGUP",
+    "content": "1cx9ytn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANGUP",
+    "content": "hq5vf1",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANGOUT",
+    "content": "6m7d4n",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TURNOFF",
+    "content": "uauei2",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TURNOFF",
+    "content": "1uuxav4",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TURNON",
+    "content": "khiuo0",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TURNON",
+    "content": "1f7v891",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SWITCHOFF",
+    "content": "qcyucf",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SWITCHON",
+    "content": "1vasc51",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LOGIN",
+    "content": "1i6nrn7",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LOGOUT",
+    "content": "14n07x1",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SIGNIN",
+    "content": "vcauji",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SIGNOUT",
+    "content": "jubbqs",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SIGNOUT",
+    "content": "s1i1b8",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CHECKIN",
+    "content": "1fnjx6n",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GETUP",
+    "content": "1le9x0v",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SITDOWN",
+    "content": "6sj2sf",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LIEDOWN",
+    "content": "grqxas",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WAKEUP",
+    "content": "15ecyv",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "STANDUP",
+    "content": "1ht8pyn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "STANDUP",
+    "content": "1i58arc",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "COMEIN",
+    "content": "odgrwn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "COMEIN",
+    "content": "1c287da",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GOOUT",
+    "content": "16e75rz",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GOBACK",
+    "content": "14fxlny",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WALKAWAY",
+    "content": "1xg401w",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LOOKUP",
+    "content": "ngav95",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LOOKUP",
+    "content": "1eeigfw",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LOOKOUT",
+    "content": "vwy7yb",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FINDOUT",
+    "content": "8oo3lu",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WORKOUT",
+    "content": "vqm8mz",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WORKOUT",
+    "content": "198id8t",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FIGUREOUT",
+    "content": "1trm7i9",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CARRYON",
+    "content": "9m9p39",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "KEEPUP",
+    "content": "1evlweu",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CATCHUP",
+    "content": "1xi3qir",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SLOWDOWN",
+    "content": "awducb",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SPEEDUP",
+    "content": "7b08vn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CALMDOWN",
+    "content": "1i3rtyx",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CHEERUP",
+    "content": "1ya259y",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GROWUP",
+    "content": "9nio1t",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DRESSUP",
+    "content": "1otn9hx",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DRESSUP",
+    "content": "c3miwa",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SHOWUP",
+    "content": "buaf8u",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SHOWUP",
+    "content": "1761wlm",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SETOFF",
+    "content": "1knmglo",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SETOFF",
+    "content": "1cxnphi",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SETOUT",
+    "content": "2kdt8n",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SETOUT",
+    "content": "oz5eqp",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TAKEOFF",
+    "content": "3a5grn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TAKEOFF",
+    "content": "xeu046",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PUTON",
+    "content": "130dlrp",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TRYON",
+    "content": "xc4wi",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TRYOUT",
+    "content": "1d869ve",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GIVEUP",
+    "content": "mp3er2",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GIVEUP",
+    "content": "u9enag",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "GIVEIN",
+    "content": "1wb3db0",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANDIN",
+    "content": "dwipve",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANDOUT",
+    "content": "1s27aa4",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FILLIN",
+    "content": "1ykbyj6",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FILLOUT",
+    "content": "1iog71l",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CROSSOUT",
+    "content": "1h52383",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUBOUT",
+    "content": "xh3ikg",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CUTOUT",
+    "content": "5x5931",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CUTOUT",
+    "content": "1y1g81u",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CUTOFF",
+    "content": "6p0sol",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CUTOFF",
+    "content": "1nnpuaa",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKUP",
+    "content": "tsfymk",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKUP",
+    "content": "1yqg7ma",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKIN",
+    "content": "169vr68",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKIN",
+    "content": "1i5nmn3",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKOUT",
+    "content": "syjmow",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKOUT",
+    "content": "9m8hem",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKDOWN",
+    "content": "a6y0ai",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREAKDOWN",
+    "content": "nw78b1",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DRYOFF",
+    "content": "e4t8gf",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DRYOUT",
+    "content": "k2mjv0",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DRYUP",
+    "content": "1sxpd37",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FOLDUP",
+    "content": "1uuy3yf",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "ROLLUP",
+    "content": "g3x8ho",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "ROLLOUT",
+    "content": "10gjv69",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "ROLLOUT",
+    "content": "188od9x",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WRAPUP",
+    "content": "44xu4q",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "WRAPUP",
+    "content": "1k5odcs",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNOUT",
+    "content": "eeip8w",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNOUT",
+    "content": "1awt6ed",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNINTO",
+    "content": "i8w5s",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNINTO",
+    "content": "anje60",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNOVER",
+    "content": "1l1qepk",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RUNOVER",
+    "content": "11lcxs5",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DROPOFF",
+    "content": "490ivj",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DROPOFF",
+    "content": "17zuhif",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DROPIN",
+    "content": "1y4age5",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "JOININ",
+    "content": "qmhrw2",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HOLDON",
+    "content": "1o62wke",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANGON",
+    "content": "1sfjcs2",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "MOVEON",
+    "content": "1j0guhw",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "STEPUP",
+    "content": "vrfncg",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "STEPDOWN",
+    "content": "1gv2j7t",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SAVEUP",
+    "content": "rwiuzx",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PAYOFF",
+    "content": "wapnmm",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PAYOFF",
+    "content": "rf1u1m",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PAYUP",
+    "content": "a2uwbr",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PUTOFF",
+    "content": "y45q28",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "PUTOFF",
+    "content": "1bfkixd",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CALLOFF",
+    "content": "1o24e3y",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CALLBACK",
+    "content": "1v1iyfn",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RINGUP",
+    "content": "1f9j84w",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "RINGUP",
+    "content": "1lrq86",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BRUSHOFF",
+    "content": "13v1714",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BRUSHUP",
+    "content": "1d7l72g",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CLEANUP",
+    "content": "tjxh2r",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CLEARUP",
+    "content": "gqh798",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CLEARUP",
+    "content": "72pn8s",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CLEAROUT",
+    "content": "153yd5o",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SORTOUT",
+    "content": "lw4ksa",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "THROWOUT",
+    "content": "m2qzek",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "THROWAWAY",
+    "content": "btgm7i",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "ICECUBE",
+    "content": "1vxrknq",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "COATHOOK",
+    "content": "1oiqeg4",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SHOERACK",
+    "content": "vy8hi4",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "KEYFOB",
+    "content": "1tig3nf",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DUSTPAN",
+    "content": "xjhgh",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BINBAG",
+    "content": "1ogjf3w",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BATHTOWEL",
+    "content": "k1qxn3",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "HANDTOWEL",
+    "content": "g1x25m",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "FACECLOTH",
+    "content": "p2qiw7",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CURTAINROD",
+    "content": "1w92o8g",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SINKPLUG",
+    "content": "13n4cqj",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "EARPLUG",
+    "content": "102uof8",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "LIPBALM",
+    "content": "uus49",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SUNCREAM",
+    "content": "mydvbg",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "MILKJUG",
+    "content": "niehat",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SUGARBOWL",
+    "content": "swos90",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "JAMJAR",
+    "content": "lbm5cc",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "JAMTART",
+    "content": "zlyz7g",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CAKETIN",
+    "content": "19y5rb9",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREADTIN",
+    "content": "1y9cq8b",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BREADKNIFE",
+    "content": "gurrrs",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "BUTTERKNIFE",
+    "content": "1u3hh20",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SOUPSPOON",
+    "content": "drd3i3",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CANOPENER",
+    "content": "1v29ejm",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "TINOPENER",
+    "content": "183kbn6",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "SPICERACK",
+    "content": "n2547c",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "DISHRACK",
+    "content": "1ewo4j",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "COLANDER",
+    "content": "1r46ezg",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "ROLLINGPIN",
+    "content": "u3q2pr",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  },
+  {
+    "answer": "CHOPSTICKS",
+    "content": "19xdwje",
+    "decision": "approved",
+    "reviewer": "Codex editorial review, 2026-11-09",
+    "at": "2026-11-09",
+    "independent": false,
+    "checks": {
+      "meaning": true,
+      "grammar": true,
+      "facts": true,
+      "naturalness": true,
+      "leakage": true,
+      "fairness": true,
+      "ambiguity": true,
+      "style": true
+    },
+    "reason": "Original everyday meaning and wording reviewed by the assistant; explicit grammatical form and sense checked. Difficulty remains provisional; not independent human certification."
+  }
+]

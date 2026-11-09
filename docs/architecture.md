@@ -19,3 +19,7 @@ The filler retains per-call WeakMap domain caches for letter groups, answer memb
 ## v2.20.0 answer-history publication boundary
 
 `lib/answer-history.mjs` owns permanent exclusion primitives. `answer-history-client.mjs` recovers browser data and synchronizes through the bounded same-origin `/api/answer-history` route. `answer-history-store.mjs` imports surviving room histories and atomically reserves solo answers. The existing shared-store Lua transaction reserves shared replacements against the same permanent Redis hash. CSP and prepared supply consume the exclusion union; they do not publish games by themselves. No new dependency or migration deleting existing data is required. See REPETITION.md for failure, multi-device collection and finite-supply limits.
+
+## v2.21.0 editorial publication
+
+The versioned editorial catalog compiles the generation pool; it is separate from grid search and from independent publication checks. Scored CSP runs in server worker threads during preparation/refill. Ready packets and immutable receipts live in Redis, while old game saves retain their original snapshots. New-game requests use `/api/puzzles`; shared replacements verify the server receipt before changing the same existing room. Permanent answer history remains the common atomic exclusion boundary. Next `after` plus a protected daily cron replenish usable stock, with each accepted packet persisted separately. See EDITORIAL-BACKEND-V2.21.md for source formats, legacy review debt, geometry, limits and operations.
