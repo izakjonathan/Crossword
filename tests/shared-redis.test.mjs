@@ -1,3 +1,4 @@
+import {redisTestCommand} from './helpers/redis.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -10,7 +11,7 @@ import { initialState } from '../lib/input.mjs';
 const cli = process.env.REDIS_TEST_CLI;
 test('real Redis atomically merges concurrent edits, deduplicates retries, guards undo and expires rooms', {skip:!cli}, async()=>{
   const port=process.env.REDIS_TEST_PORT || '6397';
-  const command=async args=>JSON.parse(execFileSync(cli,['-p',port,'--json',...args.map(String)],{encoding:'utf8'}));
+  const command=redisTestCommand();
   const store=sharedStore(command),puzzle=generatePuzzle({mode:'easy',seed:'shared-redis-test'});
   const game={puzzle,play:initialState(puzzle)},address=`test-${randomUUID()}`;
   const {token}=await store.create(game,address),other=await store.create(game,`${address}-other`);
@@ -31,7 +32,7 @@ test('real Redis atomically merges concurrent edits, deduplicates retries, guard
 });
 
 test('real Redis keeps devices in one room across new rounds and fences all old requests',{skip:!cli},async()=>{
-  const command=async args=>JSON.parse(execFileSync(cli,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const command=redisTestCommand();
   const store=sharedStore(command),puzzle=generatePuzzle({mode:'easy',seed:'round-start'}),{token}=await store.create({puzzle,play:initialState(puzzle)},randomUUID());
   const key=roomKey(token),ids=[];let round=puzzle.id;
   const action=(kind,extra={})=>{const op={id:randomUUID(),kind,roundId:round,changes:[],assisted:false,...extra};ids.push(op.id);return op;};
@@ -59,7 +60,7 @@ test('real Redis keeps devices in one room across new rounds and fences all old 
 
 test('real Redis keeps a shared popup closed after either client dismisses it and polling continues',{skip:!cli},async()=>{
   const {SharedClient}=await import('../lib/shared-client.mjs');
-  const command=async args=>JSON.parse(execFileSync(cli,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const command=redisTestCommand();
   const store=sharedStore(command),puzzle=generatePuzzle({mode:'easy',seed:'popup-real-redis'});
   const {token,room}=await store.create({puzzle,play:initialState(puzzle)},randomUUID()),ids=[],clients=[];
   const key=roomKey(token),states=[];

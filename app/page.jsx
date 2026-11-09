@@ -5,6 +5,7 @@ import { initialState, currentEntry, selectCell, nextEntry, enterText, backspace
 import { DEFAULT_THEME, THEME_KEY, loadLocalTheme, saveLocalTheme } from '../lib/theme.mjs';
 import { applyBrowserTheme } from '../lib/browser-theme.mjs';
 import { loadSession, saveSession } from '../lib/storage.mjs';
+import { syncAnswerHistory, claimAnswers } from '../lib/answer-history-client.mjs';
 import { generateAndRecord, reserveSharedAnswers } from '../lib/repetition.mjs';
 import Dialog from '../components/dialog';
 import UiStudio from '../components/ui-studio';
@@ -86,7 +87,11 @@ export default function Home() {
     lastModeRef.current = mode;
     setModal(null); setBusy(true); setNotice(''); setGenerationError('');
     try {
-      const generate = async room => generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), historyForGeneration:(history,now) => room ? sharedHistory(history,room,now) : history, makePuzzle:(history, now) => {
+      const generate = async room => generateAndRecord({ storage:localStorage, locks:navigator.locks, currentPuzzle:gameRef.current?.puzzle, signal:AbortSignal.timeout(30000), historyForGeneration:async (history,now) => {
+        const excludedAnswers=await syncAnswerHistory(localStorage,gameRef.current?.puzzle);
+        const merged={...history,excludedAnswers:[...new Set([...(history.excludedAnswers||[]),...excludedAnswers])]};
+        return room ? sharedHistory(merged,room,now) : merged;
+      }, reservePuzzle:room ? async()=>{} : puzzle=>claimAnswers(puzzle), makePuzzle:(history, now) => {
         if (lifecycle !== lifecycleRef.current || !generatorRef.current) throw new Error('Generation cancelled.');
         return generatorRef.current.generate({mode,seed:makeSeed(),history,now});
       }});
@@ -212,6 +217,14 @@ export default function Home() {
     } catch (error) { setShareNotice(error.message || 'Could not leave this lobby. Try again.'); setModal('share'); }
     finally { leavingRef.current = false; setLeavingShare(false); }
   }
+
+  useEffect(() => {
+    const controller=new AbortController();
+    if(navigator.locks?.request) navigator.locks.request('daily-cross:word-generation', {signal:controller.signal}, () => syncAnswerHistory(localStorage,gameRef.current?.puzzle,{signal:controller.signal})).catch(error=>{
+      if(!controller.signal.aborted)setNotice('Answer history has not synchronized. Open this device online before starting a new game.');
+    });
+    return()=>controller.abort();
+  }, []);
 
   useEffect(() => {
     lifecycleRef.current++;

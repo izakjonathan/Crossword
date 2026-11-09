@@ -1,4 +1,6 @@
-# Crossword puzzle · v2.19.0
+# Crossword puzzle · v2.20.0
+
+v2.20.0 preserves all recoverable played answers in a non-expiring Redis registry and device exclusion list before the next content rebuild. Every device must open the updated app online to contribute its local ledger and saved puzzles. New solo and shared games cannot reuse registered answers, even after five rounds; existing saves remain playable. See [current answer-history policy](docs/REPETITION.md). The finite bank can run short; the app keeps the current game instead of relaxing exclusions.
 
 A minimal Next.js crossword app for phones, redesigned from the supplied Baros operation theme.
 
@@ -35,6 +37,8 @@ A borderless, title-free header with seven evenly spaced controls and a plain + 
 - Undo, check, undoable clear-word, and a hint dialog offering letter/word reveals. Reveals permanently mark the solve assisted even when undone. Current progress and the answer repeat window persist in this browser.
 
 ## Generation and clue quality
+
+The release notes below describe earlier bank and rolling-window behavior. v2.20.0 permanent exclusions supersede those reuse policies; the current active bank remains the v2.19.0 replacement.
 
 v2.9.0 adds 83 reviewed variants for 74 longer answers, preserving their direct clues and the existing difficulty/crossing rules. See the [source-backed clue review](docs/LONG-CLUES-V2.9.md) and [validation](docs/VALIDATION-V2.9.0.md).
 

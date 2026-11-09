@@ -1,3 +1,4 @@
+import {redisTestCommand} from './helpers/redis.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -24,8 +25,8 @@ test('shared history uses the lobby window rather than an obsolete lifetime blac
  room.recentRounds=[['PEAR'],['APPLE']];
  assert.deepEqual(sharedHistory(emptyLedger(),room,Date.now()).recentRounds,room.recentRounds);
 });
-test('real Redis migrates an exhausted old lobby and rolls over its five-round window',{skip:!process.env.REDIS_TEST_CLI},async()=>{
- const command=async args=>JSON.parse(execFileSync(process.env.REDIS_TEST_CLI,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+test('real Redis keeps the rolling metadata but rejects previously used answers permanently',{skip:!process.env.REDIS_TEST_CLI},async()=>{
+ const command=redisTestCommand();
  const store=sharedStore(command),original=generatePuzzle({mode:'easy',seed:'legacy-lobby-original'});
  const {token}=await store.create({puzzle:original,play:initialState(original)},randomUUID()),key=roomKey(token),ids=[];
  try{
@@ -44,8 +45,8 @@ test('real Redis migrates an exhausted old lobby and rolls over its five-round w
    assert.ok(current.usedAnswers.length<250);
   }
   const lease=action('begin');await store.patch(token,lease);
-  current=await store.patch(token,action('replace',{leaseId:lease.id,puzzle:original}));
-  assert.equal(current.puzzle.id,original.id);assert.equal(current.recentRounds.length,5);
+  await assert.rejects(store.patch(token,action('replace',{leaseId:lease.id,puzzle:original})),e=>e.status===409);
+  assert.notEqual((await store.get(token)).puzzle.id,original.id);assert.equal(current.recentRounds.length,5);
   assert.ok(await command(['TTL',key])>0);
  }finally{await command(['DEL',key,...ids.map(id=>`${key}:op:${id}`)]);}
 });

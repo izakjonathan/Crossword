@@ -1,3 +1,12 @@
+## v2.20.0 · Permanent answer-history protection
+
+- Preserve the complete device ledger, legacy answer list, saved library and current puzzle before generation; synchronize known answers across devices through a non-expiring Redis hash.
+- Recover surviving Redis room histories with bounded, restartable SCAN; do not alter room progress, membership, identity or expiry.
+- Enforce permanent exclusions in CSP pools, prepared Hard selection and final local validation. Reserve solo answers atomically; reserve shared answers inside atomic room replacement, protecting simultaneous requests and lost-response retries.
+- Require online history synchronization for new games. Keep existing games when history is unavailable, damaged or exhausted. No bank replacement in this release.
+- Retain legacy rolling-only fixture behavior for historical data and direct engine tests. Production clients import full history; old clients must refresh.
+- Recovery cannot reconstruct deleted storage, expired room histories or overwritten rounds absent from another device/library. Each device must open online to upload its history.
+
 # Changelog
 
 ## 2.19.0 — 5 November 2026

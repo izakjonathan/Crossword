@@ -1,3 +1,4 @@
+import {redisTestCommand} from './helpers/redis.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
@@ -40,7 +41,7 @@ test('invalid lobby names and player identities fail before accessing storage',a
   await assert.rejects(store.join('invalid',randomUUID()),e=>e.status===400);
 });
 test('real Redis discovers lobbies, keeps devices joined across rounds and closes only after the last explicit leave',{skip:!process.env.REDIS_TEST_CLI},async()=>{
-  const command=async args=>JSON.parse(execFileSync(process.env.REDIS_TEST_CLI,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const command=redisTestCommand();
   const store=lobbyStore(command),rooms=sharedStore(command),host=randomUUID(),guest=randomUUID();
   const puzzle=generatePuzzle({mode:'easy',seed:'lobby-test'}),game={puzzle,play:initialState(puzzle)};
   const created=await store.host(game,'  Friends  ',host,randomUUID()),id=created.lobby.id,token=created.token;

@@ -16,7 +16,7 @@ function nullDroppingStore() {
   const store=sharedStore(async command=>{
     if(command[0]==='GET')return JSON.stringify(room);
     assert.equal(command[0],'EVAL');assert.equal(command[1],PATCH_SCRIPT);
-    const operation=withoutNulls(JSON.parse(command[5]));writes.push(operation);
+    const operation=withoutNulls(JSON.parse(command[3+Number(command[2])]));writes.push(operation);
     room={...room,view:{...room.view,...operation.view},revision:room.revision+1};
     return JSON.stringify(withoutNulls(room));
   });

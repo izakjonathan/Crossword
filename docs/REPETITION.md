@@ -1,32 +1,36 @@
-# Answer repetition policy · v2.16.0
+# Answer repetition policy · v2.20.0
 
-The app retains a versioned word ledger across difficulties, but only answers from the latest **five puzzles** are hard exclusions. There is no same-day lockout, seven-day wait or twenty-game requirement. This policy supersedes the v2.3 rules.
+Baseline: v2.19.0, d8361980c16b162bee3c9f81187a9e0408d587f3. This release prepares history protection before any further bank/backend rebuild. It does not replace the active 1,520-answer bank or edit saved puzzles.
 
-## Hard rules
+## Current publication rule
 
-1. No answer may repeat within a puzzle or appear in any of the five protected rounds.
-2. Proposed puzzles are revalidated against the current history before committing them.
-3. Failed generation or storage writes preserve the current puzzle.
-4. Shared rooms protect their latest five shared rounds; this room history also governs the local commit of a shared replacement.
+All recoverable previously played answers are permanent exclusions for new games, regardless of their age, difficulty or clue wording. Newly published games add their answers too. The global registry is independent of release and bank version; a later content release must not reset it. This supersedes five-round-only reuse in production. Direct engine fixtures without exclusions retain historical rolling-window behavior for compatibility.
 
-## Preference order and capacity
+## Recovery and storage
 
-Try never-used answers first. If they cannot form a valid grid, introduce the oldest eligible answers in progressively larger pools. Protected answers remain excluded throughout. The exact oldest eligible answer is not guaranteed to appear because crossing, clue and difficulty constraints determine the fill.
+- The existing dated word ledger retains every known answer, including answers beyond the five-round window. Device sync imports all of its keys, available legacy history (already capped by old versions), the current saved game and the saved-game library (up to 50 existing slots).
+- `daily-cross:answer-exclusions:v1` stores an untruncated union locally. Deleting a library item does not remove its exclusions. Damaged exclusions/ledgers are not silently cleared.
+- `crossword:answer-history:v1` is a Redis hash of answer to reservation owner or `imported`, with no TTL. Import uses HSETNX so it cannot destroy an in-flight reservation's retry identity.
+- On the first sync, a checkpointed SCAN recovers existing shared-room current puzzles, available recentRounds and legacy usedAnswers. It never uses KEYS or changes room data. Four pages are processed per API request. Multiple requests continue a larger scan.
+- All recognized archived/current-bank answers are preserved conservatively, including older answers from before v2.19.0. This is deliberately a superset of words used since the last update; no timestamp filter guesses at missing historical data.
+- Every browser/device must reopen the updated app online. Its storage is inaccessible to another device until uploaded. Clearing local storage before sync can lose unuploaded history; already uploaded answers survive in Redis.
 
-The bank contains **5,730 distinct answers**: 1,910 authored answers and 3,820 supplemental WordNet-derived definitions. Supplemental entries have provisional vocabulary band 2 and direct tier-1 clues only. They do not receive fabricated difficult clue variants. Difficulty requirements and specialist-crossing safeguards still apply, so the full bank is not equally useful in every mode.
+## Generation transaction
 
-The generator distinguishes insufficient eligible words from failure to find a valid grid within its search budget. A search-limit failure does not prove no valid fill exists. See [continuous play, provenance and release verification](CONTINUOUS-PLAY-V2.16.md).
+A Web Lock serializes tabs on one origin. The app captures local history, syncs server history, passes permanent exclusions to both prepared selection and CSP, then re-syncs and validates before committing. Solo publication atomically claims all answers in one Lua operation. Racing devices cannot both reserve an answer. An identical reservation retries safely after a lost response. A failed claim cannot publish a puzzle.
 
-## Transaction and persistence
+Shared games keep the same lobby/session and generation lease. Their replacement Lua script checks and reserves answers in the same operation as changing the room. Old rounds, concurrent solo reservations and lost-response retries are fenced. Hosting or reopening an existing puzzle remains allowed; its original progress/clues are preserved and its answers are registered for future exclusion. Existing rolling metadata remains compatible.
 
-A Web Lock covers the read → worker generation → revalidation → save transaction. Waiting requests read fresh history after the previous commit. Worker errors and timeouts release the lock; stale responses are ignored. If saving fails, the new puzzle is not published.
+The registry contains answers only; it does not expose letters entered, identity, room tokens or clue progress. The same-origin API accepts bounded imports of known vocabulary. Like this app's public shared/theme tools, it has no account authorization; anyone using this installation contributes to the common history. An unrelated-player/account product would need scoped histories and authentication before using this policy.
 
-The existing ledger key and complete seen-word history remain intact. A bounded recentRounds array records the five actual round boundaries. Legacy ledgers recover identifiable recent game groups. Undated/game-zero legacy imports remain seen-word preferences rather than blocking the vocabulary. The current saved puzzle is reserved during migration. Damaged ledgers are not silently erased.
+## Failure and capacity
 
-Viewing a shared puzzle reserves its round locally without counting reloads as new generated games. Shared rooms maintain a bounded five-round history, atomically updated in Redis. Old rooms without round metadata migrate from their current puzzle while preserving membership, edits and room identity.
+New games require online Redis history. Existing games remain playable when offline. Never silently clear history, reuse an excluded answer, relax clue/difficulty constraints, or replace a current game on error. A server reservation can conservatively remain consumed if a later browser write fails or a client disconnects before display; releasing it could reintroduce a played answer after an uncertain outcome.
 
-Web Locks coordinate tabs under one site origin; they do not synchronise browser profiles or devices. Solo history remains browser-local. Shared-room history is server-backed. Copenhagen timestamps remain in the ledger for compatibility and ordering, but calendar days no longer control eligibility.
+The 1,520-answer bank and 64 Hard packets are finite. Permanent exclusions can exhaust prepared inventory, make a layout unfillable, or exhaust the eligible bank. CSP may supply an eligible alternative within its existing bounded budget; success is not guaranteed. A future edited bank must be checked against this registry. A different clue does not make a used answer eligible.
 
-## Verification
+## Recovery limits and verification
 
-Regression coverage includes exhausted legacy ledgers, five-round rollover, bounded exclusions with complete seen-word history, concurrent generators, failed storage commits, shared-room migration and distinct shortage/search-limit errors. Automated validation does not replace human clue review or mobile performance checks.
+Expired Redis rooms, answers rolled out of their five-round metadata, deleted device data and library items deleted before capture cannot be reconstructed unless another surviving device ledger/save still contains them. This release does not claim a complete historical census. Open every participating device before rebuilding the bank.
+
+Tests cover complete-ledger/library recovery, no mutation of saved games, persistent exclusions after deletion/reload, failed network/storage, post-five-round exclusions, prepared/CSP filtering, exhausted supply, atomic competing reservations, idempotent retries and shared/solo races. See docs/testing.md for actual release results.

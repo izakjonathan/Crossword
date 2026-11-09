@@ -1,3 +1,4 @@
+import {redisTestCommand} from './helpers/redis.mjs';
 import {SharedClient} from '../lib/shared-client.mjs';
 import {GlobalThemeClient} from '../lib/global-theme-client.mjs';
 import {createRoom} from '../lib/shared-model.mjs';
@@ -66,7 +67,7 @@ test('shared operations reject forged count fields',()=>{
   for(const metrics of [{hints:-1},{checks:50},{hints:1,unknown:1},[]])assert.throws(()=>validateOperation(puzzle,{id:randomUUID(),changes:[],assisted:false,metrics}),/statistics/);
 });
 test('real Redis owns the shared clock/counts, resets each round, and provides named live/away membership',{skip:!process.env.REDIS_TEST_CLI},async()=>{
-  const command=async args=>JSON.parse(execFileSync(process.env.REDIS_TEST_CLI,['-p',process.env.REDIS_TEST_PORT||'6397','--json',...args.map(String)],{encoding:'utf8'}));
+  const command=redisTestCommand();
   const lobbies=lobbyStore(command),rooms=sharedStore(command),host=randomUUID(),guest=randomUUID();
   const created=await lobbies.host(game(),'Stats and players',host,randomUUID()),id=created.lobby.id,token=created.token,profiles=`${lobbyKey(id)}:profiles`;
   let current=created.room;

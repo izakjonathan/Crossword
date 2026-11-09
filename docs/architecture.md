@@ -15,3 +15,7 @@ The engine runs in `lib/puzzle.worker.mjs`. `GenerationClient` owns worker lifec
 The filler retains per-call WeakMap domain caches for letter groups, answer membership and rating bounds. Unchanged domains reuse their arrays; affected-slot relationships are fixed per layout. Caches are never shared across candidate pools or games. Search order, randomness and node budgets are unchanged from v2.8.1; see `PERFORMANCE-V2.8.2.md`.
 
 `long-clues.mjs` appends explicitly reviewed, source-referenced variants to existing words. Bank assembly rejects unknown answers and duplicate tiers/text. The worker retains source metadata in the bank but publishes only clue text and rating in the puzzle object; it makes no source-site requests. Older saves retain their stored wording.
+
+## v2.20.0 answer-history publication boundary
+
+`lib/answer-history.mjs` owns permanent exclusion primitives. `answer-history-client.mjs` recovers browser data and synchronizes through the bounded same-origin `/api/answer-history` route. `answer-history-store.mjs` imports surviving room histories and atomically reserves solo answers. The existing shared-store Lua transaction reserves shared replacements against the same permanent Redis hash. CSP and prepared supply consume the exclusion union; they do not publish games by themselves. No new dependency or migration deleting existing data is required. See REPETITION.md for failure, multi-device collection and finite-supply limits.

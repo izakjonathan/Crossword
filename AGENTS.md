@@ -2,7 +2,7 @@
 
 Start from the latest confirmed working version. Inspect before editing; keep focused changes and preserve the two-colour UI, mobile layout, stored progress and dated word ledger.
 
-All new puzzle construction must satisfy `validatePuzzle`, including versioned checking rules. Repeat protection uses the approved last-five-puzzle window; prefer unused words, then oldest eligible answers. Never silently repeat a protected answer, add invented fill or bypass bank validation. Describe authored difficulty tiers accurately. New factual clues need authoritative references when specialist or uncertain.
+All new puzzle construction must satisfy `validatePuzzle`, including versioned checking rules. Published new games now require permanent shared answer-history exclusions, in addition to the legacy last-five-puzzle window. Never clear or expire the global registry or device exclusions. Preserve every recoverable used answer before a content update. Legacy rolling-only engine fixtures remain supported; they do not describe production publication policy. Never silently repeat a protected answer, add invented fill or bypass bank validation. Describe authored difficulty tiers accurately. New factual clues need authoritative references when specialist or uncertain.
 
 Keep `app` for route/UI composition, with generation and input logic in the existing `lib` modules. Do not move the whole application merely to change folder conventions. Reusable components belong in `components`; new domain logic and UI are colocated in `features/library`, `features/solve` and `features/players`. Engine/editorial tests stay next to related tests in `tests`.
 
@@ -13,3 +13,5 @@ For search-cost changes, preserve seeded output and benchmark against the previo
 Raw WordNet additions are quarantined from new puzzles except individually rewritten clues. Hard profile v2 keeps clue quotas but drops mandatory specialist vocabulary. Preserve v1 save validation. Prepared Hard supply must pass active-clue, geometry, difficulty and last-five-answer checks.
 
 New construction uses replacement-words.mjs, compiled from data/replacement. Every active answer must be absent from the entire retired bank in legacy-words.mjs. Maintain the explicit entertainment share and abbreviation cap in word-mix.mjs, including independent validation and prepared supply. Historical bank fixtures test legacy data; new generation fixtures must use the current bank. No silent old-bank fallback.
+
+Answer-history sync recovers browser ledgers, saved libraries/current games and surviving Redis rooms. Every device must open online to contribute its local-only history. Solo publication reserves answers atomically; shared replacement does so inside the room Lua transaction. Existing saved/shared games may be resumed even if their answers are excluded from new construction. No silent offline generation or repeat fallback.

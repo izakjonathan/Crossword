@@ -39,3 +39,18 @@ Baseline: v2.18.0, 2beb818566fee6745662066208816c4188173883. Final source verifi
 The focused history run passed 19/19 checks after fixing prepared continuation and candidate-pool budget starvation. New coverage proves disjointness from all 5,730 retired answers, the 384-entry entertainment share, active-clue membership, retained legacy data, classification and abbreviation limits, rejection of invalid proper-name spellings, exhausted-history recovery and protected mixed-mode rounds. All 64 rebuilt Hard packets passed active-answer and geometry/difficulty/mix checks; 120 consecutive prepared selections respected protected rounds. New exact-output hashes identify the deliberately changed bank; older fixtures remain intact.
 
 Source tests that previously expected original answers in new grids now test their archived metadata and exclusion from new construction. The production build and layout checks cover compilation and CSS, not a new iPhone/Safari device test. Clue ambiguity, enjoyment and human difficulty calibration still need play-testing. Factual reference checks are documented separately; there is no claim of independent human certification of every clue.
+
+## v2.20.0 · Permanent answer history (2026-11-09)
+
+Baseline v2.19.0 / d8361980c16b162bee3c9f81187a9e0408d587f3. No replacement bank or solver-search refactor in this release.
+
+- `REDIS_TEST_CLI=/workspace/scratch/redis-7.4.2/src/redis-cli npm test`: 154 passed, 0 failed, 0 skipped. Disposable Redis 7.4.2 built from the official release source; no production Redis tests. Added recovery/preservation, permanent CSP/prepared filtering, offline failure, reservation rejection/retry, concurrent-device claims, and shared/solo collision tests. Existing Redis fixtures now isolate their permanent history and exercise the updated Lua argument boundary.
+- `npm run build`: passed for v2.20.0, including `/api/answer-history`.
+- `LAYOUT_BUILD=1 node --test tests/layout.test.mjs`: 3 passed against production CSS.
+- `npm run audit:puzzles`: 300/300 valid puzzles, 100 distinct per mode; results in benchmarks/v2.20-audit.json. This is a fresh-seed structural audit, not a guarantee that an arbitrarily depleted permanent history can produce another grid.
+- Deterministic generation regression fixtures passed unchanged. The actual CSP search implementation and bank are unchanged; history eligibility is deliberately stricter for published games.
+- `git diff --check`: passed. No configured lint or standalone typecheck scripts.
+
+An initial full run found two test doubles reading the old Lua positional argument index; they now derive the argument boundary from the number of keys. A later run lost its disposable Redis process when the originating command finished; the final full run started its own Redis instance and passed all real Redis cases. No failed/skipped cases are represented as passing.
+
+Device-only history cannot be collected remotely. Each browser must open online after deployment; deleted storage and expired/overwritten room history remain unrecoverable without another surviving ledger/save. See REPETITION.md. The live endpoint and browser smoke checks are reported separately after deployment.
