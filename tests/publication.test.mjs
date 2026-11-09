@@ -13,6 +13,17 @@ import {GET as replenish} from '../app/api/puzzles/replenish/route.js';
 import {POST as nextPuzzle} from '../app/api/puzzles/route.js';
 const cli=process.env.REDIS_TEST_CLI;
 
+test('default puzzle transport calls fetch without a client receiver',async()=>{
+ const original=globalThis.fetch;
+ globalThis.fetch=async function(url,options){
+  assert.equal(this,undefined,'browser fetch must not receive the puzzle client as its receiver');
+  const body=JSON.parse(options.body);
+  return Response.json({puzzle:{publication:{requestId:body.requestId}}});
+ };
+ try{await new PublishedPuzzleClient().generate({mode:'hard'});}
+ finally{globalThis.fetch=original;}
+});
+
 test('published client retries a lost response with the same identity and rejects malformed receipts',async()=>{
  const requests=[];const client=new PublishedPuzzleClient({fetcher:async(url,options)=>{const body=JSON.parse(options.body);requests.push(body);if(requests.length===1)throw Error('Lost');return Response.json({puzzle:{publication:{requestId:body.requestId}}});}});
  await client.generate({mode:'easy'});assert.deepEqual(requests[0],requests[1]);assert.equal(client.pending,null);client.dispose();await assert.rejects(client.generate({mode:'easy'}),/cancelled/);

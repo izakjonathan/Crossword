@@ -1,5 +1,5 @@
 export class PublishedPuzzleClient {
- constructor({fetcher=fetch,timeoutMs=30000}={}){this.fetcher=fetcher;this.timeoutMs=timeoutMs;this.pending=null;this.closed=false;}
+ constructor({fetcher=(...args)=>fetch(...args),timeoutMs=30000}={}){this.fetcher=fetcher;this.timeoutMs=timeoutMs;this.pending=null;this.closed=false;}
  async generate({mode,room,token}){
   if(this.closed)throw new Error('Generation cancelled.');if(this.pending)throw new Error('A puzzle is already being loaded.');
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),this.timeoutMs);this.pending=controller;
