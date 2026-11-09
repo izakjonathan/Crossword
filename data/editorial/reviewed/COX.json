@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:COX",
+      "grid": "COX",
+      "display": "COX",
+      "length": 3,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 1,
+      "desirability": 88,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:COX:recent-role",
+        "answerId": "answer:COX",
+        "definition": "Surname of actor Brian Cox, who plays Logan Roy in Succession",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Surname of Brian, who plays Logan Roy in Succession",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:COX:1jz1fbf",
+        "meaningId": "meaning:COX:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Surname of actor Brian Cox, who plays Logan Roy in Succession.",
+        "evidence": [
+          "reference:v222:COX"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://www.hbomax.com/show/a8484031-f244-4661-9fb7-0932bd1ba872/s2"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:COX",
+      "kind": "reference",
+      "locator": "https://www.hbomax.com/show/a8484031-f244-4661-9fb7-0932bd1ba872/s2",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

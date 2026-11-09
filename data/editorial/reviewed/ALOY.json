@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:ALOY",
+      "grid": "ALOY",
+      "display": "ALOY",
+      "length": 4,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 2,
+      "desirability": 74,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:ALOY:recent-role",
+        "answerId": "answer:ALOY",
+        "definition": "Aloy, the playable heroine of Horizon Zero Dawn",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Heroine of Horizon Zero Dawn",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:ALOY:xmhg7l",
+        "meaningId": "meaning:ALOY:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Aloy, the playable heroine of Horizon Zero Dawn.",
+        "evidence": [
+          "reference:v222:ALOY"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://sonyinteractive.com/en/press-releases/horizon-zero-dawn-global-sales-exceed-26-million/"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:ALOY",
+      "kind": "reference",
+      "locator": "https://sonyinteractive.com/en/press-releases/horizon-zero-dawn-global-sales-exceed-26-million/",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

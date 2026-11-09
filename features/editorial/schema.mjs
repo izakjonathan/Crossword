@@ -1,3 +1,4 @@
+import {topicFlags,popCultureEligibility} from '../../lib/topic-policy.mjs';
 import {validateWordBank,normalizeClue} from '../../lib/word-quality.mjs';
 export const CATALOG_SCHEMA=1;
 export const REVIEW_CHECKS=['meaning','grammar','facts','naturalness','leakage','fairness','ambiguity','style'];
@@ -38,10 +39,10 @@ export function approvedWords(catalog,{minimumScore=55}={}) {
  const errors=validateCatalog(catalog);if(errors.length)throw new Error(errors.slice(0,8).join('; '));
  const words=catalog.records.flatMap(record=>{
   const a=record.answer;if(a.status!=='approved'||a.desirability<minimumScore)return [];
-  const approved=record.clues.filter(c=>c.status==='approved'&&record.meanings.some(m=>m.id===c.meaningId&&m.status==='approved'));
+  const approved=record.clues.filter(c=>c.status==='approved'&&(a.category!=='pop-culture'||popCultureEligibility(a.grid,c))&&record.meanings.some(m=>m.id===c.meaningId&&m.status==='approved'));
   // Missing an approved direct clue excludes the answer rather than inventing one.
   const direct=approved.find(c=>c.level===1);if(!direct)return [];
-  return [{answer:a.grid,subject:record.meanings.find(m=>m.id===direct.meaningId).subject,displayAnswer:a.display,answerId:a.id,category:a.category,vocabularyLevel:a.familiarity,editorialScore:a.desirability,editorialStatus:'approved',catalogVersion:catalog.version,easy:direct.text,hard:approved.at(-1).text,clues:approved.map(c=>({...c,clueId:c.id,meaningId:c.meaningId,clueRevision:c.revision}))}];
+  return [{topicFlags:topicFlags(approved),answer:a.grid,subject:record.meanings.find(m=>m.id===direct.meaningId).subject,displayAnswer:a.display,answerId:a.id,category:a.category,vocabularyLevel:a.familiarity,editorialScore:a.desirability,editorialStatus:'approved',catalogVersion:catalog.version,easy:direct.text,hard:approved.at(-1).text,clues:approved.map(c=>({...c,clueId:c.id,meaningId:c.meaningId,clueRevision:c.revision}))}];
  });
  const guardrails=validateWordBank(words);if(guardrails.length)throw new Error(guardrails.slice(0,8).join('; '));
  return words;

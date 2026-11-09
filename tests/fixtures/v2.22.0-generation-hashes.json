@@ -1,0 +1,70 @@
+{
+  "baseline": "2.22.0",
+  "reason": "Audience policy, familiar-answer difficulty profiles and current approved content.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "215842448ceeea957f6af7f1fac99e12f5f47b860e24ecd51db402f33ba66450"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "48af5c387456ad67629822f8d9998bcbaad806bcc6da37454f0d5f5e8ba4a7e1"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "f3ee460b0d010d9dbdba22d80107d9c0ad18daa36efa4adb7b6c6024a5955aa6"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "6ecb7889f3fab21045960f16fc4abb2798efb846ddf053c5f4a1a57a4869b106"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "13ccd1a33a9d81a953dc83e85d5dfbffb652f732db0584cb441c885dec0585e6"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "da601d00639c7755d5abd2f397da9f036a56741cb8c094f92eb8371272251040"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "b92001a4c7d991dc4c476fa059adc3636fb3909b044f24076aae47958a6f7fa5"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "7859d402d995e09ecaa81b6f4fa5c370b20f1baf8014e7e582b491b3a9d8ee30"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "e2f17d62a828b72e9fcc99fbc65a598c1388134100792ce497ab1407954ef3bf"
+    }
+  ],
+  "version": "2.21.0"
+}

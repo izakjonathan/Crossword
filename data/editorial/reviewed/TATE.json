@@ -1,0 +1,125 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:TATE",
+      "grid": "TATE",
+      "display": "TATE",
+      "length": 4,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 1,
+      "desirability": 88,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:TATE:modern-artist-or-character",
+        "answerId": "answer:TATE",
+        "definition": "Given name of singer Tate McRae",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "First name of singer McRae",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:TATE:q7p9af",
+        "meaningId": "meaning:TATE:modern-artist-or-character",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Given name of singer Tate McRae; the linked primary source supports the association in this clue.",
+        "evidence": [
+          "reference:v222:TATE"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+        },
+        "sourceLocator": "https://www.sonymusic.ca/press_release/tate-mcrae-release-new-single-and-video"
+      },
+      {
+        "text": "First name of the singer behind Greedy",
+        "level": 2,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:TATE:8aqm9m",
+        "meaningId": "meaning:TATE:modern-artist-or-character",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Given name of singer Tate McRae; the linked primary source supports the association in this clue.",
+        "evidence": [
+          "reference:v222:TATE"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+        },
+        "sourceLocator": "https://www.sonymusic.ca/press_release/tate-mcrae-release-new-single-and-video"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:TATE",
+      "kind": "reference",
+      "locator": "https://www.sonymusic.ca/press_release/tate-mcrae-release-new-single-and-video",
+      "rights": "Factual verification only; clue wording is original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

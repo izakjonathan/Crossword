@@ -1,0 +1,36 @@
+{
+  "importedHistory": 1969,
+  "catalogVersion": "2026-11-09.3",
+  "publishedModes": [
+    "easy",
+    "medium",
+    "hard"
+  ],
+  "sharedReplacement": true,
+  "concurrentMembership": true,
+  "letterDeletion": true,
+  "feedback": true,
+  "ready": {
+    "easy": 3,
+    "medium": 3,
+    "hard": 1
+  },
+  "diagnostics": {
+    "pattern:easy:3:...": "2",
+    "pattern:hard:5:.....": "2",
+    "hard:SEARCH_EXHAUSTED": "2",
+    "pattern:hard:9:..O......": "1",
+    "pattern:hard:9:..G......": "1",
+    "lastReplenishment": "{\"created\":4,\"attempts\":9,\"failures\":{\"CONCURRENT_HISTORY\":1,\"SEARCH_EXHAUSTED\":4},\"at\":\"2026-11-09T21:40:02.463Z\",\"elapsedMs\":13550}",
+    "easy:SEARCH_EXHAUSTED": "2",
+    "pattern:hard:7:.......": "2",
+    "pattern:hard:8:........": "2",
+    "pattern:hard:6:......": "1",
+    "generationSequence": "9",
+    "pattern:hard:4:....": "1",
+    "pattern:hard:3:...": "2",
+    "pattern:hard:9:.........": "2",
+    "pattern:easy:7:.......": "2",
+    "pattern:easy:5:.....": "2"
+  }
+}

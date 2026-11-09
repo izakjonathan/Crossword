@@ -9,7 +9,7 @@ import { GENERATION_WORDS as WORDS, LEGACY_GENERATION_WORDS } from '../lib/words
 test('difficulty bands separate word familiarity, clue demand, field counts and longer answers',()=>{
   for(const mode of Object.keys(DIFFICULTY_PROFILES)) for(let seed=0;seed<12;seed++) {
     const p=generatePuzzle({mode,seed:`difficulty-${seed}`});
-    assert.equal(p.difficultyVersion,2);
+    assert.equal(p.difficultyVersion,3);
     assert.deepEqual(validateDifficulty(p),[]);
     assert.deepEqual(validatePuzzle(p),[]);
     const summary=difficultySummary(p.entries);

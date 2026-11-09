@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:ARYA",
+      "grid": "ARYA",
+      "display": "ARYA",
+      "length": 4,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 1,
+      "desirability": 88,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:ARYA:recent-role",
+        "answerId": "answer:ARYA",
+        "definition": "Arya Stark, a character played by Maisie Williams in the HBO series Game of Thrones",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Stark girl played by Maisie Williams in Game of Thrones",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:ARYA:x6ezqd",
+        "meaningId": "meaning:ARYA:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Arya Stark, a character played by Maisie Williams in the HBO series Game of Thrones.",
+        "evidence": [
+          "reference:v222:ARYA"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://www.hbomax.com/show/4f6b4985-2dc9-4ab6-ac79-d60f0860b0ac/cast-and-crew"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:ARYA",
+      "kind": "reference",
+      "locator": "https://www.hbomax.com/show/4f6b4985-2dc9-4ab6-ac79-d60f0860b0ac/cast-and-crew",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

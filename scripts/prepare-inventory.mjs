@@ -11,17 +11,22 @@ if(process.argv.includes('--reuse'))for(const previous of READY_PUZZLES){
  if(previous.puzzle.mode==='hard'&&process.argv.includes('--refresh-hard'))continue;
  try{const entries=previous.puzzle.entries.map(e=>{const c=CLUE_RECORDS.get(e.clueId)?.clue;if(!c||c.text!==e.clue||c.level!==e.clueLevel)throw Error('Clue changed');return {...e,clueStyle:c.style,answerForm:c.answerForm,clueRegister:c.register};});const next=sealCandidate({...previous.puzzle,catalogVersion:CATALOG.version,entries},{excluded});packets.push(next);seen.add(next.digest);}catch{}
 }
-
-for(let round=0;round<count;round++)for(const mode of ['easy','medium','hard']){
+// A stock count alone is misleading when every packet shares the same answer.
+// The default rebuild starts with two answer-disjoint Hard games, then two of
+// each smaller mode, all mutually disjoint. Later stock may overlap unplayed
+// stock; it can never overlap actual permanent history.
+const plan=[];
+for(let round=0;round<Math.min(2,count);round++)plan.push(['hard',round]);
+for(let round=0;round<Math.min(2,count);round++)for(const mode of ['easy','medium'])plan.push([mode,round]);
+for(let round=0;round<count;round++)for(const mode of ['easy','medium','hard'])plan.push([mode,round]);
+for(const [mode,round]of plan){
  if(packets.filter(p=>p.puzzle.mode===mode).length>round)continue;
- let packet;
+ let packet;const startup=packets.length<Math.min(6,count*3);
  for(let attempt=0;attempt<64&&!packet;attempt++){
   try{
    const recent=new Set(excluded);
-   // Pack the first six rounds disjointly where possible; later attempts may
-   // overlap unplayed inventory, never the actual protected history.
-   if(attempt<4)for(const p of packets)for(const e of p.puzzle.entries)recent.add(e.answer);
-   const p=generatePuzzle({mode,seed:`release-ready-${round}-${mode}-${attempt}`,quality:true,recent:[...recent],deadline:Date.now()+1800});
+   if(startup||attempt<4)for(const p of packets)for(const e of p.puzzle.entries)recent.add(e.answer);
+   const p=generatePuzzle({mode,seed:`release-ready-${round}-${mode}-${attempt}`,quality:true,recent:[...recent],deadline:Date.now()+Number(process.env.INVENTORY_ATTEMPT_MS||8000)});
    const next=sealCandidate(p,{excluded});if(!seen.has(next.digest)){packet=next;seen.add(next.digest);}
   }catch(error){if(!['SEARCH_TIMEOUT','SEARCH_EXHAUSTED','NO_ELIGIBLE_ANSWERS','EDITORIAL_REJECTED'].includes(error.code))throw error;}
  }

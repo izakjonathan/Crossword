@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:OTIS",
+      "grid": "OTIS",
+      "display": "OTIS",
+      "length": 4,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 2,
+      "desirability": 74,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:OTIS:recent-role",
+        "answerId": "answer:OTIS",
+        "definition": "Given name of the lead character Otis Milburn in Sex Education",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Milburn's first name in Netflix's Sex Education",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:OTIS:ja7v5m",
+        "meaningId": "meaning:OTIS:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Given name of the lead character Otis Milburn in Sex Education.",
+        "evidence": [
+          "reference:v222:OTIS"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://about.netflix.com/en/news/sex-education-its-the-final-season"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:OTIS",
+      "kind": "reference",
+      "locator": "https://about.netflix.com/en/news/sex-education-its-the-final-season",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

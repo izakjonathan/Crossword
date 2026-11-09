@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:EXO",
+      "grid": "EXO",
+      "display": "EXO",
+      "length": 3,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 2,
+      "desirability": 74,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:EXO:modern-artist-or-character",
+        "answerId": "answer:EXO",
+        "definition": "South Korean pop group EXO",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "K-pop group behind the 2013 song Growl",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:EXO:1pdqcm8",
+        "meaningId": "meaning:EXO:modern-artist-or-character",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "South Korean pop group EXO; the linked primary source supports the association in this clue.",
+        "evidence": [
+          "reference:v222:EXO"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+        },
+        "sourceLocator": "https://www.youtube.com/watch?v=I3dezFzsNss"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:EXO",
+      "kind": "reference",
+      "locator": "https://www.youtube.com/watch?v=I3dezFzsNss",
+      "rights": "Factual verification only; clue wording is original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

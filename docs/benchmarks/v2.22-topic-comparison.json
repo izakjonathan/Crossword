@@ -1,0 +1,203 @@
+{
+  "note": "Three seeds per mode, shared development host; content/difficulty changes intentional. No phone timing claim.",
+  "samples": [
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 127.84509500000013,
+      "entries": 26,
+      "capitals": 0,
+      "sports": 0
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 223.47399999999993,
+      "entries": 26,
+      "capitals": 1,
+      "sports": 0
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 2423.7535850000004,
+      "entries": 24,
+      "capitals": 3,
+      "sports": 1
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 156.73264100000006,
+      "entries": 28,
+      "capitals": 2,
+      "sports": 1
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 73.11136799999986,
+      "entries": 24,
+      "capitals": 2,
+      "sports": 1
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "easy",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 65.76823199999944,
+      "entries": 24,
+      "capitals": 0,
+      "sports": 0
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 43.072259999999915,
+      "entries": 26,
+      "capitals": 7,
+      "sports": 1
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 49.762619000000086,
+      "entries": 26,
+      "capitals": 1,
+      "sports": 1
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 41.233116999999766,
+      "entries": 22,
+      "capitals": 4,
+      "sports": 0
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 41.93913199999952,
+      "entries": 22,
+      "capitals": 2,
+      "sports": 1
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 48.0373239999999,
+      "entries": 26,
+      "capitals": 4,
+      "sports": 2
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "medium",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 72.51320200000009,
+      "entries": 26,
+      "capitals": 2,
+      "sports": 1
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 39.13280599999962,
+      "entries": 28,
+      "capitals": 4,
+      "sports": 1
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-0"
+      },
+      "ms": 83.51587699999982,
+      "entries": 34,
+      "capitals": 0,
+      "sports": 0
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 1229.5808969999998,
+      "entries": 30,
+      "capitals": 5,
+      "sports": 2
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-1"
+      },
+      "ms": 80.61059399999976,
+      "entries": 32,
+      "capitals": 2,
+      "sports": 0
+    },
+    {
+      "version": "2.21.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 832.61438,
+      "entries": 32,
+      "capitals": 5,
+      "sports": 0
+    },
+    {
+      "version": "2.22.0",
+      "input": {
+        "mode": "hard",
+        "seed": "topic-comparison-2"
+      },
+      "ms": 122.71453999999994,
+      "entries": 34,
+      "capitals": 3,
+      "sports": 1
+    }
+  ]
+}

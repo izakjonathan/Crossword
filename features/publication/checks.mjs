@@ -1,3 +1,4 @@
+import {TOPIC_POLICY_VERSION,popCultureEligibility,topicFlags,validateTopicMix} from '../../lib/topic-policy.mjs';
 import {createHash} from 'node:crypto';
 import {validatePuzzle} from '../../lib/validate.mjs';
 import {CATALOG,CLUE_RECORDS} from '../editorial/catalog.mjs';
@@ -13,6 +14,10 @@ export function inspectCandidate(puzzle,{excluded=new Set(),catalogVersion=CATAL
  const errors=validatePuzzle(puzzle);
  if(errors.length)return {ok:false,errors,score:0};
  errors.push(...validateGeometry(puzzle));
+ if(puzzle.topicPolicyVersion!==TOPIC_POLICY_VERSION)errors.push('Outdated topic policy');
+ const authoritativeEntries=puzzle.entries.map(e=>{return {...e,topicFlags:topicFlags([{text:CLUE_RECORDS.get(e.clueId)?.clue.text||e.clue}])};});
+ errors.push(...validateTopicMix(authoritativeEntries,puzzle.mode));
+ for(const e of puzzle.entries)if(e.category==='pop-culture'&&!popCultureEligibility(e.answer,{level:e.clueLevel,text:e.clue}))errors.push('Pop-culture clue outside audience policy');
  if(puzzle.editorialVersion!==1||puzzle.catalogVersion!==catalogVersion)errors.push('Outdated editorial catalog');
  const texts=new Set();
  for(const entry of puzzle.entries){

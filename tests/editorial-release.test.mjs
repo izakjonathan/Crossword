@@ -1,24 +1,26 @@
+import {REPLACEMENT_WORDS as HISTORICAL_BANK} from '../lib/replacement-words.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {GENERATION_WORDS,WORDS,LEGACY_GENERATION_WORDS} from '../lib/words.mjs';
 import {EDITED_ADDITIONS} from '../lib/edited-additions.mjs';
 import {PREPARED_HARD} from '../lib/prepared-hard.mjs';
-import {choosePrepared,expandPrepared} from '../lib/prepared-supply.mjs';
+import {choosePrepared as chooseHistoricalPrepared,expandPrepared} from '../lib/prepared-supply.mjs';
 import {validatePuzzle} from '../lib/validate.mjs';
 import {generateFreshPuzzle} from '../lib/fresh-puzzle.mjs';
 import {emptyLedger,recordPuzzle} from '../lib/repetition.mjs';
 import {recentAnswers} from '../lib/recent-rounds.mjs';
 import {generatePuzzle} from '../lib/engine.mjs';
 import {readFileSync} from 'node:fs';
+const choosePrepared=options=>chooseHistoricalPrepared({...options,bank:HISTORICAL_BANK});
 test('the retired editorial bank still quarantines raw definitions; rewritten additions are explicit and older data stays readable',()=>{
  assert.equal(WORDS.length,5730);assert.equal(LEGACY_GENERATION_WORDS.length,2010);assert.equal(Object.keys(EDITED_ADDITIONS).length,100);
  for(const word of LEGACY_GENERATION_WORDS.filter(w=>w.supplemental)){assert.equal(word.editorialStatus,'rewritten');assert.equal(word.easy,EDITED_ADDITIONS[word.answer]);}
  assert.equal(LEGACY_GENERATION_WORDS.find(w=>w.answer==='FOUND').easy,'Discovered after searching');
  assert.equal(LEGACY_GENERATION_WORDS.find(w=>w.answer==='SMALL').easy,'Limited in size');
 });
-test('every prepared Hard puzzle passes current geometry, clue difficulty and crossing safeguards',()=>{
+test('historical prepared Hard snapshots retain their original geometry, ratings and bank',()=>{
  assert.ok(PREPARED_HARD.length>=64);
- for(const p of PREPARED_HARD){assert.equal(p.wordBankVersion,1);assert.ok(p.entries.every(e=>GENERATION_WORDS.some(w=>w.answer===e.answer)));assert.equal(p.difficultyVersion,2);assert.deepEqual(validatePuzzle(expandPrepared(p)),[]);}
+ for(const p of PREPARED_HARD){assert.equal(p.wordBankVersion,1);assert.ok(p.entries.every(e=>HISTORICAL_BANK.some(w=>w.answer===e.answer)));assert.equal(p.difficultyVersion,2);assert.deepEqual(validatePuzzle(expandPrepared(p)),[]);}
 });
 test('prepared selection never repeats protected answers and fresh returned games are isolated copies',()=>{
  const history=emptyLedger(),blocked=new Set(PREPARED_HARD[0].entries.map(e=>e.answer));
@@ -40,10 +42,10 @@ test('expired search budget exits before starting CSP; keyboard is the sole inpu
  const page=readFileSync(new URL('../app/page.jsx',import.meta.url),'utf8');assert.ok(!page.includes('pencil'));assert.ok(page.includes('<PuzzleKeyboard'));
 });
 
-test('Hard recovers after five mixed-mode games while retaining every protected answer',()=>{
+test('historical rolling-only helpers retain their five mixed-mode recovery contract',()=>{
  let history=emptyLedger();
- for(let i=0;i<5;i++){const p=generatePuzzle({mode:i%2?'medium':'easy',seed:'mixed-release-'+i,recent:[...recentAnswers(history.recentRounds)]});history=recordPuzzle(history,p,Date.now());}
+ for(let i=0;i<5;i++){const p=generatePuzzle({mode:i%2?'medium':'easy',seed:'mixed-release-'+i,bank:HISTORICAL_BANK,recent:[...recentAnswers(history.recentRounds)]});history=recordPuzzle(history,p,Date.now());}
  const protectedWords=recentAnswers(history.recentRounds);
- const p=generateFreshPuzzle({mode:'hard',seed:'mixed-actual-hard',history,now:Date.now()});
+ const p=generateFreshPuzzle({mode:'hard',seed:'mixed-actual-hard',history,now:Date.now(),bank:HISTORICAL_BANK});
  assert.deepEqual(validatePuzzle(p),[]);assert.ok(p.entries.every(e=>!protectedWords.has(e.answer)));
 });

@@ -33,21 +33,22 @@ test('new grids enforce crossing safeguards without lowering difficulty targets'
 });
 test('clue allocation backtracks, rejects impossible support and obeys its search budget',()=>{
   // Only vertices 0 and 1 have tier 3; both share one another as their sole
-  // crossing. Hard needs two such clues in this six-answer example, so no
+  // crossing. Hard needs two such clues in this sixty-answer example, so no
   // valid assignment exists even though enough hard variants are present.
-  const words=[rated([1,3]),rated([1,3]),...Array.from({length:4},()=>rated([1,2]))];
-  assert.equal(selectClues(words,'hard',graph([[1],[0],[3],[2],[5],[4]]),random('impossible')),null);
-  const slots=graph([[1,2],[0,3],[0],[1],[5],[4]]);
+  const expanded=edges=>graph([...edges,...Array.from({length:60-edges.length},(_,i)=>{const n=edges.length+i;return [n%2?n-1:n+1];})]);
+  const words=[rated([1,3]),rated([1,3]),...Array.from({length:58},()=>rated([1,2]))];
+  assert.equal(selectClues(words,'hard',expanded([[1],[0],[3],[2],[5],[4],[7],[6],[9],[8],[11],[10]]),random('impossible')),null);
+  const slots=expanded([[1,2],[0,3],[0],[1],[5],[4],[7],[6],[9],[8],[11],[10]]);
   const selected=selectClues(words,'hard',slots,random('supported'));
   assert.ok(selected);
   assert.equal(selected.filter(c=>c.level===3).length,2);
-  assert.equal(selected.filter(c=>c.level>=2).length,4);
+  assert.equal(selected.filter(c=>c.level>=2).length,30);
   assert.deepEqual(selected,selectClues(words,'hard',slots,random('supported')));
-  const branchWords=[rated([1,3]),rated([1,3]),rated([1,3]),...Array.from({length:3},()=>rated([1,2]))];
-  const branched=selectClues(branchWords,'hard',graph([[1],[0,3],[4],[1],[2],[5]]),()=>0);
+  const branchWords=[rated([1,3]),rated([1,3]),rated([1,3]),...Array.from({length:57},()=>rated([1,2]))];
+  const branched=selectClues(branchWords,'hard',expanded([[1],[0,3],[4],[1],[2],[5],[7],[6],[9],[8],[11],[10]]),()=>0);
   assert.ok(branched);assert.equal(branched[0].level,3);assert.equal(branched[1].level,1);assert.equal(branched[2].level,3);
   assert.equal(selectClues(words,'hard',slots,random('budget'),0),null);
-  assert.equal(selectClues([rated([2])],'easy',graph([[]]),random('no-direct')),null);
+  assert.equal(selectClues([rated([2])],'easy',expanded([[]]),random('no-direct')),null);
 });
 test('fairness validation rejects damage while genuine pre-safeguard grids remain playable',()=>{
   const fixture=readFileSync(new URL('./fixtures/v2.8.0-specialist-crossings.json',import.meta.url),'utf8');

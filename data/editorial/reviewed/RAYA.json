@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:RAYA",
+      "grid": "RAYA",
+      "display": "RAYA",
+      "length": 4,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 2,
+      "desirability": 74,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:RAYA:recent-role",
+        "answerId": "answer:RAYA",
+        "definition": "Raya, the heroine of Raya and the Last Dragon",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Title heroine in Disney's 2021 film about the last dragon",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:RAYA:119y9ga",
+        "meaningId": "meaning:RAYA:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Raya, the heroine of Raya and the Last Dragon.",
+        "evidence": [
+          "reference:v222:RAYA"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://movies.disney.com/raya-and-the-last-dragon"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:RAYA",
+      "kind": "reference",
+      "locator": "https://movies.disney.com/raya-and-the-last-dragon",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

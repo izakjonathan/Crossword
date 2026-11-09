@@ -65,3 +65,7 @@ Difficulty version 1 and all editorial/field profiles remain unchanged. New cons
 ## v2.13 construction and wordplay update
 
 Current bank: 1,910 answers. Difficulty version 1 and its editorial limits are unchanged. Six reviewed tier-3 question-mark wordplay variants may appear in Hard; Easy/Medium retain their existing clue styles. New clue-policy annotations enforce shortened/informal signals. See [current construction and clue policy](PROFESSIONAL-V2.13.md), including nine targeted grammar corrections and limits of automated checking.
+
+## v2.22 profile 3
+
+Medium and Hard no longer require a minimum share of uncommon answers. They retain their maximum vocabulary bands and specialist-crossing safeguards. Medium requires at least 35% tier-2 clues and a clue mean of at least 1.35. Hard requires at least 50% challenging clues, at least one tier-3 clue on the current board sizes, and a clue mean of at least 1.50. Grid sizes and longer-answer rules remain. These are provisional editorial settings; old difficulty-version 1/2 saves keep their original profiles.

@@ -3,6 +3,7 @@ import {ADDITIONS} from '../../data/editorial/additions.mjs';
 import {DECISIONS,SOURCE_ROWS,REVIEWS,LEGACY_ACCEPTANCE,REVIEWED_RECORDS,REVIEWED_SOURCES} from './source-data.mjs';
 import {CATALOG_SCHEMA,REVIEW_CHECKS,contentId,normalizeAnswer,approvedWords} from './schema.mjs';
 import {annotateClue} from '../../lib/clue-policy.mjs';
+import {popCultureEligibility} from '../../lib/topic-policy.mjs';
 const date='2026-11-09',checks=Object.fromEntries(REVIEW_CHECKS.map(key=>[key,true]));
 const sources=[{id:'authored-v219',kind:'original',locator:'data/replacement/*.tsv at d8361980c16b162bee3c9f81187a9e0408d587f3',rights:'Original assistant-authored app content; not publisher clue extracts',retrievedAt:date},{id:'authored-v221',kind:'original',locator:'data/editorial/additions.mjs',rights:'Original assistant-authored app content',retrievedAt:date}];
 const guessSpeech=(text,abbreviation)=>abbreviation||/First name|Surname|Singer|Capital of|Country whose|City |Character |Actor |Actress /i.test(text)?'proper-noun':/^(Be |Become |Cause |Move |Make |Put |Take |Give |Go |Stop |Remove |Turn |Leave |Start |Clean |Write |Return |Continue |Search |Find |Help |End |Store |Fold |Roll |Spend |Pay |Wait |Reduce |Increase |Recover |Cancel |Arrive |Enter |Get |Join )/.test(text)?'verb':/^(Exclamation|Cry |Sound made)/.test(text)?'interjection':'other';
@@ -26,6 +27,14 @@ function makeRecord(word,addition=null){
 }
 const records=[...REPLACEMENT_WORDS.map(w=>makeRecord(w)),...ADDITIONS.map(a=>makeRecord({answer:normalizeAnswer(a.display),vocabularyLevel:a.familiarity||1,category:a.category||'general',easy:a.clues[0].text,clues:a.clues},a))];
 const mergedRecords=new Map(records.map(r=>[r.answer.grid,r]));for(const record of REVIEWED_RECORDS)mergedRecords.set(record.answer.grid,record);
+for(const record of mergedRecords.values())if(record.answer.category==='pop-culture'){
+ for(const clue of record.clues){
+  const eligibility=popCultureEligibility(record.answer.grid,clue);
+  clue.audienceEligibility=eligibility;
+  if(!eligibility&&clue.status==='approved')clue.status='quarantined';
+ }
+ if(!record.clues.some(c=>c.level===1&&c.status==='approved'))record.answer.status='quarantined';
+}
 const mergedSources=new Map([...sources,...REVIEWED_SOURCES].map(source=>[source.id,source]));
 export const CATALOG={schema:CATALOG_SCHEMA,version:DECISIONS.version,sources:[...mergedSources.values()],records:[...mergedRecords.values()]};
 export const APPROVED_WORDS=approvedWords(CATALOG);

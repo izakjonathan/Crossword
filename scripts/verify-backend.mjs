@@ -3,7 +3,7 @@
 import {spawn,execFileSync} from 'node:child_process';
 import {createServer} from 'node:http';
 import {randomUUID} from 'node:crypto';
-import {writeFileSync} from 'node:fs';
+import {writeFileSync,readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 const cli=process.env.REDIS_TEST_CLI;if(!cli)throw Error('Set REDIS_TEST_CLI to a disposable local Redis installation');
 const port=process.env.REDIS_HTTP_TEST_PORT||'6497',redis=spawn(cli.replace(/redis-cli$/,'redis-server'),['--port',port,'--bind','127.0.0.1','--save','','--appendonly','no'],{stdio:'ignore'});
@@ -12,6 +12,9 @@ const command=args=>{const values=args.map(String),input=values.at(-1)?.length>5
 const gateway=createServer(async(req,res)=>{try{if(req.headers.authorization!=='Bearer local-test-token'){res.writeHead(401);res.end('{}');return;}const chunks=[];for await(const chunk of req)chunks.push(chunk);const result=command(JSON.parse(Buffer.concat(chunks).toString('utf8')));res.setHeader('Content-Type','application/json');res.end(JSON.stringify({result}));}catch{res.writeHead(500);res.end(JSON.stringify({error:'Disposable Redis command failed'}));}});
 try{
  for(let i=0;i<50;i++){try{if(command(['PING'])==='PONG')break;}catch{}await pause(100);}
+ const imported=process.env.BACKEND_HISTORY_FILE?JSON.parse(readFileSync(process.env.BACKEND_HISTORY_FILE,'utf8')).answers:[];
+ if(!Array.isArray(imported)||imported.some(a=>!/^[A-Z]{3,11}$/.test(a)))throw Error('Invalid disposable history fixture');
+ if(imported.length)command(['HSET','crossword:answer-history:v1',...imported.flatMap(answer=>[answer,'disposable-import'])]);
  await new Promise(resolve=>gateway.listen(0,'127.0.0.1',resolve));
  const gatewayPort=gateway.address().port,base='http://127.0.0.1:3097';
  app=spawn(process.execPath,['node_modules/next/dist/bin/next','start','-p','3097','-H','127.0.0.1'],{env:{...process.env,UPSTASH_REDIS_REST_URL:`http://127.0.0.1:${gatewayPort}`,UPSTASH_REDIS_REST_TOKEN:'local-test-token',CRON_SECRET:'local-cron-test-only'},stdio:['ignore','pipe','pipe']});
@@ -45,9 +48,9 @@ try{
  const final=await request('/api/puzzles',null,null,'GET'),diagnostics=final.diagnostics;
  assert.ok(!Object.keys(diagnostics||{}).some(key=>key.includes('WORKER_FAILED')),JSON.stringify(diagnostics));
  assert.ok(JSON.stringify(diagnostics).includes('lastReplenishment'));
- assert.ok(final.ready.hard>0,'Hard inventory was not replenished after mixed-mode publication');
- const report={catalogVersion:health.catalogVersion,publishedModes:games.map(g=>g.mode),sharedReplacement:true,concurrentMembership:true,letterDeletion:true,feedback:true,ready:final.ready,diagnostics};
- writeFileSync('/workspace/scratch/v221-http-verification.json',JSON.stringify(report,null,2)+'\n');
+ assert.ok(final.ready.hard>0,'Hard inventory was not replenished after mixed-mode publication: '+JSON.stringify(final));
+ const report={importedHistory:imported.length,catalogVersion:health.catalogVersion,publishedModes:games.map(g=>g.mode),sharedReplacement:true,concurrentMembership:true,letterDeletion:true,feedback:true,ready:final.ready,diagnostics};
+ writeFileSync(process.env.BACKEND_REPORT_FILE||'/workspace/scratch/crossword-http-verification.json',JSON.stringify(report,null,2)+'\n');
  console.log(JSON.stringify(report));
  if(/Cannot find module|ENOENT/.test(logs))throw Error(logs);
 }finally{app?.kill();await new Promise(resolve=>gateway.close(resolve));redis.kill();}

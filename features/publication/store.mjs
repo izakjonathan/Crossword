@@ -129,11 +129,12 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
      report.attempts++;attemptsByMode[mode]++;
      const seedId=await command(['HINCRBY',diagnosticsKey,'generationSequence',1]),patterns=new Map();
      try{
-      // Prefer disjoint ready answers; if too restrictive the next attempt
-      // uses the permanent history alone. No history exclusion is relaxed.
+      // Restore an empty mode from permanent history first. Excluding the
+      // union of overlapping unplayed stock can leave no usable short fill.
+      // Later attempts prefer disjoint stock; actual history is never relaxed.
       const recent=new Set(excluded);
-      if(report.attempts%2)for(const packets of Object.values(stock))for(const p of packets)for(const entry of p.puzzle.entries)recent.add(entry.answer);
-      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,deadline:Math.min(end,Date.now()+(mode==='hard'?4000:2000)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
+      if(stock[mode].length>0&&attemptsByMode[mode]%2===0)for(const packets of Object.values(stock))for(const p of packets)for(const entry of p.puzzle.entries)recent.add(entry.answer);
+      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,deadline:Math.min(end,Date.now()+(mode==='hard'?8000:2000)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
       const packet=sealCandidate(puzzle,{excluded});
       const added=await command(['EVAL',ADD_SCRIPT,4,inventoryKey,modeKey(mode),GLOBAL_ANSWERS_KEY,lock,owner,packet.digest,JSON.stringify(packet),packet.report.score,JSON.stringify(puzzle.entries.map(e=>e.answer))]);
       if(Number(added)===1){stock[mode].push(packet);report.created++;}else {const reason=Number(added)===-1?'DUPLICATE_INVENTORY':'CONCURRENT_HISTORY';report.failures[reason]=(report.failures[reason]||0)+1;for(const answer of await command(['HKEYS',GLOBAL_ANSWERS_KEY]))excluded.add(answer);}

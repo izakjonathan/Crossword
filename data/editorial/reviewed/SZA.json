@@ -1,0 +1,125 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:SZA",
+      "grid": "SZA",
+      "display": "SZA",
+      "length": 3,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 1,
+      "desirability": 88,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:SZA:modern-artist-or-character",
+        "answerId": "answer:SZA",
+        "definition": "American singer and songwriter performing as SZA",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "Singer behind Kill Bill",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:SZA:1o1w6qe",
+        "meaningId": "meaning:SZA:modern-artist-or-character",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "American singer and songwriter performing as SZA; the linked primary source supports the association in this clue.",
+        "evidence": [
+          "reference:v222:SZA"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+        },
+        "sourceLocator": "https://www.sonymusic.ca/press_release/sza-and-doja-cat"
+      },
+      {
+        "text": "Singer who teamed up with Doja Cat on a 2023 version of Kill Bill",
+        "level": 2,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:SZA:i225gl",
+        "meaningId": "meaning:SZA:modern-artist-or-character",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "American singer and songwriter performing as SZA; the linked primary source supports the association in this clue.",
+        "evidence": [
+          "reference:v222:SZA"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+        },
+        "sourceLocator": "https://www.sonymusic.ca/press_release/sza-and-doja-cat"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue wording; supporting primary source checked for the named association and 2010-onward context. Editorial difficulty and familiarity are provisional; assistant review, not independent human certification."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:SZA",
+      "kind": "reference",
+      "locator": "https://www.sonymusic.ca/press_release/sza-and-doja-cat",
+      "rights": "Factual verification only; clue wording is original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

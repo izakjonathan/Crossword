@@ -1,0 +1,92 @@
+{
+  "record": {
+    "author": "Codex original author",
+    "answer": {
+      "id": "answer:AYO",
+      "grid": "AYO",
+      "display": "AYO",
+      "length": 3,
+      "language": "en",
+      "region": "international",
+      "category": "pop-culture",
+      "familiarity": 1,
+      "desirability": 88,
+      "status": "approved",
+      "revision": 1,
+      "flags": {
+        "abbreviation": false,
+        "properName": true,
+        "legacySemanticAudit": false
+      }
+    },
+    "meanings": [
+      {
+        "id": "meaning:AYO:recent-role",
+        "answerId": "answer:AYO",
+        "definition": "Given name of actress Ayo Edebiri, who portrays Sydney Adamu in The Bear",
+        "partOfSpeech": "proper-noun",
+        "grammar": {
+          "form": "proper-name",
+          "number": "singular",
+          "tense": "not-applicable",
+          "reviewStatus": "assistant-reviewed"
+        },
+        "subject": "entertainment",
+        "status": "approved",
+        "basis": "explicit-meaning"
+      }
+    ],
+    "clues": [
+      {
+        "text": "First name of Edebiri, who plays Sydney in The Bear",
+        "level": 1,
+        "style": "literal",
+        "answerForm": "normal",
+        "register": "standard",
+        "id": "clue:AYO:npdb8i",
+        "meaningId": "meaning:AYO:recent-role",
+        "status": "approved",
+        "revision": 1,
+        "explanation": "Given name of actress Ayo Edebiri, who portrays Sydney Adamu in The Bear.",
+        "evidence": [
+          "reference:v222:AYO"
+        ],
+        "review": {
+          "reviewer": "Codex editorial review",
+          "at": "2026-11-09",
+          "checks": {
+            "meaning": true,
+            "grammar": true,
+            "facts": true,
+            "naturalness": true,
+            "leakage": true,
+            "fairness": true,
+            "ambiguity": true,
+            "style": true
+          },
+          "basis": "assistant-editorial-review",
+          "independent": false,
+          "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+        },
+        "sourceLocator": "https://www.fxnetworks.com/shows/the-bear/cast/ayo-edebiri-sydney-adamu"
+      }
+    ],
+    "revisions": [
+      {
+        "number": 1,
+        "at": "2026-11-09",
+        "author": "Codex editorial review",
+        "reason": "Original clue and exact named association checked against the linked primary source. Assistant review; familiarity/difficulty remain provisional and not independently human certified."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "reference:v222:AYO",
+      "kind": "reference",
+      "locator": "https://www.fxnetworks.com/shows/the-bear/cast/ayo-edebiri-sydney-adamu",
+      "rights": "Factual verification only; clue wording original",
+      "retrievedAt": "2026-11-09"
+    }
+  ]
+}

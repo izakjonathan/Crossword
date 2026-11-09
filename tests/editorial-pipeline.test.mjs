@@ -18,14 +18,14 @@ test('normalization preserves display text and explicitly handles supported Lati
  for(const value of ['A2B','AB','αβγ','hello/world',null])assert.throws(()=>normalizeAnswer(value));
 });
 test('catalog links every approved answer to distinct meanings, reviewed clues, provenance and revisions',()=>{
- assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,1643);assert.equal(ADDITIONS.length,123);
+ assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,1803);assert.equal(ADDITIONS.length,123);
  const retired=new Set(WORDS.map(w=>w.answer));assert.ok(APPROVED_WORDS.every(w=>!retired.has(w.answer)));
  const amp=ANSWER_RECORDS.get('AMP');assert.ok(amp.meanings.length>=2);assert.equal(new Set(amp.clues.map(c=>c.meaningId)).size,amp.clues.length);
  for(const addition of ADDITIONS){const r=ANSWER_RECORDS.get(normalizeAnswer(addition.display));assert.equal(r.answer.flags.legacySemanticAudit,false);assert.ok(r.meanings.every(m=>m.basis==='explicit-meaning'));assert.ok(r.clues.every(c=>c.review.independent===false));}
  const travis=ANSWER_RECORDS.get('TRAVIS');assert.ok(travis.clues.every(c=>!/husband|married/i.test(c.text)));assert.ok(travis.clues.every(c=>c.evidence.includes('reference:TRAVIS')));
 });
 test('drafts, missing meaning approvals and low-scored answers never enter a generation pool',()=>{
- const catalog=structuredClone(CATALOG);catalog.records=[catalog.records[0]];
+ const catalog=structuredClone(CATALOG);catalog.records=[catalog.records.find(r=>r.answer.grid==='TAYLOR')];
  catalog.records[0].answer.status='draft';assert.equal(approvedWords(catalog).length,0);
  catalog.records[0].answer.status='approved';catalog.records[0].meanings.forEach(m=>m.status='review');assert.equal(approvedWords(catalog).length,0);
  catalog.records[0].meanings.forEach(m=>m.status='approved');catalog.records[0].answer.desirability=20;assert.equal(approvedWords(catalog).length,0);
@@ -39,7 +39,7 @@ test('review decisions require explicit rubric answers and retain revision histo
  const approved=applyReview(next,'approve',{reviewer:'Editor',at:'2026-11-09',reason:'Checked all meanings',checks:Object.fromEntries(REVIEW_CHECKS.map(k=>[k,true]))});assert.equal(approved.answer.status,'approved');
 });
 test('AI drafting briefs pin meaning and grammar; draft checking does not grant approval',()=>{
- const record=ANSWER_RECORDS.get('TRAVIS'),brief=clueBrief(record);assert.ok(brief.meanings.every(m=>m.grammar));assert.match(brief.instructions,/never approval/);
+ const record=ANSWER_RECORDS.get('TAYLOR'),brief=clueBrief(record);assert.ok(brief.meanings.every(m=>m.grammar));assert.match(brief.instructions,/never approval/);
  assert.ok(checkDraft(record,{meaningId:'invented',text:'Something',level:1,explanation:'x',evidenceIds:['x']}).length);
  assert.ok(checkDraft(record,{meaningId:record.meanings[0].id,text:record.clues[0].text,level:1,explanation:'x',evidenceIds:['x']}).length);
  assert.equal(record.answer.status,'approved');
@@ -77,8 +77,8 @@ test('background generation runs off-thread, returns pinned content and honors e
 });
 
 test('multiple approved clues at one demand tier are supported without admitting an unchecked draft',()=>{
- const catalog=structuredClone(CATALOG);catalog.records=[catalog.records.find(r=>r.answer.grid==='TRAVIS')];
- const row=catalog.records[0],alternate={...structuredClone(row.clues[0]),id:'clue:TRAVIS:second',text:'Given name of football player Kelce'};
+ const catalog=structuredClone(CATALOG);catalog.records=[catalog.records.find(r=>r.answer.grid==='AMP')];
+ const row=catalog.records[0],alternate={...structuredClone(row.clues[0]),id:'clue:AMP:second',text:'Electrical current unit, for short'};
  row.clues.push(alternate);assert.equal(approvedWords(catalog)[0].clues.filter(c=>c.level===1).length,2);
  alternate.status='draft';assert.equal(approvedWords(catalog)[0].clues.filter(c=>c.level===1).length,1);
 });

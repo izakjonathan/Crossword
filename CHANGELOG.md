@@ -1,3 +1,10 @@
+## v2.22.0 · Familiar and recent pop culture
+
+- Apply a default-deny, clue-level audience policy to pop culture. Preserve famous older direct associations and selected 2010-onward works; quarantine 86 answer records and unsuitable clue variants from new games. Active bank: 1,803 answers, 317 entertainment answers, including 19 source-checked recent additions and 227 fresh everyday short answers.
+- Limit capital clues to two in Easy/Medium and four in Hard, and sports clues to two per puzzle. Prefer other topics during fill. Count the actual selected meaning, so a cricket companion or phone battery is not treated as sport.
+- Version Hard profile v3 with more approachable footholds, retaining a separate demanding-clue floor and crossing safeguards. Keep earlier saved games on their original content and difficulty profiles.
+- Rebuild the versioned ready inventory against permanent production exclusions; independently enforce current audience and topic rules before publication.
+
 ## v2.21.0 · Editorial catalog and server publication
 
 - Live browser verification caught and fixed an illegal native-fetch receiver in the default publication client; add a browser-compatible transport regression check.
@@ -23,7 +30,7 @@
 ## 2.19.0 — 5 November 2026
 
 - Replace new-puzzle vocabulary with 1,520 authored answers, excluding all 5,730 previous answers.
-- Include 384 pop-culture entries and enforce a 20–35% share in each new grid; cap abbreviations at 25%.
+- Include 384 pop-culture entries and enforce a 15–35% share in each new grid; cap abbreviations at 25%.
 - Preserve old saves, the seen-word ledger, difficulty and checking constraints, and last-five-round protection.
 - Rebuild the prepared Hard supply from the new bank and add independent content-mix validation.
 - Retain editorial TSVs, repeatable bank compilation, source-check notes and explicit human-review limitations.

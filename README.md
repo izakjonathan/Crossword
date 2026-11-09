@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.21.0
+# Crossword puzzle · v2.22.0
 
 A mobile-first Next.js crossword app with solo saves, discoverable shared lobbies, a global two-colour UI Studio and a versioned editorial publication backend.
 
@@ -19,7 +19,7 @@ UI Studio changes the background and content colours for everyone. Local preview
 
 ## Answer and clue backend
 
-The active catalog contains **1,643 approved answers**, including 123 new everyday phrases/household terms and 30 explicit alternative senses. Entertainment accounts for 384 answers; every generated grid requires 20–35% entertainment and at most 25% abbreviations. Every active answer remains absent from the archived 5,730-answer bank.
+The active catalog contains **1,803 approved answers**, including the 123 everyday additions and 19 newly sourced recent entertainment answers and 227 fresh everyday short answers. Entertainment accounts for 317 answers; every generated grid requires 15–35% entertainment and at most 25% abbreviations. Every active answer remains absent from the archived 5,730-answer bank.
 
 Answers, display forms, normalized grid forms, meanings, grammatical information, clues, evidence, assessments and revisions are separate linked records. New/changed content must match an explicit review decision before entering generation. Low-quality, draft, rejected, quarantined or unapproved meanings/clues stay outside the pool.
 
@@ -93,3 +93,7 @@ Vercel builds main using the existing Next.js project. Redis uses a complete ser
 `CRON_SECRET` authenticates scheduled replenishment; never expose it as a NEXT_PUBLIC variable. The production scheduler credential was configured for this release. The endpoint returns 401 when authorization is missing or incorrect. `next.config.mjs` includes the ESM worker sources in the relevant function traces. `vercel.json` schedules the daily job.
 
 Do not reset the permanent history, replace existing publication receipts, or fall back to unchecked client-generated puzzles when stock is empty.
+
+## v2.22 audience and topic policy
+
+New games use a clue-level pop-culture allowlist: familiar older associations or explicitly selected references from 2010 onward. Fame alone does not approve obscure biographical trivia. The active pool contains 1,803 answers, including 317 pop-culture answers; other records remain preserved for saved games and editorial work. Easy/Medium permit at most two capital clues, Hard four; every mode permits at most two sports clues. Limits are checked during clue selection and independently before publication. Difficulty profile v3 removes compulsory uncommon vocabulary; Hard keeps at least 50% challenging clues and at least one tier-3 clue with a minimum clue mean of 1.50, allowing approachable footholds instead of forcing excluded trivia. Versions 1 and 2 remain readable with their original profiles. Permanent answer exclusions are preserved.

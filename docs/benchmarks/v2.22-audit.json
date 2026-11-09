@@ -1,0 +1,197 @@
+{
+  "seedsPerMode": 10,
+  "bankAnswers": 1803,
+  "longerClueBank": {
+    "answers": 492,
+    "tier2Answers": 90,
+    "tier3Answers": 36
+  },
+  "modes": {
+    "easy": {
+      "successes": 10,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 39,
+      "totalInformalClues": 3,
+      "maxEntries": 28,
+      "symmetricPuzzles": 10,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 10,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 86.77344140000002,
+      "p95Ms": 117.80927600000001,
+      "maxMs": 117.80927600000001,
+      "minFields": 56,
+      "maxFields": 58,
+      "meanVocabulary": 1.128096903096903,
+      "meanClue": 1,
+      "meanChallengingFraction": 0,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 5,
+      "maxLongestAnswer": 7,
+      "meanEightPlusAnswers": 0,
+      "meanEightPlusChallengingClues": 0,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 0,
+      "meanReviewedAlternativeAnswers": 17.1,
+      "meanEntries": 24.2,
+      "meanBlack": 0.2962962962962963,
+      "meanChecking": 0.7733370795870798,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 7.4,
+      "meanAlternativeClues": 17.1,
+      "uniqueAnswersUsed": 194,
+      "mostFrequentAnswers": [
+        [
+          "AKA",
+          4
+        ],
+        [
+          "AHA",
+          4
+        ],
+        [
+          "INSET",
+          3
+        ],
+        [
+          "ORO",
+          3
+        ],
+        [
+          "SOL",
+          3
+        ]
+      ]
+    },
+    "medium": {
+      "successes": 10,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 28,
+      "totalInformalClues": 3,
+      "maxEntries": 28,
+      "symmetricPuzzles": 10,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 10,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 143.7913274,
+      "p95Ms": 674.6533230000002,
+      "maxMs": 674.6533230000002,
+      "minFields": 80,
+      "maxFields": 82,
+      "meanVocabulary": 1.2630769230769232,
+      "meanClue": 1.3784065934065937,
+      "meanChallengingFraction": 0.37840659340659344,
+      "meanHardFraction": 0,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 8,
+      "maxLongestAnswer": 9,
+      "meanEightPlusAnswers": 2.2,
+      "meanEightPlusChallengingClues": 0.8,
+      "meanEightPlusHardClues": 0,
+      "puzzlesWithLongChallengingClue": 7,
+      "meanReviewedAlternativeAnswers": 16.9,
+      "meanEntries": 25.6,
+      "meanBlack": 0.3256198347107438,
+      "meanChecking": 0.6982564974707832,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 12.4,
+      "meanAlternativeClues": 16.9,
+      "uniqueAnswersUsed": 228,
+      "mostFrequentAnswers": [
+        [
+          "LEONARDO",
+          3
+        ],
+        [
+          "RON",
+          3
+        ],
+        [
+          "GILD",
+          3
+        ],
+        [
+          "AREPA",
+          2
+        ],
+        [
+          "MOCHA",
+          2
+        ]
+      ]
+    },
+    "hard": {
+      "successes": 10,
+      "failures": [],
+      "totalWordplayClues": 0,
+      "puzzlesWithWordplay": 0,
+      "totalShortenedAnswers": 35,
+      "totalInformalClues": 5,
+      "maxEntries": 38,
+      "symmetricPuzzles": 10,
+      "maxSolidBlackSquares": 0,
+      "distinctGrids": 10,
+      "totalSpecialistPairs": 0,
+      "totalUnsupportedHardClues": 0,
+      "meanHardestCluePairs": 0,
+      "meanMs": 106.12346189999998,
+      "p95Ms": 360.3881980000001,
+      "maxMs": 360.3881980000001,
+      "minFields": 110,
+      "maxFields": 112,
+      "meanVocabulary": 1.262922932330827,
+      "meanClue": 1.5312724519632417,
+      "meanChallengingFraction": 0.5,
+      "meanHardFraction": 0.03127245196324144,
+      "meanAdvancedFraction": 0,
+      "minLongestAnswer": 9,
+      "maxLongestAnswer": 10,
+      "meanEightPlusAnswers": 5,
+      "meanEightPlusChallengingClues": 1.8,
+      "meanEightPlusHardClues": 0.2,
+      "puzzlesWithLongChallengingClue": 9,
+      "meanReviewedAlternativeAnswers": 22.6,
+      "meanEntries": 32.2,
+      "meanBlack": 0.34792899408284017,
+      "meanChecking": 0.613238522894538,
+      "minChecking": 0.5,
+      "maxUnchecked": 1,
+      "meanLongAnswers": 15.6,
+      "meanAlternativeClues": 22.6,
+      "uniqueAnswersUsed": 257,
+      "mostFrequentAnswers": [
+        [
+          "CARPENTER",
+          4
+        ],
+        [
+          "ELTON",
+          4
+        ],
+        [
+          "PANETTONE",
+          4
+        ],
+        [
+          "EIN",
+          3
+        ],
+        [
+          "ALICE",
+          3
+        ]
+      ]
+    }
+  }
+}
