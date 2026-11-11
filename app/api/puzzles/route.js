@@ -8,9 +8,9 @@ export const dynamic='force-dynamic';
 export const maxDuration=60;
 export async function GET(){try{return Response.json(await publicationStore().health(),{headers:noStore});}catch(error){return failure(error);}}
 export async function POST(request){
- const store=publicationStore();
+ const store=publicationStore();let requestedMode;
  try{
-  const body=await jsonBody(request),token=request.headers.get('authorization')?.replace(/^Bearer /,'');let scope='solo';
+  const body=await jsonBody(request),token=request.headers.get('authorization')?.replace(/^Bearer /,'');let scope='solo';requestedMode=body?.mode;
   if(token){
    if(!TOKEN_PATTERN.test(token))throw new SharedError('Invalid shared game.',401);
    scope=roomKey(token);
@@ -22,7 +22,7 @@ export async function POST(request){
   after(async()=>{try{await store.replenish();}catch(error){console.error('Puzzle replenishment failed',error.code||'STORAGE');}});
   return Response.json({puzzle},{headers:noStore});
  }catch(error){
-  if(error.code==='SUPPLY_REPLENISHING')after(async()=>{try{await store.replenish();}catch{console.error('Puzzle replenishment retry failed');}});
+  if(error.code==='SUPPLY_REPLENISHING')after(async()=>{try{await store.replenish({preferredMode:requestedMode});}catch{console.error('Puzzle replenishment retry failed');}});
   return failure(error);
  }
 }

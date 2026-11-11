@@ -2,7 +2,7 @@ import {TOPIC_POLICY_VERSION,popCultureEligibility,topicFlags,validateTopicMix} 
 import {createHash} from 'node:crypto';
 import {validatePuzzle} from '../../lib/validate.mjs';
 import {CATALOG,CLUE_RECORDS} from '../editorial/catalog.mjs';
-import {normalizeClue,validateWordBank} from '../../lib/word-quality.mjs';
+import {clueSetErrors} from '../../lib/word-quality.mjs';
 import {validateGeometry} from '../generation/geometry.mjs';
 import {puzzleScore} from '../generation/quality.mjs';
 function canonical(value){return Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonical(value[key])])):value;}
@@ -19,17 +19,11 @@ export function inspectCandidate(puzzle,{excluded=new Set(),catalogVersion=CATAL
  errors.push(...validateTopicMix(authoritativeEntries,puzzle.mode));
  for(const e of puzzle.entries)if(e.category==='pop-culture'&&!popCultureEligibility(e.answer,{level:e.clueLevel,text:e.clue}))errors.push('Pop-culture clue outside audience policy');
  if(puzzle.editorialVersion!==1||puzzle.catalogVersion!==catalogVersion)errors.push('Outdated editorial catalog');
- const texts=new Set();
+ errors.push(...clueSetErrors(puzzle.entries));
  for(const entry of puzzle.entries){
-  const linked=CLUE_RECORDS.get(entry.clueId),key=normalizeClue(entry.clue);
+  const linked=CLUE_RECORDS.get(entry.clueId);
   if(!linked||linked.record.answer.status!=='approved'||linked.clue.status!=='approved'||linked.meaning.status!=='approved'||linked.clue.text!==entry.clue||linked.clue.revision!==entry.clueRevision||linked.clue.meaningId!==entry.meaningId||linked.record.answer.id!==entry.answerId||linked.record.answer.desirability<55||entry.clueLevel!==linked.clue.level||entry.editorialScore!==linked.record.answer.desirability||entry.vocabularyLevel!==linked.record.answer.familiarity||entry.clueStyle!==linked.clue.style||entry.answerForm!==linked.clue.answerForm||entry.clueRegister!==linked.clue.register)errors.push('Unapproved or changed answer/clue');
-  if(texts.has(key))errors.push('Repeated clue in one puzzle');texts.add(key);
   if(excluded.has(entry.answer))errors.push('Previously used answer');
-  // Check accidental leakage of any complete answer into another clue too.
-  for(const other of puzzle.entries)if(other!==entry){
-   const tokens=(entry.clue.toUpperCase().match(/[A-Z]+/g)||[]).join(' '),display=other.displayAnswer?.toUpperCase();
-   if(new RegExp(`\\b${other.answer}\\b`).test(tokens)||(display?.includes(' ')&&tokens.includes(display)))errors.push('A clue gives away another answer');
-  }
  }
  const subjects=Map.groupBy(puzzle.entries,e=>e.subject||e.category);
  if([...subjects.values()].some(group=>group.length>Math.ceil(puzzle.entries.length*.75)))errors.push('Too much of one subject');

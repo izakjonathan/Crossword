@@ -18,7 +18,7 @@ test('normalization preserves display text and explicitly handles supported Lati
  for(const value of ['A2B','AB','αβγ','hello/world',null])assert.throws(()=>normalizeAnswer(value));
 });
 test('catalog links every approved answer to distinct meanings, reviewed clues, provenance and revisions',()=>{
- assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,1803);assert.equal(ADDITIONS.length,123);
+ assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,2474);assert.equal(ADDITIONS.length,123);
  const retired=new Set(WORDS.map(w=>w.answer));assert.ok(APPROVED_WORDS.every(w=>!retired.has(w.answer)));
  const amp=ANSWER_RECORDS.get('AMP');assert.ok(amp.meanings.length>=2);assert.equal(new Set(amp.clues.map(c=>c.meaningId)).size,amp.clues.length);
  for(const addition of ADDITIONS){const r=ANSWER_RECORDS.get(normalizeAnswer(addition.display));assert.equal(r.answer.flags.legacySemanticAudit,false);assert.ok(r.meanings.every(m=>m.basis==='explicit-meaning'));assert.ok(r.clues.every(c=>c.review.independent===false));}

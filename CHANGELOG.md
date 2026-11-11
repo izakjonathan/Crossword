@@ -1,3 +1,9 @@
+## v2.23.0 · Restore new-game supply
+
+- Recover from empty live inventory in all three modes. Add 636 original everyday and short-fill answers and 35 source-checked entertainment answers, keeping the existing topic limits and all 2,215 known used answers excluded during preparation.
+- Rebuild the ready stock from the expanded approved catalog. Prioritise the missing requested difficulty once in a refill, then continue normal scheduling. Reject clue leakage during the fill search so it can try another fill in the same job.
+- Import reviewed source batches directly and include them in the generation worker's deployment trace. Existing saves, lobbies, receipts and permanent Redis history are preserved.
+
 ## v2.22.0 · Familiar and recent pop culture
 
 - Apply a default-deny, clue-level audience policy to pop culture. Preserve famous older direct associations and selected 2010-onward works; quarantine 86 answer records and unsuitable clue variants from new games. Active bank: 1,803 answers, 317 entertainment answers, including 19 source-checked recent additions and 227 fresh everyday short answers.

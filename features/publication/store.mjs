@@ -107,7 +107,7 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
    if(!record||record.scope!==scope||record.puzzle.id!==puzzle.id||record.puzzle.publication.digest!==puzzleDigest(puzzle)||record.puzzle.publication.digest!==puzzle.publication.digest)throw new SharedError('This puzzle is not an approved publication.',409);
    return record;
   },
-  async replenish({budgetMs=20000,target=8,maxAttempts=9}={}){
+  async replenish({budgetMs=20000,target=8,maxAttempts=9,preferredMode}={}){
    const lock=`${inventoryKey}:refill`,owner=randomUUID();
    if(await command(['SET',lock,owner,'NX','PX',budgetMs+10000])!=='OK')return {running:true};
    const started=Date.now(),end=started+budgetMs,report={created:0,attempts:0,failures:{}};
@@ -116,16 +116,15 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
     const excluded=new Set(await command(['HKEYS',GLOBAL_ANSWERS_KEY]));
     const attemptsByMode={easy:0,medium:0,hard:0},stock={};for(const mode of ['easy','medium','hard'])stock[mode]=await usable(mode,excluded);
     while(report.attempts<maxAttempts&&Date.now()<end-250){
-     const mode=['easy','medium','hard'].filter(m=>stock[m].length<target).sort((a,b)=>(stock[a].length+attemptsByMode[a])-(stock[b].length+attemptsByMode[b]))[0];
-     if(!mode){
-      // Requests may reserve several other modes while this worker is running.
-      // Refresh before declaring the inventory full; never trust that snapshot.
-      const latest=await command(['HKEYS',GLOBAL_ANSWERS_KEY]);
-      if(latest.length===excluded.size)break;
-      for(const answer of latest)excluded.add(answer);
+     // Another player can reserve a game during a worker attempt. Refresh the
+     // history and stock before spending the next search budget on old letters.
+     if(report.attempts&&Number(await command(['HLEN',GLOBAL_ANSWERS_KEY]))!==excluded.size){
+      for(const answer of await command(['HKEYS',GLOBAL_ANSWERS_KEY]))excluded.add(answer);
       for(const m of ['easy','medium','hard'])stock[m]=await usable(m,excluded);
-      continue;
      }
+     const requested=stock[preferredMode]?.length===0&&attemptsByMode[preferredMode]===0?preferredMode:null;
+     const mode=requested||['easy','medium','hard'].filter(m=>stock[m].length<target).sort((a,b)=>(stock[a].length+attemptsByMode[a])-(stock[b].length+attemptsByMode[b]))[0];
+     if(!mode)break;
      report.attempts++;attemptsByMode[mode]++;
      const seedId=await command(['HINCRBY',diagnosticsKey,'generationSequence',1]),patterns=new Map();
      try{
@@ -134,10 +133,10 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
       // Later attempts prefer disjoint stock; actual history is never relaxed.
       const recent=new Set(excluded);
       if(stock[mode].length>0&&attemptsByMode[mode]%2===0)for(const packets of Object.values(stock))for(const p of packets)for(const entry of p.puzzle.entries)recent.add(entry.answer);
-      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,deadline:Math.min(end,Date.now()+(mode==='hard'?8000:2000)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
+      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,publication:true,deadline:Math.min(end,Date.now()+(mode==='hard'?8000:2000)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
       const packet=sealCandidate(puzzle,{excluded});
       const added=await command(['EVAL',ADD_SCRIPT,4,inventoryKey,modeKey(mode),GLOBAL_ANSWERS_KEY,lock,owner,packet.digest,JSON.stringify(packet),packet.report.score,JSON.stringify(puzzle.entries.map(e=>e.answer))]);
-      if(Number(added)===1){stock[mode].push(packet);report.created++;}else {const reason=Number(added)===-1?'DUPLICATE_INVENTORY':'CONCURRENT_HISTORY';report.failures[reason]=(report.failures[reason]||0)+1;for(const answer of await command(['HKEYS',GLOBAL_ANSWERS_KEY]))excluded.add(answer);}
+      if(Number(added)===1){stock[mode].push(packet);report.created++;}else {const reason=Number(added)===-1?'DUPLICATE_INVENTORY':'CONCURRENT_HISTORY';report.failures[reason]=(report.failures[reason]||0)+1;}
      }catch(error){
       const code=error.code||'SEARCH_EXHAUSTED';report.failures[code]=(report.failures[code]||0)+1;
       const increments=[`${mode}:${code}`,1,...[...patterns.keys()].flatMap(key=>[`pattern:${mode}:${key}`,1])];

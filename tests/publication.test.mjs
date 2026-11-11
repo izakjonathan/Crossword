@@ -59,6 +59,14 @@ test('real Redis coordinates competing publications, prepared depletion and rest
  await assert.rejects(store.next({id:randomUUID(),mode:'easy'}),e=>e.code==='SUPPLY_REPLENISHING');
  assert.ok(await command(['HLEN',inventoryKey])>=1);
 });
+test('an empty requested mode gets the first refill attempt without starving other modes',{skip:!cli},async()=>{
+ const order=[],command=redisTestCommand(),store=publicationStore(command,{seedPackets:[],generate:({mode})=>{
+  order.push(mode);
+  return structuredClone(READY_PUZZLES.find(p=>p.puzzle.mode===mode).puzzle);
+ }});
+ const report=await store.replenish({preferredMode:'hard',target:1,maxAttempts:3});
+ assert.equal(report.created,3);assert.deepEqual(order,['hard','easy','medium']);
+});
 test('real Redis attaches a published next game to the same shared room and prevents stale content changes',{skip:!cli},async()=>{
  const command=redisTestCommand(),store=publicationStore(command),rooms=sharedStore(command);
  const original=READY_PUZZLES.find(p=>p.puzzle.mode==='easy').puzzle,{token}=await rooms.create({puzzle:original,play:initialState(original)},randomUUID());

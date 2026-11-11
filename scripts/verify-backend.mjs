@@ -14,6 +14,7 @@ try{
  for(let i=0;i<50;i++){try{if(command(['PING'])==='PONG')break;}catch{}await pause(100);}
  const imported=process.env.BACKEND_HISTORY_FILE?JSON.parse(readFileSync(process.env.BACKEND_HISTORY_FILE,'utf8')).answers:[];
  if(!Array.isArray(imported)||imported.some(a=>!/^[A-Z]{3,11}$/.test(a)))throw Error('Invalid disposable history fixture');
+ const protectedAnswers=new Set(imported);
  if(imported.length)command(['HSET','crossword:answer-history:v1',...imported.flatMap(answer=>[answer,'disposable-import'])]);
  await new Promise(resolve=>gateway.listen(0,'127.0.0.1',resolve));
  const gatewayPort=gateway.address().port,base='http://127.0.0.1:3097';
@@ -28,7 +29,7 @@ try{
  const games=[];for(const mode of ['easy','medium','hard']){
   const id=randomUUID(),start=performance.now(),{puzzle}=await request('/api/puzzles',{mode,requestId:id});
   assert.equal(puzzle.publication.requestId,id);assert.deepEqual((await request('/api/puzzles',{mode,requestId:id})).puzzle,puzzle);
-  assert.ok(puzzle.entries.every(e=>!games.some(p=>p.entries.some(old=>old.answer===e.answer))));games.push(puzzle);
+  assert.ok(puzzle.entries.every(e=>!protectedAnswers.has(e.answer)&&!games.some(p=>p.entries.some(old=>old.answer===e.answer))));games.push(puzzle);
   console.log(mode,Math.round(performance.now()-start)+'ms',puzzle.entries.length+' answers');
  }
  const host=randomUUID(),guest=randomUUID(),created=await request('/api/lobbies',{action:'host',name:'Backend test',game:{puzzle:games[0],play:{answers:{},assisted:false,entryId:games[0].entries[0].id,selected:games[0].entries[0].cells[0]}},playerId:host});
@@ -36,6 +37,7 @@ try{
  const lease=randomUUID(),baseRound=created.room.roundId;
  await request('/api/shared',{id:lease,kind:'begin',roundId:baseRound,changes:[],assisted:false},created.token,'PATCH');
  const next=(await request('/api/puzzles',{mode:'hard',requestId:lease,roundId:baseRound},created.token)).puzzle;
+ assert.ok(next.entries.every(e=>!protectedAnswers.has(e.answer)&&!games.some(p=>p.entries.some(old=>old.answer===e.answer))));
  const replacement={id:randomUUID(),kind:'replace',roundId:baseRound,leaseId:lease,puzzle:next,changes:[],assisted:false};
  const replaced=await request('/api/shared',replacement,created.token,'PATCH');assert.equal(replaced.puzzle.id,next.id);
  const room=await request('/api/shared',null,created.token,'GET');assert.equal(room.roundId,replacement.id);assert.equal(room.puzzle.publication.digest,next.publication.digest);

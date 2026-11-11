@@ -1,13 +1,23 @@
 {
-  "version": "2026-11-09.3",
+  "version": "2026-11-11.1",
   "reviewer": "Codex editorial review, 2026-11-09",
   "changes": {
     "TRAVIS": {
       "reason": "Replace time-sensitive relationship claims with a primary-source sports identification.",
       "source": "https://www.chiefs.com/team/players-roster/travis-kelce/",
       "clues": [
-        {"level": 1, "text": "First name of football player Kelce", "definition": "The given name of American football player Travis Kelce", "partOfSpeech": "proper-noun"},
-        {"level": 2, "text": "Given name of the tight end whose surname is Kelce", "definition": "The given name of American football tight end Travis Kelce", "partOfSpeech": "proper-noun"}
+        {
+          "level": 1,
+          "text": "First name of football player Kelce",
+          "definition": "The given name of American football player Travis Kelce",
+          "partOfSpeech": "proper-noun"
+        },
+        {
+          "level": 2,
+          "text": "Given name of the tight end whose surname is Kelce",
+          "definition": "The given name of American football tight end Travis Kelce",
+          "partOfSpeech": "proper-noun"
+        }
       ]
     }
   }

@@ -1,0 +1,70 @@
+{
+  "baseline": "2.23.0",
+  "reason": "Expanded reviewed answer bank after live inventory exhaustion.",
+  "cases": [
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-0"
+      },
+      "sha256": "1523e4844a438c2838885e83bc7f08c6f23c5106ada2dab07ced16220350d87a"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-1"
+      },
+      "sha256": "2008e376c9251488bce0f4b1a1d10b3586cb1b94347aff373bb070dde4003436"
+    },
+    {
+      "input": {
+        "mode": "easy",
+        "seed": "audit-2"
+      },
+      "sha256": "eb53265a7a0ad675e049df6b492d70a9d6ea65a308f026535934b77ef5bb7248"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-0"
+      },
+      "sha256": "d119ed3d211ca86bc1991fab4bbfa93a489f2e89bc042474bd64668555d9b727"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-1"
+      },
+      "sha256": "0d2e9e0946a17ec049019826bb45d5816aaef0ccfd3590e12f29ff803f4542f4"
+    },
+    {
+      "input": {
+        "mode": "medium",
+        "seed": "audit-2"
+      },
+      "sha256": "42883cd310c8fb1a1532614e143a3dadcf51b570533f9f87ec477a486226a6cd"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-0"
+      },
+      "sha256": "43f0d1d1813cde8a1b3a8b9b1e1089993154cadefe7669c763400d1bb0928af7"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-1"
+      },
+      "sha256": "42ad547640e541837b3c012864dd88747e70fdaec8edc95a6d7d69d3df56949a"
+    },
+    {
+      "input": {
+        "mode": "hard",
+        "seed": "audit-2"
+      },
+      "sha256": "537724067559e8898a614ea9bd91fe35f6e8ad532ef3f5642532ee2cafea5509"
+    }
+  ],
+  "version": "2.21.0"
+}
