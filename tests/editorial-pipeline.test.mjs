@@ -18,7 +18,7 @@ test('normalization preserves display text and explicitly handles supported Lati
  for(const value of ['A2B','AB','αβγ','hello/world',null])assert.throws(()=>normalizeAnswer(value));
 });
 test('catalog links every approved answer to distinct meanings, reviewed clues, provenance and revisions',()=>{
- assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,2474);assert.equal(ADDITIONS.length,123);
+ assert.deepEqual(validateCatalog(CATALOG),[]);assert.equal(APPROVED_WORDS.length,2547);assert.equal(ADDITIONS.length,123);
  const retired=new Set(WORDS.map(w=>w.answer));assert.ok(APPROVED_WORDS.every(w=>!retired.has(w.answer)));
  const amp=ANSWER_RECORDS.get('AMP');assert.ok(amp.meanings.length>=2);assert.equal(new Set(amp.clues.map(c=>c.meaningId)).size,amp.clues.length);
  for(const addition of ADDITIONS){const r=ANSWER_RECORDS.get(normalizeAnswer(addition.display));assert.equal(r.answer.flags.legacySemanticAudit,false);assert.ok(r.meanings.every(m=>m.basis==='explicit-meaning'));assert.ok(r.clues.every(c=>c.review.independent===false));}
@@ -55,8 +55,10 @@ test('named geometry profiles distinguish partial checking from American all-ove
  const mask=Array(225).fill(true),{slots}=extractSlots(mask,15),full={cols:15,rows:15,grid:mask.map(()=>({letter:'A'})),entries:slots.map(s=>({id:s.id,dir:s.dir,cells:s.cells,answer:'A'.repeat(s.cells.length)}))};
  assert.deepEqual(validateGeometry(full,'american-15'),[]);
 });
-test('every prepared difficulty passes independent publication checks and excludes the migration snapshot',()=>{
+test('every prepared difficulty passes publication checks and the first six games use distinct answers',()=>{
  assert.equal(READY_PUZZLES.length,24);for(const mode of ['easy','medium','hard'])assert.equal(READY_PUZZLES.filter(p=>p.puzzle.mode===mode).length,8);
+ const startupAnswers=READY_PUZZLES.slice(0,6).flatMap(packet=>packet.puzzle.entries.map(entry=>entry.answer));
+ assert.equal(new Set(startupAnswers).size,startupAnswers.length);
  for(const packet of READY_PUZZLES){assert.equal(puzzleDigest(packet.puzzle),packet.digest);assert.equal(inspectCandidate(packet.puzzle).ok,true);assert.equal(packet.report.review.humanTestSolved,false);}
 });
 test('publisher rejects changed clues, unknown IDs and protected answers; canonical digest survives JSON key reordering',()=>{
@@ -72,8 +74,8 @@ test('published snapshots remain readable without fetching the latest content ca
 
 test('background generation runs off-thread, returns pinned content and honors expired deadlines',async()=>{
  const {generateOffThread}=await import('../features/generation/server-worker.mjs');
- const p=await generateOffThread({mode:'easy',seed:'off-thread-regression',quality:true,deadline:Date.now()+10000});assert.equal(p.editorialVersion,1);
- await assert.rejects(generateOffThread({mode:'easy',seed:'expired-worker',deadline:0}),e=>e.code==='SEARCH_TIMEOUT');
+ const p=await generateOffThread({mode:'easy',seed:'off-thread-regression',quality:true,reuseLayouts:true,deadline:Date.now()+10000});assert.equal(p.editorialVersion,1);
+ await assert.rejects(generateOffThread({mode:'easy',seed:'expired-worker',reuseLayouts:true,deadline:0}),e=>e.code==='SEARCH_TIMEOUT');
 });
 
 test('multiple approved clues at one demand tier are supported without admitting an unchecked draft',()=>{

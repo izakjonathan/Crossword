@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.23.0
+# Crossword puzzle · v2.24.0
 
 A mobile-first Next.js crossword app with solo saves, discoverable shared lobbies, a global two-colour UI Studio and a versioned editorial publication backend.
 
@@ -27,7 +27,7 @@ Answers, display forms, normalized grid forms, meanings, grammatical information
 
 New-game requests load immutable ready puzzles from the server. Scored MAC/CSP runs off-thread during preparation and replenishment. An independent publisher checks structure, active clue revisions, geometry, crossing fairness, subject concentration, clue leakage and freshness before accepting a packet. There are initially eight ready packets per difficulty. Compatible-stock planning protects future choices across modes.
 
-After selections, fenced background jobs replenish usable stock. A protected daily 04:00 UTC Vercel job provides another retry opportunity. Clients wait with the same request identity during bounded refill; failures keep the current board. A finite bank cannot supply unlimited permanently unique games.
+After selections, fenced background jobs replenish usable stock. They try validated grid layouts with unused answers first, then use the remaining budget to search new layouts. A protected daily 04:00 UTC Vercel job provides another retry opportunity. Clients wait with the same request identity during bounded refill; failures keep the current board. A finite bank cannot supply unlimited permanently unique games.
 
 See [the backend design, source workflow and limitations](docs/EDITORIAL-BACKEND-V2.21.md).
 

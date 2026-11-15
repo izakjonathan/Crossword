@@ -133,7 +133,7 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
       // Later attempts prefer disjoint stock; actual history is never relaxed.
       const recent=new Set(excluded);
       if(stock[mode].length>0&&attemptsByMode[mode]%2===0)for(const packets of Object.values(stock))for(const p of packets)for(const entry of p.puzzle.entries)recent.add(entry.answer);
-      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,publication:true,deadline:Math.min(end,Date.now()+(mode==='hard'?8000:2000)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
+      const puzzle=await generate({mode,seed:`inventory:${CATALOG.version}:${seedId}`,recent:[...recent],quality:true,publication:true,reuseLayouts:true,deadline:Math.min(end,Date.now()+(mode==='hard'?8000:3500)),onDiagnostic:p=>{if(patterns.size<40)patterns.set(`${p.length}:${p.pattern}`,p);}});
       const packet=sealCandidate(puzzle,{excluded});
       const added=await command(['EVAL',ADD_SCRIPT,4,inventoryKey,modeKey(mode),GLOBAL_ANSWERS_KEY,lock,owner,packet.digest,JSON.stringify(packet),packet.report.score,JSON.stringify(puzzle.entries.map(e=>e.answer))]);
       if(Number(added)===1){stock[mode].push(packet);report.created++;}else {const reason=Number(added)===-1?'DUPLICATE_INVENTORY':'CONCURRENT_HISTORY';report.failures[reason]=(report.failures[reason]||0)+1;}

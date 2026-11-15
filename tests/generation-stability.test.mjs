@@ -4,13 +4,18 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { generatePuzzle, random } from '../lib/engine.mjs';
 import { fillLayout } from '../lib/grid-fill.mjs';
+import { GENERATION_WORDS } from '../lib/words.mjs';
+import refillPop from '../data/editorial/reviewed/refill-pop-v224.json' with { type: 'json' };
 
 // MAC propagation and dynamic degree/LCV deliberately change search order.
 // Historical fixtures remain; freeze the v2.23.0 solver for later cost-only changes.
 const reference = JSON.parse(readFileSync(new URL('./fixtures/v2.23.0-generation-hashes.json',import.meta.url)));
 test('seeded search preserves complete v2.23.0 editorial-bank output for fixed inputs',()=>{
+  const added = new Set(refillPop.records.map(record => record.answer.grid));
+  const bank = GENERATION_WORDS.filter(word => !added.has(word.answer))
+    .map(word => ({ ...word, catalogVersion: '2026-11-11.1' }));
   for (const {input,sha256} of reference.cases) {
-    const actual=createHash('sha256').update(JSON.stringify(generatePuzzle(input))).digest('hex');
+    const actual=createHash('sha256').update(JSON.stringify(generatePuzzle({...input,bank}))).digest('hex');
     assert.equal(actual,sha256,JSON.stringify(input));
   }
 });

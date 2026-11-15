@@ -1,3 +1,9 @@
+## v2.24.0 · Restore all three difficulties
+
+- Rebuild 24 ready puzzles against the production history of 2,510 used answers. The release includes two mutually answer-disjoint puzzles per difficulty across the initial six.
+- Add 73 source-checked entertainment answers to relieve the shortage of eligible short fill. Preserve the editorial topic limits, original difficulty settings, permanent answer history, and saved puzzles.
+- Try previously validated grid layouts with fresh fill before spending the remaining background budget on new layouts. Independent publication and atomic Redis checks still run before any puzzle is served.
+
 ## v2.23.0 · Restore new-game supply
 
 - Recover from empty live inventory in all three modes. Add 636 original everyday and short-fill answers and 35 source-checked entertainment answers, keeping the existing topic limits and all 2,215 known used answers excluded during preparation.

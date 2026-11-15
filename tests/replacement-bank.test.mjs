@@ -10,7 +10,7 @@ import {validateWordMix} from '../lib/word-mix.mjs';
 
 test('the replacement bank is wholly disjoint, individually clued and audience-filtered pop culture',()=>{
  const old=new Set(retired.map(w=>w.answer));
- assert.equal(bank.length,2474);assert.equal(bank.filter(w=>w.category==='pop-culture').length,352);
+ assert.equal(bank.length,2547);assert.equal(bank.filter(w=>w.category==='pop-culture').length,425);
  assert.ok(bank.every(w=>!old.has(w.answer)&&w.editorialStatus==='approved'));
  assert.deepEqual(validateWordBank(bank),[]);
  assert.ok(bank.filter(w=>w.answer.length===3).length>=300);
