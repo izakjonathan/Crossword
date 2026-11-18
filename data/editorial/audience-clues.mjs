@@ -3367,3 +3367,5 @@ for (const [key, selection] of [
   ["CAL|1|First name of Eric Dane's Jacobs father (Euphoria)",{"basis":"work-2010-onward","year":2019}],
   ["CAL|2|Jacobs, the father played by Eric Dane (Euphoria)",{"basis":"work-2010-onward","year":2019}],
 ]) AUDIENCE_CLUES.set(key, selection);
+
+for(const [key,selection] of [["ENO|1|Surname of ambient musician Brian",{"basis":"common-knowledge-editorial-selection"}],["ENO|2|Surname of the musician who made Music for Airports",{"basis":"common-knowledge-editorial-selection"}],["MAE|1|First name of comic Martin in Feel Good",{"basis":"work-2010-onward","year":2020}],["MAE|2|First name of the stand-up comic dating George in Feel Good",{"basis":"work-2010-onward","year":2020}],["MAL|1|Tracker played by Archie Renaux in Shadow and Bone",{"basis":"work-2010-onward","year":2021}],["MAL|2|Nickname of Alina’s tracker friend in Shadow and Bone",{"basis":"work-2010-onward","year":2021}]]) AUDIENCE_CLUES.set(key,selection);

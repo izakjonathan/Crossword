@@ -45,7 +45,7 @@ export function publicationStore(command=redisCommand,{seedPackets=READY_PUZZLES
  async function receipt(id){const raw=await command(['GET',receiptKey(id)]);return raw?JSON.parse(raw):null;}
  async function seed(){
   for(const mode of ['easy','medium','hard']){
-   const marker=`${modeKey(mode)}:seeded`;
+   const marker=`${modeKey(mode)}:seeded:stock-2026-11-18`;
    if(await command(['GET',marker]))continue;
    const packets=seedPackets.filter(p=>p.puzzle.mode===mode&&p.catalogVersion===CATALOG.version).filter(p=>inspectCandidate(p.puzzle).ok&&puzzleDigest(p.puzzle)===p.digest).map(p=>({digest:p.digest,value:JSON.stringify(p),score:p.report.score}));
    await command(['EVAL',SEED_SCRIPT,3,inventoryKey,marker,modeKey(mode),JSON.stringify(packets)]);

@@ -1,3 +1,9 @@
+## v2.25.0 · Additional prepared games
+
+- Add ten independently checked Medium and ten Hard packets excluding 2,855 permanently used answers.
+- Expand individually clued fill and preserve atomic history checks. Prepared packets can overlap, so playing one may invalidate other packets.
+- Version the seed marker so the deployment imports the additional stock into the current catalog inventory.
+
 ## v2.24.0 · Restore all three difficulties
 
 - Rebuild 24 ready puzzles against the production history of 2,510 used answers. The release includes two mutually answer-disjoint puzzles per difficulty across the initial six.

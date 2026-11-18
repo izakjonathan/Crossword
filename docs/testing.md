@@ -83,3 +83,7 @@ Baseline v2.23.0 at `740f715d084ab76f15405620e6112b2ad10b6446`. Production repor
 - With zero ready packets and the same captured history, the off-thread refiller created one independently validated puzzle per mode in three attempts, taking approximately 2 seconds on the test host. The built Next.js HTTP check with disposable Redis also exercised every difficulty, receipt retry, lobby membership, same-room replacement, letter deletion and feedback.
 - The full suite passed 182 tests with disposable Redis 7.4.2. The production build, three built-CSS checks and structural audit of 300 grids passed. Ten seeds per mode and twelve mixed-history cases were benchmarked against the baseline. Mean single-puzzle times were 182→169 ms Easy, 106→103 ms Medium and 140→153 ms Hard. These timings use open or rolling history, so the separate depleted-history replay measures the refill scenario. Catalog changes intentionally change generated output. The v2.23 seeded hash fixtures still pass with the v2.23 bank.
 - The permanent no-repeat policy still limits the useful life of any finite catalog. Depleted-history performance depends on the surviving answers, clue mix and grid shapes.
+
+## v2.25.0
+
+Twenty new packets passed independent publication validation against the live 2,855-answer snapshot. Packets can overlap with each other. No claim of twenty consecutive globally unique games is made. New clues use recorded assistant editorial review.
