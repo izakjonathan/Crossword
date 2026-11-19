@@ -1,4 +1,4 @@
-# Crossword puzzle · v2.24.0
+# Crossword puzzle · v2.26.0
 
 A mobile-first Next.js crossword app with solo saves, discoverable shared lobbies, a global two-colour UI Studio and a versioned editorial publication backend.
 
@@ -97,3 +97,7 @@ Do not reset the permanent history, replace existing publication receipts, or fa
 ## v2.22 audience and topic policy
 
 New games use a clue-level pop-culture allowlist: familiar older associations or explicitly selected references from 2010 onward. Fame alone does not approve obscure biographical trivia. The current pool contains 2,474 answers, including 352 pop-culture answers; other records remain preserved for saved games and editorial work. Easy/Medium permit at most two capital clues, Hard four; every mode permits at most two sports clues. Limits are checked during clue selection and independently before publication. Difficulty profile v3 removes compulsory uncommon vocabulary; Hard keeps at least 50% challenging clues and at least one tier-3 clue with a minimum clue mean of 1.50, allowing approachable footholds instead of forcing excluded trivia. Versions 1 and 2 remain readable with their original profiles. Permanent answer exclusions are preserved.
+
+## Continuous play
+
+The app uses /api/continuous for new games. Solo generation uses the reviewed catalog without Redis, and shared generation stores immutable receipts scoped to the room lease. Continuous games exclude the last 30 rounds for that device or room. Lifetime exclusions remain archived for old endpoints and saves. Puzzle fingerprints prevent duplicate continuous puzzles within the retained device or room history. Existing legacy histories can only recover rounds they actually retained. Shared play still requires the configured Redis service.

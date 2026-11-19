@@ -1,3 +1,4 @@
+import {inspectCandidate,puzzleDigest} from '../publication/checks.mjs';
 import {createHash} from 'node:crypto';
 import {redisCommand} from '../../lib/shared-store.mjs';
 import {OP_PATTERN,SharedError} from '../../lib/shared-model.mjs';
@@ -16,7 +17,9 @@ export function feedbackStore(command=redisCommand,{publications=publicationStor
  return {
   async record(body,address='unknown'){
    if(!OP_PATTERN.test(body.eventId||'')||!OP_PATTERN.test(body.publicationId||'')||!['check','hint','complete','pause','report'].includes(body.kind))throw new SharedError('Invalid clue feedback.');
-   const receipt=await publications.receipt(body.publicationId);if(!receipt)throw new SharedError('This puzzle is not available for feedback.',404);
+   let receipt=await publications.receipt(body.publicationId);
+   if(!receipt&&body.puzzle?.continuityVersion===1&&body.puzzle.publication?.requestId===body.publicationId&&body.puzzle.publication.digest===puzzleDigest(body.puzzle)&&inspectCandidate(body.puzzle).ok)receipt={puzzle:body.puzzle,mode:body.puzzle.mode};
+   if(!receipt)throw new SharedError('This puzzle is not available for feedback.',404);
    const entry=receipt.puzzle.entries.find(e=>e.clueId===body.clueId);
    if(!['complete','pause'].includes(body.kind)&&!entry)throw new SharedError('Unknown clue.');
    if(body.kind==='report'&&(!reasons.includes(body.reason)||typeof body.comment!=='string'||body.comment.length>400||/[\u0000-\u0008]/.test(body.comment)))throw new SharedError('Choose a feedback reason and use at most 400 characters.');

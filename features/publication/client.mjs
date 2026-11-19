@@ -1,14 +1,14 @@
 export class PublishedPuzzleClient {
  constructor({fetcher=(...args)=>fetch(...args),timeoutMs=30000}={}){this.fetcher=fetcher;this.timeoutMs=timeoutMs;this.pending=null;this.closed=false;}
- async generate({mode,room,token}){
+ async generate({mode,room,token,history}){
   if(this.closed)throw new Error('Generation cancelled.');if(this.pending)throw new Error('A puzzle is already being loaded.');
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),this.timeoutMs);this.pending=controller;
-  const requestId=room?.generating?.id||crypto.randomUUID(),body=JSON.stringify({mode,requestId,...(room?{roundId:room.roundId||room.puzzle.id}:{})});
+  const requestId=room?.generating?.id||crypto.randomUUID(),body=JSON.stringify({mode,requestId,recent:(history?.recentRounds||[]).slice(-30).flat(),signatures:(history?.puzzleSignatures||[]).slice(-2000),...(room?{roundId:room.roundId||room.puzzle.id}:{})});
   try{
    let networkFailures=0;
    while(!controller.signal.aborted){
     let response;
-    try{response=await this.fetcher('/api/puzzles',{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{})},body,cache:'no-store',signal:controller.signal});}
+    try{response=await this.fetcher('/api/continuous',{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:`Bearer ${token}`}:{})},body,cache:'no-store',signal:controller.signal});}
     catch(error){if(controller.signal.aborted||++networkFailures>1)throw error;continue;}
     const result=await response.json();
     if(!response.ok){

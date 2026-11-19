@@ -87,3 +87,11 @@ Baseline v2.23.0 at `740f715d084ab76f15405620e6112b2ad10b6446`. Production repor
 ## v2.25.0
 
 Twenty new packets passed independent publication validation against the live 2,855-answer snapshot. Packets can overlap with each other. No claim of twenty consecutive globally unique games is made. New clues use recorded assistant editorial review.
+
+## v2.26.0 — Continuous play
+
+Baseline f3537aa. New construction uses a per-device or per-room 30-game answer cooldown. Permanent archives remain readable, and old endpoints retain their original policy. Migration recovers stored recent rounds and identifiable recent game numbers. Older unrecorded rounds cannot be reconstructed.
+
+The full suite passed 185 tests with disposable Redis and no skips. The production build passed. A separate built Next.js HTTP test generated 100 solo games and 40 shared games, checked the 30-round window, retried publication receipts, and retried shared replacements. Generation runs off-thread and every returned puzzle passes independent catalog/publication checks. Solo generation has no Redis dependency. Shared play and feedback still require the configured shared service. Local Redis verification does not establish production provider availability.
+
+The former prepared inventory remains available to legacy endpoints. Current clients call /api/continuous and generate on demand. Lifetime fingerprints are retained in local history and in a room for its lifetime. Client requests send at most the latest 2,000 fingerprints, while the local commit check retains the full device list.

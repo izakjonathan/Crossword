@@ -1,3 +1,10 @@
+## v2.26.0 · Continuous play
+
+- Generate new approved puzzles on demand using a per-device or per-room 30-game cooldown. Retain lifetime archives for compatibility.
+- Remove the global-history network requirement from new solo games and startup.
+- Preserve room-scoped receipts and check recent answers and duplicate puzzles during atomic shared replacement.
+- Back off failed shared polling and give service-specific errors.
+
 ## v2.25.0 · Additional prepared games
 
 - Add ten independently checked Medium and ten Hard packets excluding 2,855 permanently used answers.
